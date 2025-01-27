@@ -1,6 +1,8 @@
 import alboom from '../assets/alboom.png'
 import search from '../assets/search.svg'
 
+import './Nav.css'
+
 function Nav() {
     return (
         <nav>
