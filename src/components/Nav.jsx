@@ -1,8 +1,12 @@
+import alboom from '../assets/alboom.png'
+import search from '../assets/search.svg'
+
 function Nav() {
     return (
         <nav>
-            <h1>ALBOOM</h1>
+            <img src={alboom} alt="Alboom" />
             <input type="text" />
+            <img src={search} alt="Search" />
             <button>Register</button>
             <button>Sign In</button>
         </nav>
