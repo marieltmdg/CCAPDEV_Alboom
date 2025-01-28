@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 
-import Headerout from "../components/Headerout"
+import Header from "../components/Header"
 import Main from "../components/Main"
 
 function User() {
@@ -8,7 +8,7 @@ function User() {
 
     return (
         <>
-            <Headerout />
+            <Header isAuth={true} />
             <Main>
                 Place User Page Components Here!
             </Main>

@@ -85,3 +85,42 @@ header {
 .pfp {
     height: 50%; 
 }
+
+.register-button {
+    background-color: var(--supporting-color);
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: var(--body-font);
+    border: 1px solid var(--supporting-color);
+    text-align: center;
+    display: inline-block; 
+    vertical-align: middle; 
+    cursor: pointer;
+    height: 35%;
+    width: 25%;
+    font-size: 100%;
+}
+
+.register-button:hover {
+    background-color: var(--accent-color); 
+}
+
+.sign-in-button {
+    background-color: var(--secondary-color);
+    color: black;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: var(--body-font);
+    border: 1px solid var(--primary-color);
+    text-align: center;
+    display: inline-block; 
+    vertical-align: middle; 
+    cursor: pointer;
+    height: 35%;
+    width: 25%;
+}
+
+.sign-in-button:hover {
+    background-color: var(--accent-color); 
+}

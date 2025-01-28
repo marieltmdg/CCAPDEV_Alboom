@@ -1,10 +1,10 @@
-import './Headerin.css'
+import './Header.css'
 
 import alboom from '../assets/alboom.png'
 import search from '../assets/search.png'
 import avatar from '../assets/avatar.png'
 
-function Headerin() {
+function Header({ isAuth }) {
     return <header>
         <div className="background-container">
             <div className="left-box">
@@ -19,11 +19,22 @@ function Headerin() {
                 </div>
             </div>
             <div className="right-box">
-                <img src={avatar} className='pfp'></img>
+                { isAuth ? (
+                    <img src={avatar} className='pfp'></img>
+                ) : (
+                    <>
+                        <button className="register-button">
+                            Register
+                        </button>
+                        <button className="sign-in-button">
+                            Sign In
+                        </button>
+                    </>
+                )}
                 <div className="blocker"></div>
             </div>
         </div>
     </header>
 }
 
-export default Headerin
+export default Header
