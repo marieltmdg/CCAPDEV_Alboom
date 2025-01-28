@@ -1,10 +1,10 @@
-import Header from "../components/Header"
+import Headerout from "../components/Headerout"
 import Main from "../components/Main"
 
 function Register() {
     return (
         <>
-            <Header />
+            <Headerout />
             <Main>
                 Place Register Page Components Here!
             </Main>

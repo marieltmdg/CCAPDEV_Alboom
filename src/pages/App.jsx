@@ -1,10 +1,11 @@
-import Header from "../components/Header"
+import Headerout from "../components/Headerout"
+import Headerin from "../components/Headerin"
 import Main from "../components/Main"
 
 function App() {
     return (
         <>
-            <Header />
+            <Headerin />
             <Main>
                 Place Landing Page Components Here!
             </Main>

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 
-import Header from "../components/Header"
+import Headerout from "../components/Headerout"
 import Main from "../components/Main"
 
 function Album() {
@@ -8,7 +8,7 @@ function Album() {
 
     return (
         <>
-            <Header />
+            <Headerout />
             <Main>
                 Place Album Page Components Here!
             </Main>
