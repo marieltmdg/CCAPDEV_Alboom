@@ -22,3 +22,12 @@
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--header-font);
 }
+
+body {
+    width: 100vw; 
+    height: 100vh; 
+    background-image: url('assets/background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
