@@ -1,5 +1,7 @@
 import './Header.css'
 
+import { Link } from "react-router-dom";
+
 import alboom from '../assets/alboom.png'
 import search from '../assets/search.png'
 import avatar from '../assets/avatar.png'
@@ -23,12 +25,12 @@ function Header({ isAuth }) {
                     <img src={avatar} className='pfp'></img>
                 ) : (
                     <>
-                        <button className="register-button">
+                        <Link to="/register" className="register-button">
                             Register
-                        </button>
-                        <button className="sign-in-button">
+                        </Link>
+                        <Link to="/login" className="sign-in-button">
                             Sign In
-                        </button>
+                        </Link>
                     </>
                 )}
                 <div className="blocker"></div>

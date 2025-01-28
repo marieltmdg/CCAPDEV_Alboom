@@ -1,5 +1,7 @@
 import './Login.css';
 
+import { Link } from "react-router-dom";
+
 import Main from "../components/Main"
 
 import gradient from '../assets/gradient.png';
@@ -15,7 +17,7 @@ function Login() {
                         </div>
                         <div className="login-form">
                             <p className='p-header'>Login</p>
-                            <p className='p-body'>New to Alboom? <u>Sign up for free</u> </p>
+                            <p className='p-body'>New to Alboom? <Link to="/register"><u>Sign up for free</u></Link></p>
                             <form>
                                 <div className="input-group">
                                     <label htmlFor="username">Username</label>
