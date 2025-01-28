@@ -1,27 +1,5 @@
-import Nav from './components/Nav.jsx'
-import Main from './components/Main.jsx'
-
 function App() {
-    return (
-        <>
-            <Nav />
-            <Main>
-            { 
-            // Switch
-
-                // /
-                
-                // /album/:id
-
-                // /user/:id
-
-                // /login
-
-                // /register
-            }
-            </Main>
-        </>
-    )
+    return <h1>Landing Page</h1>
 }
 
 export default App
