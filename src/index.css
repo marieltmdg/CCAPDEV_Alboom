@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+:root {
+    --primary-color: #121212;
+    --secondary-color: #f8f8f8;
+    --accent-color: #ff8000;
+
+    --header-font: 'Raleway';
+    --body-font: 'Montserrat';
+
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway';
+}
+
+p {
+    font-family: 'Montserrat'
+}
+
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    text-align: center;
+}
