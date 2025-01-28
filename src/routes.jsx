@@ -1,8 +1,8 @@
-import App from './App.jsx'
-import Album from './Album.jsx'
-import User from './User.jsx'
-import Login from './Login.jsx'
-import Register from './Register.jsx'
+import App from './pages/App.jsx'
+import Album from './pages/Album.jsx'
+import User from './pages/User.jsx'
+import Login from './pages/Login.jsx'
+import Register from './pages/Register.jsx'
 
 const routes = [
     {
