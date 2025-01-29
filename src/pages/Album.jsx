@@ -10,7 +10,7 @@ function Album() {
         <>
             <Header isAuth={true} />
             <Main>
-                Place Album Page Components Here!
+                Place Album Page Components Here! {title}
             </Main>
         </>
     ) 

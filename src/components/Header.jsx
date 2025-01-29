@@ -1,6 +1,6 @@
 import './Header.css'
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 import alboom from '../assets/alboom.png'
 import search from '../assets/search.png'
