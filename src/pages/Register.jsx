@@ -48,6 +48,11 @@ function Register() {
                                 <button type="submit" className="signup-button">Log In</button>
                             </form>
                         </div>
+                        <div className="close-button">
+                            <Link to="/" className='close-text'>
+                                ×
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </Main>

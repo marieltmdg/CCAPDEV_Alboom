@@ -31,6 +31,11 @@ function Login() {
                                 <button type="submit" className="login-button">Log In</button>
                             </form>
                         </div>
+                        <div className="close-button">
+                            <Link to="/" className='close-text'>
+                                ×
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </Main>

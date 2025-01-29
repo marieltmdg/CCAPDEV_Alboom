@@ -45,6 +45,7 @@
     width: 100%;
     margin: 0;
     padding: 20px;
+    padding-left: 40px;
 }
 
 .input-group {
@@ -115,4 +116,22 @@
     height: 46%;
     overflow-y: auto;
     padding-right: 0px; 
+}
+
+.close-button {
+    font-size: 35px;
+    background-color: var(--secondary-color);
+    padding-right: 12px;
+    padding-top: 5px;
+}
+
+.close-text {
+    color: black;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.close-text:hover {
+    color: var(--accent-color);
 }
