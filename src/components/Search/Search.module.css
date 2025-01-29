@@ -1,0 +1,28 @@
+.wrapper {
+    flex: 1;
+    display: flex;
+}
+
+.search {
+    flex: 1;
+    padding: 16px;
+    border-radius: 16px 0px 0px 16px;
+    border: none;
+}
+
+.search:focus {
+    outline: none;
+}
+
+.button {
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    border-radius: 0px 16px 16px 0px;
+    border: none;
+    padding: 16px;
+}
+
+.icon {
+    width: 16px;
+    width: 16px;
+}

@@ -1,6 +1,6 @@
 import './UserProfile.css';
 
-import Header from "../components/Header";
+import Header from "../components/Header/Header.jsx"
 import Main from "../components/Main";
 
 import link from '../assets/link.png';

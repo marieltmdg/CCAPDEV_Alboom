@@ -14,9 +14,7 @@ function AlbumGrid() {
     return (
         <div className="grid-container">
             {albums.map(album => (
-                <Link to={"/album/" + album.name} key={album.name} className="grid-item">
-
-                </Link>
+                <Link to={"/album/" + album.name} key={album.name} className="grid-item" />
             ))}
         </div>
     )
