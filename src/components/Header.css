@@ -98,6 +98,7 @@ header {
     vertical-align: middle; 
     cursor: pointer;
     font-size: 100%;
+    text-decoration: none;
 }
 
 .register-button {
