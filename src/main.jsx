@@ -9,6 +9,7 @@ import Album from './pages/Album.jsx'
 import User from './pages/User.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
+import UserProfile from './pages/UserProfile.jsx'
 
 const router = createBrowserRouter([
     {
