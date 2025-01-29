@@ -4,12 +4,12 @@ import AlbumGrid from "../components/AlbumGrid"
 
 import alboom from '../assets/alboom.png'
 
-import './App.css'
+import './Home.css'
 
-function App() {
+function Home() {
     return (
         <>
-            <Header isAuth={true} />
+            <Header isAuth={false} />
             <Main>
                 <img src={alboom} alt="album" className='alboom'/>
 
@@ -23,4 +23,4 @@ function App() {
     )    
 }
 
-export default App
+export default Home
