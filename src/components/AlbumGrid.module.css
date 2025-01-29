@@ -1,0 +1,16 @@
+.container {
+    padding: 16px;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+}
+
+.item {
+    aspect-ratio: 1 / 1;
+    height: 100%;
+}
+
+.cover {
+    width: 100%;
+    height: 100%;
+}

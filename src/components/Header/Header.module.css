@@ -6,9 +6,11 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
 }
 
 .start, .center, .end {
+    flex: 1;
     display: flex;
     align-items: center;  
 }
@@ -29,15 +31,15 @@ header {
 }
 
 .avatar {
-    height: 40px;  
-    width: 40px;  
+    height: 32px;  
+    width: 32px;  
     margin-right: 20px;
 }
 
 .login {
     background-color: var(--secondary-color);
     color: var(--primary-color);
-    padding: 10px 16px;  
+    padding: 8px 16px;  
     border-radius: 16px;
     font-weight: bold;
     transition: 0.25s;
