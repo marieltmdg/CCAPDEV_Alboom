@@ -17,8 +17,8 @@ function Login() {
                         </div>
                         <div className="login-form">
                             <p className='p-header'>Login</p>
-                            <p className='p-body'>New to Alboom? <Link to="/register"><u>Sign up for free</u></Link></p>
-                            <form>
+                            <p className='p-body'>New to Alboom? <Link to="/register" className='link'><u>Sign up for free</u></Link></p>
+                            <form className='form-properties-log'>
                                 <div className="input-group">
                                     <label htmlFor="username">Username</label>
                                     <input type="text" id="username" placeholder="Enter your username" />
@@ -27,7 +27,7 @@ function Login() {
                                     <label htmlFor="password">Password</label>
                                     <input type="password" id="password" placeholder="Enter your password" />
                                 </div>
-                                <p className='p-body'><u>Forgot your password?</u> </p>
+                                <p className='p-body'><Link className='link'><u>Forgot your password?</u></Link> </p>
                                 <button type="submit" className="login-button">Log In</button>
                             </form>
                         </div>
