@@ -16,7 +16,7 @@ function Register() {
                         </div>
                         <div className="signup-form">
                             <p className='p-header'>Sign Up</p>
-                            <p className='p-body'>Already have an account? <Link to="/login" className='link'><u>Log in</u></Link></p>
+                            <p className='p-body'>Already have an account? <Link to="/login" className='link-text'><u>Log in</u></Link></p>
                             <form className='form-properties'>
                                 <div className="input-group">
                                     <label htmlFor="email">Email Address</label>

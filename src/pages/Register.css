@@ -101,12 +101,12 @@
     font-size: 14px;
 }
 
-.link {
+.link-text {
     color: black;
     text-decoration: none;
 }
   
-.link:hover {
+.link-text:hover {
     color: var(--accent-color);
     text-decoration: none;
 }
