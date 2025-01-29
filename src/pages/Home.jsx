@@ -1,6 +1,6 @@
 import Header from "../components/Header/Header.jsx"
 import Main from "../components/Main"
-import AlbumGrid from "../components/AlbumGrid"
+import AlbumGrid from "../components/AlbumGrid/AlbumGrid.jsx"
 
 import alboom from '../assets/alboom.png'
 
