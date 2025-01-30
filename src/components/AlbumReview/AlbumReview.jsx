@@ -1,6 +1,8 @@
 import styles from './AlbumReview.module.css'
 import albumCover from '../../assets/albums/flower-boy.jpg'
 
+import { Link } from 'react-router-dom'
+
 function AlbumReview(props) {
     return(
         <div className={styles.mainContainer}>
@@ -17,7 +19,7 @@ function AlbumReview(props) {
                 <p className={styles.albumDescription}>
                     {props.AlbumDescription}
                 </p>
-                <button className={styles.albumReviewButton}>Review</button>
+                <Link to={"/album/" + props.AlbumTitle + "/create"}className={styles.albumReviewButton}>Review</Link>
             </div>
     </div>
     )

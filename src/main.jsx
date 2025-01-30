@@ -10,6 +10,7 @@ import User from './pages/User.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import UserProfile from './pages/UserProfile.jsx'
+import CreateReview from './pages/CreateReview.jsx'
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
     {
         path: "/album/:title",
         element: <Album />
+    },
+    {
+        path: "/album/:title/create",
+        element: <CreateReview />
     },
     {
         path: "/user/:username",
