@@ -2,6 +2,7 @@ header {
     padding: 10px 16px;  
     background-color: var(--primary-color);
     color: var(--secondary-color);
+    border-bottom: 1px solid var(--accent-color);
     
     display: flex;
     justify-content: space-between;
