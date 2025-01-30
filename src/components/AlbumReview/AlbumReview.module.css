@@ -3,8 +3,8 @@
     width: 100%;
     height: 720px;
     border-radius: 20px;
-    border: 1px solid var(--secondary-color);
-    background-color: rgb(18, 18, 18, 0.5);
+    border: 1px solid var(--accent-color);
+    background-color: rgb(18, 18, 18, 0.7);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin-top: 2%;
     padding: 32px;
@@ -45,8 +45,9 @@
     font-weight: bolder;
     color: var(--accent-color);
     padding: 16px 64px;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--accent-color);
     border-radius: 8px;
+    transition: .25s;
 }
 
 .right {
@@ -68,7 +69,7 @@
     background-color: rgb(18, 18, 18, 0.5);
     color: var(--secondary-color);
     padding: 12px 64px;  
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--accent-color);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
     font-weight: bold;
@@ -77,11 +78,12 @@
 }
 
 .albumReviewButton:hover {
-    background-color: rgb(18, 18, 18, 0.7);
+    transform: scale(1.015);
+    background-color: rgb(18, 18, 18, 0.85);
 }
 
 .albumReviewButton:active {
-    background-color: rgb(18, 18, 18, 1);
+    background-color: var(--accent-color);
 }
 
 /* RESPONSIVE STUFF */

@@ -10,7 +10,7 @@ function AlbumReview(props) {
             <div className={styles.left}>
                 <h1 className={styles.albumTitle}>{props.AlbumTitle}</h1>
                 <img src={props.AlbumCover} className={styles.albumCover}></img>
-                <h1 className={styles.albumRating}>{props.AlbumRating} Booms</h1>
+                <h1 className={styles.albumRating}>{props.AlbumRating} BOOMS</h1>
             </div>
 
             <div className={styles.right}>
