@@ -1,0 +1,93 @@
+.mainContainer {
+    display: flex;
+    width: 100%;
+    height: 720px;
+    border-radius: 20px;
+    border: 1px solid var(--secondary-color);
+    background-color: rgb(18, 18, 18, 0.5);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-top: 2%;
+    padding: 32px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+}
+
+.albumTitle {
+    font-weight: bold;
+}
+
+.albumCover {
+    height: 80%;
+    width: auto;
+    border-radius: 5%;
+    margin-bottom: 2.5%;
+    margin-top: 2.5%;
+    transition: .25s;
+}
+
+.albumCover:hover {
+    transform: scale(1.015);
+    opacity: 70%;
+}
+
+.albumCover:active {
+    opacity: 30%;
+}
+
+.albumRating {
+    font-family: var(--body-font);
+    font-weight: bolder;
+    color: var(--accent-color);
+    padding: 16px 64px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 60%;
+    gap: 8px;
+}
+
+.albumDescription {
+    text-align: left;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.albumReviewButton {
+    background-color: rgb(18, 18, 18, 0.5);
+    color: var(--secondary-color);
+    padding: 12px 64px;  
+    border: 1px solid var(--secondary-color);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    font-weight: bold;
+    align-self: center;
+    transition: 0.3s;
+}
+
+.albumReviewButton:hover {
+    background-color: rgb(18, 18, 18, 0.7);
+}
+
+.albumReviewButton:active {
+    background-color: rgb(18, 18, 18, 1);
+}
+
+/* RESPONSIVE STUFF */
+
+/* @media (max-width: 1024px) {
+    .mainContainer {
+        flex-direction: column;
+    }
+} */
