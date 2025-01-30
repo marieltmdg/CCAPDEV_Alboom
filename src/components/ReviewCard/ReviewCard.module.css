@@ -1,0 +1,90 @@
+.mainContainer {
+    width: 100%;
+    height: 300px;
+
+    display: flex;
+
+    border-radius: 20px;
+    border: 1px solid var(--accent-color);
+
+    background-color: rgb(18, 18, 18, 0.7);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.left {
+    width: 10%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.userPhoto {
+    width: 75px;
+    height: 75px;
+
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
+
+    align-self: flex-start;
+    
+    margin: 32px 32px;
+}
+
+.leftTop {
+    height: 50%;
+}
+
+.leftBottom{
+    height: 50%;
+
+    display: flex;
+    flex-direction: row;
+
+    gap: 8px;
+}
+
+.votes {
+    width: 20px;
+    height: 20px;
+}
+
+.voteBox {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+
+    background-color: var(--accent-color);
+    border-radius: 4px;
+
+    margin-bottom: 16px;
+}
+
+.voteBox:hover {
+    background-color: var(--secondary-color);
+}
+
+.voteBox:active {
+    background-color: var(--accent-color);
+    opacity: 50%;
+}
+
+.right {
+    width: 90%;
+}
+
+.rightTop {
+    height: 30%;
+}
+
+.rightBottom {
+    height: 70%;
+}
