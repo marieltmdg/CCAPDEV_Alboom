@@ -24,11 +24,15 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--header-font);
 }
 
-body {
+html {
     width: 100vw; 
-    height: 100vh; 
-    background-image: url('assets/background.png');
+    min-height: 100vh;  
+
+    background: rgb(18,18,18);
+    background: linear-gradient(145deg, rgba(18,18,18,0.6) 36%, rgba(255,128,0,1) 85%);
     background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
+
+    margin: 0;  
+    padding: 0;
 }
