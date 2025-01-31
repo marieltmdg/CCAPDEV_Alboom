@@ -12,6 +12,10 @@
 
     margin-bottom: 2%;
     margin-top: 2%;
+
+    animation: fadeIn linear;
+    animation-timeline: view();
+    animation-range: entry 0;
 }
 
 .left {
@@ -130,4 +134,15 @@
 
 .popularText {
     color: var(--accent-color)
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
