@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-    text-decoration: none;
     margin: 0;
     padding: 0;
 }
@@ -22,6 +21,10 @@
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--header-font);
+}
+
+a {
+    text-decoration: none;
 }
 
 html {

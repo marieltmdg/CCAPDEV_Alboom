@@ -4,11 +4,10 @@
     padding: 16px;
 }
 
-.most-explosive {
+.row {
     padding: 16px;
 }
 
-h1 {
+.title {
     text-align: left;
-    font-weight: 400;
 }
