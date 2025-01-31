@@ -9,7 +9,6 @@ import Album from './pages/Album.jsx'
 import User from './pages/User.jsx'
 import Login from './pages/Login/Login.jsx'
 import Register from './pages/Register.jsx'
-import UserProfile from './components/UserDetails/UserProfile.jsx'
 import CreateReview from './pages/CreateReview.jsx'
 
 const router = createBrowserRouter([
@@ -26,7 +25,7 @@ const router = createBrowserRouter([
         element: <CreateReview />
     },
     {
-        path: "/user",
+        path: "/user/:username",
         element: <User />
     },
     {
