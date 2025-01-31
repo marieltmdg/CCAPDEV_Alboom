@@ -5,12 +5,14 @@ import logo from "../assets/logo.png";
 import logoDark from "../assets/logoDark.png";
 import back from '../assets/back.svg'
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./CreateReview.css";
 
 function CreateReview() {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
+    const navigate = useNavigate();
 
     return (
         <>
@@ -37,9 +39,9 @@ function CreateReview() {
                         <button type="submit" className="submit-button">Submit Rating</button>
                     </div>
                     <div className="back-container">
-                        <Link to="/" className='back-button'>
-                            <img src={back} className="back-icon"></img>
-                        </Link>
+                        <button onClick={() => navigate(-1)} className="back-button">
+                            <img src={back} className="back-icon" alt="Back" />
+                        </button>
                     </div>
                 </div>
             </Main>
