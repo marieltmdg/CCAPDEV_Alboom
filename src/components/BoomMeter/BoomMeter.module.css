@@ -1,0 +1,29 @@
+.mainContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 350px;
+    height: 50px;
+
+    background-color: rgb(255, 128, 0, .5);
+    border-radius: 32px;
+}
+
+.boomContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 90%;
+    height: 90%;
+
+    padding: 0px 8px;
+}
+
+.boomLogo {
+    width: 50px;
+    height: 50px;
+    
+    margin: 4px 4px;
+}
