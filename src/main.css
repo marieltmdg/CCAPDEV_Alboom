@@ -29,10 +29,10 @@ html {
     min-height: 100vh;  
 
     background: rgb(18,18,18);
-    background: linear-gradient(145deg, rgba(18,18,18,0.6) 36%, rgba(255,128,0,1) 85%);
+    background: linear-gradient(140deg, rgba(18,18,18,1) 35%, rgba(255,128,0,1) 87%, rgba(220,20,60,1) 100%);
     background-position: center;
     background-size: cover;
-
+    background-attachment: fixed;
     margin: 0;  
     padding: 0;
 }
