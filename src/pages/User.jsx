@@ -3,17 +3,17 @@ import { useParams } from "react-router-dom"
 import Header from "../components/Header/Header.jsx"
 import Main from "../components/Main"
 
-function User() {
-    const { username } = useParams()
+import UserProfile from '../components/UserDetails/UserProfile.jsx';
 
+function User() {
     return (
         <>
             <Header isAuth={true} />
             <Main>
-                Place User Page Components Here!
+                <UserProfile />
             </Main>
         </>
-    )
+    );
 }
 
-export default User
+export default User;
