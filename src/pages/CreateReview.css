@@ -1,0 +1,115 @@
+.main-container {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+    border: 1px solid var(--accent-color);
+    background-color: rgb(18, 18, 18, 0.7);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.body-container {
+    flex: 8;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-container {
+    flex: 1;
+    border-radius: 20px;
+}
+
+.review-text {
+    width: 100%;
+    height: 50%;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.268);
+    color: white;
+    font-family: var(--body-font);
+    font-size: 16px;
+    border: 1px black;
+    display: flex;
+}
+
+.spacer {
+    border-radius: 20px;
+    flex: 1;
+}
+
+.boomContainer {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 10px;
+}
+
+.boom {
+    width: 8vw;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.boom:hover {
+    transform: scale(1.2);
+}
+
+.submit-button {
+    margin: 20px;
+    padding: 12px 48px;  
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid var(--secondary-color);
+    font-family: var(--header-font);
+    font-size: 16px;
+    transition: 0.3s;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    font-weight: bold;
+    color: white;
+}
+
+.submit-button:hover {
+    background-color: var(--accent-color);
+    border: 1px black;
+    transform: scale(1.05);
+    align-self: center;
+    color: white;
+    cursor: pointer;
+}
+
+.title-text {
+    margin: 20px;
+}
+
+.back-button {
+    padding: 4px 36px;
+    margin: 15px 15px 0px 0px; 
+    align-self: center;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.back-button:hover {
+    background-color: var(--accent-color);
+    border: 1px black;
+    transform: scale(1.05);
+    color: white;
+    cursor: pointer;
+}
+
+.back-icon {
+    width: 50px;
+    aspect-ratio: 1 / 1;
+}
