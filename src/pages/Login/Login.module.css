@@ -90,6 +90,11 @@
     font-size: 16px
 }
 
+.remember {
+    display: flex;
+    gap: 4px;
+}
+
 .button {
     padding: 16px;
     font-size: 16px;

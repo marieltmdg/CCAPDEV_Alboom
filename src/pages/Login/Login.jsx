@@ -29,7 +29,10 @@ function Login() {
                                 <div className={styles.row}>
                                     <label htmlFor="password">Password</label>
                                     <input type="password" id="password" placeholder="Enter your password" className={styles.input} />
-                                    <Link className={styles.link}><u>Forgot your password?</u></Link>
+                                </div>
+                                <div className={styles.remember}>
+                                    <input type="checkbox" id="remember" />
+                                    <label htmlFor="remember">Remember me</label>
                                 </div>
                             </div>
                             <button type="submit" className={styles.button}>Login</button>
