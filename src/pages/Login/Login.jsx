@@ -18,7 +18,7 @@ function Login() {
                     <div className={styles.login}>
                         <div className={styles.header}>
                             <h1>Login</h1>
-                            <p>New to Alboom? <Link to="/register" className={styles.link}><u>Sign up for free</u></Link></p>
+                            <p>New to Alboom? <Link to="/register" className={styles.link}><u>Register</u></Link></p>
                         </div>
                         <form className={styles.form}>
                             <div className={styles.inputs}>
