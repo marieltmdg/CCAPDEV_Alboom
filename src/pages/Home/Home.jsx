@@ -16,6 +16,8 @@ function Home() {
                 <div className={styles.row}>
                     <h1 className={styles.title}>Most Explosive Albums</h1>
                 </div>
+
+                <hr></hr>
                 
                 <AlbumGrid />
             </Main>
