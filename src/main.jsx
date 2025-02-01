@@ -8,7 +8,7 @@ import Home from './pages/Home/Home.jsx'
 import Album from './pages/Album.jsx'
 import User from './pages/User.jsx'
 import Login from './pages/Login/Login.jsx'
-import Register from './pages/Register.jsx'
+import Register from './pages/Register/Register.jsx'
 import CreateReview from './pages/CreateReview.jsx'
 
 const router = createBrowserRouter([
