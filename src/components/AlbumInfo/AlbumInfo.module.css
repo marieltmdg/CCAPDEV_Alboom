@@ -1,0 +1,29 @@
+.coverContainer {
+    position: relative;
+    display: inline-block; 
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 20px;
+}
+
+.cover {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    display: block;
+    border-radius: 20px;
+    box-shadow: 
+        0px 0px 10px 4px var(--accent-color), /* Outer glow */
+        0px 0px 20px 8px rgba(255, 255, 255, 0.2); /* Soft diffused glow */
+}
+
+
+.textOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    text-align: left;
+    font-size: 1vh;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    padding: 10px 0 0 15px;
+}

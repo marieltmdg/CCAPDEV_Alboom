@@ -37,17 +37,62 @@
     position: relative;
 }
 
-.reviewText {
+.splitContainer {
     width: 100%;
     height: 50%;
-    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.reviewSection {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+}
+
+.reviewTitle, .reviewText {
+    border-radius: 15px;
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.268);
     color: white;
     font-family: var(--body-font);
     font-size: 16px;
-    border: 1px black;
-    display: flex;
+    border: none;
+    flex: 1;
+}
+
+.reviewTitle {
+    text-align: center;
+}
+
+.uploadInput {
+    display: none;
+}
+
+.reviewText {
+    flex: 8;
+}
+
+.uploadLabel {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover and active effects */
+.uploadLabel:hover {
+    background-color: var(--accent-color);
+}
+
+.uploadLabel:active {
+    transform: scale(0.95);
 }
 
 .spacer {

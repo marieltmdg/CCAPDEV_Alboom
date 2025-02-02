@@ -6,8 +6,10 @@ import logoDark from "../assets/logoDark.png";
 import back from '../assets/back.svg'
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import AlbumInfo from "../components/AlbumInfo/AlbumInfo.jsx"
 
 import styles from "./CreateReview.module.css"
+import Album from "./Album.jsx";
 
 function CreateReview() {
     const [rating, setRating] = useState(0);
@@ -22,7 +24,22 @@ function CreateReview() {
                     <div className={styles.spacer}></div>
                     <div className={styles.bodyContainer}>
                         <h2 className={styles.titleText}>Create a Review</h2>
-                        <textarea className={styles.reviewText} placeholder="Write your review here..."/>
+                        <div className={styles.splitContainer}>
+                            <AlbumInfo />
+                            <div className={styles.reviewSection}>
+                                <input type="text" className={styles.reviewTitle} placeholder="Title of your review"/>
+                                <textarea className={styles.reviewText} placeholder="Write your review here..."></textarea>
+                                {/* <input type="file" className={styles.uploadInput} accept="image/*" /> */}
+                                <label className={styles.uploadLabel}>
+                                    <input 
+                                        type="file" 
+                                        className={styles.uploadInput} 
+                                        hidden 
+                                    />
+                                    Upload Files
+                                </label>
+                            </div>
+                        </div>
                         <div className={styles.boomContainer}>
                             {[1, 2, 3, 4, 5].map((boom) => (
                                 <img
@@ -36,7 +53,7 @@ function CreateReview() {
                                 />
                             ))}
                         </div>
-                        <button type="submit" className={styles.submitButton}>Submit Rating</button>
+                        <button type="submit" className={styles.submitButton}>Submit Review</button>
                     </div>
                     <div className={styles.backContainer}>
                         <button onClick={() => navigate(-1)} className={styles.backButton}>
