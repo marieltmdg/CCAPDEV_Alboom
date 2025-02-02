@@ -10,6 +10,8 @@ import igor from "../../assets/albums/igor.jpg"
 import toPimpAButterfly from "../../assets/albums/to-pimp-a-butterfly.jpg"
 import channelOrange from "../../assets/albums/channel-orange.jpg"
 import letsStartHere from "../../assets/albums/lets-start-here.jpg"
+import hmhas from "../../assets/albums/hmhas.jpg"
+import sos from "../../assets/albums/sos.jpg"
 
 const albums = [
     {
@@ -44,6 +46,12 @@ const albums = [
         title: 'Let\'s Start Here',
         cover: letsStartHere
     },
+    {   title: 'Hit Me Hard and Soft',
+        cover: hmhas
+    },
+    {   title: 'SOS',
+        cover: sos
+    }
 ];
 
 function AlbumGrid() {
