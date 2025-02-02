@@ -7,7 +7,7 @@ import back from '../assets/back.svg'
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import "./CreateReview.css";
+import styles from "./CreateReview.module.css"
 
 function CreateReview() {
     const [rating, setRating] = useState(0);
@@ -18,29 +18,29 @@ function CreateReview() {
         <>
             <Header isAuth={true} />
             <Main>
-                <div className="main-container">
-                    <div className="spacer"></div>
-                    <div className="body-container">
-                        <h2 className="title-text">Create a Review</h2>
-                        <textarea className="review-text" placeholder="Write your review here..."/>
-                        <div className="boomContainer">
+                <div className={styles.mainContainer}>
+                    <div className={styles.spacer}></div>
+                    <div className={styles.bodyContainer}>
+                        <h2 className={styles.titleText}>Create a Review</h2>
+                        <textarea className={styles.reviewText} placeholder="Write your review here..."/>
+                        <div className={styles.boomContainer}>
                             {[1, 2, 3, 4, 5].map((boom) => (
                                 <img
                                     key={boom}
                                     src={hover >= boom || rating >= boom ? logo : logoDark}
                                     alt={`${boom} Boom`}
-                                    className="boom"
+                                    className={styles.boom}
                                     onClick={() => setRating(boom)}
                                     onMouseEnter={() => setHover(boom)}
                                     onMouseLeave={() => setHover(0)}
                                 />
                             ))}
                         </div>
-                        <button type="submit" className="submit-button">Submit Rating</button>
+                        <button type="submit" className={styles.submitButton}>Submit Rating</button>
                     </div>
-                    <div className="back-container">
-                        <button onClick={() => navigate(-1)} className="back-button">
-                            <img src={back} className="back-icon" alt="Back" />
+                    <div className={styles.backContainer}>
+                        <button onClick={() => navigate(-1)} className={styles.backButton}>
+                            <img src={back} className={styles.backIcon} alt="Back" />
                         </button>
                     </div>
                 </div>
