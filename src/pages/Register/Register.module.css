@@ -37,7 +37,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 128px 32px;
-    gap: 64px;
+    gap: 32px;
 }
 
 .header {
@@ -135,6 +135,7 @@
 
 .button:hover {
     background-color: var(--accent-color);
+    cursor: pointer;
 }
 
 .close {
