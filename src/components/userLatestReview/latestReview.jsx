@@ -67,7 +67,7 @@ function LatestReview() {
         return (
             <div className={styles.container}>
                 <div className={styles.latestReviewText}>Latest Review</div>
-                <div className={styles.noReviewText}>No reviews found for this user.</div>
+                <div className={styles.noReviewText}>No reviews found for this user</div>
             </div>
         );
     }

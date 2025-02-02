@@ -34,6 +34,17 @@
     color: #FF8000;
 }
 
+.noReviewText {
+    font-family: 'Montserrat';
+    text-align: left;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: #CDCDCD;
+    margin-top: 2rem;
+}
+
 .albumCover {
     width: 256px;
     height: 256px;
