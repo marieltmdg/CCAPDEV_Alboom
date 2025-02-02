@@ -6,6 +6,7 @@ import Header from "../components/Header/Header.jsx"
 import Main from "../components/Main"
 
 import UserProfile from '../components/UserDetails/UserProfile.jsx';
+import LatestReview from '../components/UserLatestReview/LatestReview.jsx';
 import UserReviews from '../components/UserReviews/UserReviews.jsx';
 
 function User() {
@@ -20,7 +21,7 @@ function User() {
 
                     <div className={styles.reviewsContainer}>
                         <div className={styles.latestReviewContainer}>
-                            {/* <LatestReview /> */}
+                            <LatestReview username={username}/>
                         </div>
                         <div className={styles.userReviewContainer}>
                             <UserReviews username={username}/>

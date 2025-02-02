@@ -69,7 +69,7 @@ function UserReviews() {
     return (
         <div className={styles.userReviewContainer}>
             {userReviews.map((review, index) => (
-                <Link to={"/album/" + review.title} key={review.title} className={styles.item}>
+                <Link to={"/album/" + review.title} key={review.title}>
                     <div className={styles.reviewItem}>
                         <div className={styles.albumCover}>
                             <img src={review.cover} alt={`${review.title} Cover`} className={styles.cover} />

@@ -1,0 +1,154 @@
+.container {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1150px;
+    height: 329px;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.detailsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: left;   
+    margin-left: 3rem;
+
+    max-width: 48rem;
+}
+
+.latestReviewText {
+    position: absolute;
+    font-family: 'Raleway';
+    font-style: normal;
+    width: auto;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 120%;
+    text-align: center;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    color: #FF8000;
+}
+
+.albumCover {
+    width: 256px;
+    height: 256px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    color: #1A1A1A;
+    margin-top: 1.29rem;
+    flex-shrink: 0;
+}
+
+.albumCover:hover {
+    transform: scale(1.05);
+}
+
+.albumInfoContainer { 
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    margin-top: 2rem;
+}
+
+.albumTitle {  
+    font-family: 'Raleway';
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: #F3F3F3;
+    white-space: nowrap;
+}
+
+.artist {
+    font-family: 'Raleway';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: #F3F3F3;
+    margin-top: 0.5rem; 
+    white-space: nowrap;
+}
+
+.reviewInfoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    max-width: 800px;
+    margin-top: 1.6rem; 
+    position: relative;
+}
+
+.reviewText {
+  font-family: 'Montserrat';
+  text-align: left;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  color: #CDCDCD;
+  flex-grow: 1;
+
+  width: 100%;
+  display: -webkit-box; 
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical; 
+   overflow: hidden; 
+}
+
+.topCommentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px;
+    margin-left: 1rem;
+    margin-top: 1.9rem;
+
+    max-width: 800px;
+}
+
+.topCommentText {
+    font-family: 'Raleway';
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: #F3F3F3;
+}
+
+.topComment {
+    font-family: 'Montserrat';
+    text-align: left;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: #CDCDCD;
+
+    margin-top: 0.1rem;
+    margin-left: 0.5rem;
+    display: -webkit-box; 
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical; 
+    
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+}
+
+  
+.boomContainer {
+  position: absolute;
+  margin-top: 2rem;
+  margin-left: 47rem;
+  z-index: 20;
+}
+  
