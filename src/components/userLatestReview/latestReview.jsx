@@ -102,6 +102,7 @@ function LatestReview() {
             <div className={styles.boomContainer}>
                 <BoomMeter Rating={userReview.boomRating} />
             </div>
+
         </div>
         
     );

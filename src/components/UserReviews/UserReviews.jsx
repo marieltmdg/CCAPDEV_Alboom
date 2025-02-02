@@ -7,6 +7,8 @@ import theDarkSideOfTheMoon from "../../assets/albums/the-dark-side-of-the-moon.
 import skipp from "../../assets/albums/skipp.jpg";
 import chromakopia from "../../assets/albums/chromakopia.jpg";
 import flowerBoy from "../../assets/albums/flower-boy.jpg";
+import letsStartHere from "../../assets/albums/lets-start-here.jpg";
+import toPimpAButterfly from "../../assets/albums/to-pimp-a-butterfly.jpg";
 
 const mockReviews = [
     {
@@ -15,12 +17,12 @@ const mockReviews = [
             {
                 title: 'The Dark Side of the Moon',
                 cover: theDarkSideOfTheMoon,
-                rating: 0
+                rating: 5
             },
             {
                 title: 'SKIPP',
                 cover: skipp,
-                rating: 0
+                rating: 4
             },
             {
                 title: 'CHROMAKOPIA',
@@ -30,6 +32,16 @@ const mockReviews = [
             {
                 title: 'Flower Boy',
                 cover: flowerBoy,
+                rating: 5
+            },
+            {
+                title: 'Let\'s Start Here',
+                cover: letsStartHere,
+                rating: 4
+            },
+            {
+                title: 'To Pimp a Butterfly',
+                cover: toPimpAButterfly,
                 rating: 5
             }
         ]
@@ -56,6 +68,51 @@ const mockReviews = [
                 title: 'Flower Boy',
                 cover: flowerBoy,
                 rating: 5
+            },
+            {
+                title: 'Let\'s Start Here',
+                cover: letsStartHere,
+                rating: 4
+            },
+            {
+                title: 'To Pimp a Butterfly',
+                cover: toPimpAButterfly,
+                rating: 5
+            }
+        ]
+    },
+    {
+        username: "musicfan",
+        reviews: [
+            {
+                title: 'The Dark Side of the Moon',
+                cover: theDarkSideOfTheMoon,
+                rating: 5
+            },
+            {
+                title: 'SKIPP',
+                cover: skipp,
+                rating: 4
+            },
+            {
+                title: 'CHROMAKOPIA',
+                cover: chromakopia,
+                rating: 3
+            },
+            {
+                title: 'Flower Boy',
+                cover: flowerBoy,
+                rating: 5
+            },
+            {
+                title: 'Let\'s Start Here',
+                cover: letsStartHere,
+                rating: 4
+            },
+            {
+                title: 'To Pimp a Butterfly',
+                cover: toPimpAButterfly,
+                rating: 5
             }
         ]
     }
@@ -69,10 +126,10 @@ function UserReviews() {
     return (
         <div className={styles.userReviewContainer}>
             {userReviews.map((review, index) => (
-                <Link to={"/album/" + review.title} key={review.title}>
-                    <div className={styles.reviewItem}>
+                <Link to={"/album/" + review.title} key={review.title} className={styles.item}>
+                    <div className={styles.reviewItem}> 
                         <div className={styles.albumCover}>
-                            <img src={review.cover} alt={`${review.title} Cover`} className={styles.cover} />
+                            <img src={review.cover} alt={`${review.title} Cover`} className={styles.albumCover} />
                         </div>
                         <div className={styles.ratingContainer}>
                             <span className={styles.boomText}>{review.rating} BOOMS</span>

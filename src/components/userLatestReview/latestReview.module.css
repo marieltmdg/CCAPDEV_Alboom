@@ -1,7 +1,6 @@
 .container {
     box-sizing: border-box;
     width: 100%;
-    max-width: 1150px;
     height: 329px;
     padding: 20px;
     position: relative;
@@ -15,7 +14,7 @@
     display: flex;
     flex-direction: column;
     align-items: left;   
-    margin-left: 3rem;
+    margin-left: 2.5rem;
 
     max-width: 48rem;
 }
@@ -41,13 +40,12 @@
     font-size: 22px;
     line-height: 120%;
     letter-spacing: -0.02em;
-    color: #CDCDCD;
     margin-top: 2rem;
 }
 
 .albumCover {
-    width: 256px;
-    height: 256px;
+    width: 270px;
+    height: 270px;
     overflow: hidden;
     justify-content: center;
     align-items: center;
@@ -73,7 +71,6 @@
     font-size: 25px;
     line-height: 120%;
     letter-spacing: -0.02em;
-    color: #F3F3F3;
     white-space: nowrap;
 }
 
@@ -104,7 +101,6 @@
   font-size: 22px;
   line-height: 120%;
   letter-spacing: -0.02em;
-  color: #CDCDCD;
   flex-grow: 1;
 
   width: 100%;
@@ -131,7 +127,6 @@
     font-size: 20px;
     line-height: 120%;
     letter-spacing: -0.02em;
-    color: #F3F3F3;
 }
 
 .topComment {
@@ -154,12 +149,10 @@
     width: 100%;
     max-width: 100%;
 }
-
   
 .boomContainer {
   position: absolute;
   margin-top: 2rem;
-  margin-left: 47rem;
+  margin-left: 49rem;
   z-index: 20;
 }
-  
