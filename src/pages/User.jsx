@@ -5,11 +5,12 @@ import styles from "./User.module.css"
 import Header from "../components/Header/Header.jsx"
 import Main from "../components/Main"
 
-import UserProfile from '../components/UserDetails/UserProfile.jsx';
+import UserDetails from '../components/UserDetails/UserDetails.jsx';
+import UserDetailsEditable from '../components/UserDetailsEditable/UserDetailsEditable.jsx';
 import LatestReview from '../components/UserLatestReview/LatestReview.jsx';
 import UserReviews from '../components/UserReviews/UserReviews.jsx';
 
-function User() {
+function User({ currentUser }) {
     const { username } = useParams();
 
     return (
@@ -17,17 +18,21 @@ function User() {
             <Header isAuth={true} />
             <Main>
                 <div className={styles.mainContainer}>
-                    <UserProfile username={username}/>
+                    {/* insert currentUser*/}
+                    {username === currentUser ? (
+                        <UserDetailsEditable username={username} />
+                    ) : (
+                        <UserDetails username={username} />
+                    )}
 
                     <div className={styles.reviewsContainer}>
                         <div className={styles.latestReviewContainer}>
-                            <LatestReview username={username}/>
+                            <LatestReview username={username} />
                         </div>
                         <div className={styles.userReviewContainer}>
-                            <UserReviews username={username}/>
+                            <UserReviews username={username} />
                         </div>
                     </div>
-
                 </div>
             </Main>
         </>
