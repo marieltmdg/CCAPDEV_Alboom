@@ -52,6 +52,7 @@
     color: #1A1A1A;
     margin-top: 1.29rem;
     flex-shrink: 0;
+    transition: transform 0.3s ease-in-out;
 }
 
 .albumCover:hover {
