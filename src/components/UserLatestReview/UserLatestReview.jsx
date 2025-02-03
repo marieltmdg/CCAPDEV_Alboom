@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import styles from "./latestReview.module.css";
+import styles from "./UserLatestReview.module.css";
 import BoomMeter from "../BoomMeter/BoomMeter";
 import channelOrange from "../../assets/albums/channel-orange.jpg";
 

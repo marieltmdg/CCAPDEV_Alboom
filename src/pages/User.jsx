@@ -7,7 +7,7 @@ import Main from "../components/Main"
 
 import UserDetails from '../components/UserDetails/UserDetails.jsx';
 import UserDetailsEditable from '../components/UserDetailsEditable/UserDetailsEditable.jsx';
-import LatestReview from '../components/UserLatestReview/LatestReview.jsx';
+import UserLatestReview from '../components/UserLatestReview/UserLatestReview.jsx';
 import UserReviews from '../components/UserReviews/UserReviews.jsx';
 
 function User({ currentUser }) {
@@ -27,7 +27,7 @@ function User({ currentUser }) {
 
                     <div className={styles.reviewsContainer}>
                         <div className={styles.latestReviewContainer}>
-                            <LatestReview username={username} />
+                            <UserLatestReview username={username} />
                         </div>
                         <div className={styles.userReviewContainer}>
                             <UserReviews username={username} />
