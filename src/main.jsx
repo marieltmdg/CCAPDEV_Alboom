@@ -10,7 +10,6 @@ import User from './pages/User.jsx'
 import Login from './pages/Login/Login.jsx'
 import Register from './pages/Register/Register.jsx'
 import CreateReview from './pages/CreateReview.jsx'
-import Artist from './pages/Artist.jsx'
 
 const router = createBrowserRouter([
     {
@@ -32,10 +31,6 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login />
-    },
-    {
-        path: "/artist/:artistName",
-        element: <Artist />
     },
     {
         path: "/register",

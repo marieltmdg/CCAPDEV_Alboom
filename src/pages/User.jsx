@@ -22,7 +22,7 @@ function User({ currentUser }) {
                     {username === currentUser ? (
                         <UserDetailsEditable username={username} />
                     ) : (
-                        <UserDetailsEditable username={username} />
+                        <UserDetails username={username} />
                     )}
 
                     <div className={styles.reviewsContainer}>

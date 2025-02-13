@@ -34,7 +34,7 @@ const latestReviewData = [
         reviewText: "The production is exquisite, and the emotions run high throughout. An instant classic, worth every listen.",
         topComment: "An instant classic, worth every listen.",
         albumCover: channelOrange,
-        boomRating: 4,
+        boomRating: 4.5,
     },
     {
         username: "concertlover",
