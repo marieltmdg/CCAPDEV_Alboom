@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./UserProfile.module.css";
+import styles from "./UserDetails.module.css";
 import linkIcon from "../../assets/link.png";
 import pin from "../../assets/pin.png";
 import avatar from "../../assets/avatar.png";
