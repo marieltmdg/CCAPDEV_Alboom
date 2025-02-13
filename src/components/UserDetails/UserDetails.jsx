@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./UserDetails.module.css";
 import linkIcon from "../../assets/link.png";
 import pin from "../../assets/pin.png";
-import avatar from "../../assets/users/default.jpg";
+import avatar from "../../assets/avatar.png";
 import userPhoto1 from "../../assets/users/UserPhoto1.jpg";
 import userPhoto2 from "../../assets/users/UserPhoto2.jpg";
 import userPhoto3 from "../../assets/users/UserPhoto3.jpg";
@@ -50,7 +50,7 @@ const mockUserData = [
     }
 ];
 
-function UserDetails({ username }) {
+function UserProfile({ username }) {
     const [userData, setUserData] = useState({
         name: "Default Name",
         bio: "This is a default bio. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -97,4 +97,4 @@ function UserDetails({ username }) {
     );
 }
 
-export default UserDetailsEditable;
+export default UserProfile;

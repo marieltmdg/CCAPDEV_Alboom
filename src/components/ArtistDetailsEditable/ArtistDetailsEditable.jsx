@@ -34,7 +34,7 @@ const mockUserData = [
     }
 ];
 
-function ArtistDetailsEditable({ username }) {
+function UserDetailsEditable({ username }) {
     const [user, setUser] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({
