@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import AlbumInfo from "../components/AlbumInfo/AlbumInfo.jsx"
 
 import styles from "./CreateReview.module.css"
-import Album from "./Album.jsx";
+import Album from "../pages/Album/Album.jsx";
 
 function CreateReview() {
     const [rating, setRating] = useState(0);

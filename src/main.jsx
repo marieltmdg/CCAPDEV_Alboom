@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './main.css'
 
 import Home from './pages/Home/Home.jsx'
-import Album from './pages/Album.jsx'
+import Album from './pages/Album/Album.jsx'
 import User from './pages/User.jsx'
 import Login from './pages/Login/Login.jsx'
 import Register from './pages/Register/Register.jsx'
