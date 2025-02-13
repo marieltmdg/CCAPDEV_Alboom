@@ -18,13 +18,11 @@ function Artist({ currentUser }) {
             <Main>
                 <div className={styles.mainContainer}>
                     {/* insert currentUser*/}
-                    <div className={styles.userProfileContainer}>
-                        {username === currentUser ? (
-                            <ArtistDetailsEditable username={username} />
-                        ) : (
-                            <ArtistDetails username={username} />
-                        )}
-                    </div>
+                    {username === currentUser ? (
+                        <ArtistDetailsEditable username={username} />
+                    ) : (
+                        <ArtistDetails username={username} />
+                    )}
 
                     <div className={styles.centerContainer}>
                         <div className={styles.albumsContainer}>

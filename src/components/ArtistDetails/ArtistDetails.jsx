@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./ArtistDetails.module.css";
 import linkIcon from "../../assets/link.png";
 import pin from "../../assets/pin.png";
-import avatar from "../../assets/avatar.png";
+import avatar from "../../assets/users/default.jpg";
 import userPhoto1 from "../../assets/users/UserPhoto1.jpg";
 import userPhoto2 from "../../assets/users/UserPhoto2.jpg";
 import userPhoto3 from "../../assets/users/UserPhoto3.jpg";
