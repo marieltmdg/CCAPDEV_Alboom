@@ -4,6 +4,12 @@ import defaultUserPhoto from '../../assets/users/UserPhoto2.jpg'
 import upvote from '../../assets/helpful.svg'
 import downvote from '../../assets/unhelpful.svg'
 
+import tyler from '../../assets/artists/tyler.jpg'
+
+let reply = "Bro, it's just music. Chill. But also… keep going. Damn, you sure you ain't off some psychedelics? Hope your neurons are doin’ alright tho. But nah, I appreciate it. That’s the kinda review that makes me wanna go back in the studio and get even weirder. Respect."
+
+import { Link } from 'react-router-dom'
+
 function ReviewCard(props) {
     return(
         <>
@@ -11,7 +17,7 @@ function ReviewCard(props) {
          
             <div className={styles.left}>
                 <div className={styles.leftTop}>
-                    <img className={styles.userPhoto} src={props.UserPhoto}></img>
+                    <Link to={`/user/johndoe`}><img className={styles.userPhoto} src={props.UserPhoto}></img></Link>
                 </div>
                 <div className={styles.leftBottom}>
                     <div className={styles.voteBox}>
@@ -56,7 +62,7 @@ function ReviewCard(props) {
             <div className={styles.artistReplyContainer}>
                 <div className={styles.left}>
                     <div className={styles.leftTop}>
-                        <img className={styles.userPhoto} src={props.UserPhoto} />
+                        <Link to={`/artist/tyler,-the-creator`}><img className={styles.userPhoto} src={tyler} /></Link>
                     </div>
                     <div className={styles.leftBottom}></div>
                 </div>
@@ -66,12 +72,12 @@ function ReviewCard(props) {
                         <h5>ARTIST</h5>
                     </div>
                     <div className={styles.rightMiddle}>
-                        <h3 className={styles.userReviewHeading}>Reply by {props.Username}</h3>
+                        <h3 className={styles.userReviewHeading}>Reply by Tyler, The Creator</h3>
                         {props.IsEdited && <p className={styles.isEdited}>Edited</p>}
                         <p className={styles.userReviewText}>
-                        {props.UserReviewText.length > 400 
-                            ? props.UserReviewText.substring(0, 400) + "..." 
-                            : props.UserReviewText}
+                        {reply.length > 400 
+                            ? reply.substring(0, 400) + "..." 
+                            : reply}
                         </p>
                     </div>
                     <div className={styles.rightBottom}>
