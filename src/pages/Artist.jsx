@@ -19,9 +19,9 @@ function Artist({ currentUser }) {
                 <div className={styles.mainContainer}>
                     <div className={styles.userProfileContainer}>
                         {username === currentUser ? (
-                            <UserDetailsEditable username={username} />
+                            <ArtistDetailsEditable username={username} />
                         ) : (
-                            <UserDetails username={username} />
+                            <ArtistDetails username={username} />
                         )}
                     </div>
 
