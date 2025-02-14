@@ -10,7 +10,7 @@ import toPimpAButterfly from "../../assets/albums/to-pimp-a-butterfly.jpg";
 
 const mockAlbums = [
     {
-        artist: "Tyler,-The-Creator",
+        username: "Tyler,-The-Creator",
         albums: [
             {
                 title: 'Flower-Boy',
@@ -25,7 +25,7 @@ const mockAlbums = [
         ]
     },
     {
-        artist: "doechii",
+        username: "doechii",
         albums: [
             {
                 title: 'Alligator Bites Never Heal',
@@ -35,7 +35,7 @@ const mockAlbums = [
         ]
     },
     {
-        artist: "kendrick-lamar",
+        username: "kendrick-lamar",
             albums: [
                 {
                     title: 'To Pimp a Butterfly',
@@ -47,9 +47,9 @@ const mockAlbums = [
 ];
 
 function ArtistAlbums() {
-    const { artist } = useParams(); 
+    const { username } = useParams(); 
 
-    const artistData = mockAlbums.find(entry => entry.artist === artist);
+    const artistData = mockAlbums.find(entry => entry.username === username);
     const albums = artistData ? artistData.albums : [];
 
     return (

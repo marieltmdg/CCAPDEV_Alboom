@@ -1,40 +1,41 @@
 import React, { useEffect, useState } from "react";
-import styles from "./UserDetailsEditable.module.css";
+import styles from "./ArtistDetails.module.css";
 import linkIcon from "../../assets/link.png";
 import pin from "../../assets/pin.png";
-import avatar from "../../assets/avatar.png";
-import userPhoto1 from "../../assets/users/UserPhoto1.jpg";
-import userPhoto2 from "../../assets/users/UserPhoto2.jpg";
-import userPhoto3 from "../../assets/users/UserPhoto3.jpg";
+
+import avatar from "../../assets/users/default.jpg";
+import kendrick from "../../assets/artists/kendrick.jpg";
+import doechii from "../../assets/artists/doechii.jpg";
+import tyler from "../../assets/artists/tyler.jpg";
 
 const mockUserData = [
     {
-        username: "johndoe",
-        name: "John Doe",
+        username: "kendrick-lamar",
+        name: "Kendrick Lamar",
         bio: "Music enthusiast and avid concert-goer.",
         country: "United States",
-        link: "https://example.com/johndoe",
-        imgLink: userPhoto1
+        link: "https://example.com/kendrick",
+        imgLink: kendrick
     },
     {
-        username: "janedoe",
-        name: "Jane Doe",
+        username: "tyler,-the-creator",
+        name: "Tyler The Creator",
         bio: "Lover of all things rock and roll.",
         country: "Canada",
-        link: "https://example.com/janedoe",
-        imgLink: userPhoto3
+        link: "https://example.com/tyler",
+        imgLink: doechii
     },
     {
-        username: "musicfan",
-        name: "Music Fan",
-        bio: "Always on the lookout for new tunes.",
+        username: "doechii",
+        name: "doechii",
+        bio: "DENIAL IS A RIVER.",
         country: "United Kingdom",
-        link: "https://example.com/musicfan",
-        imgLink: userPhoto2
+        link: "https://example.com/doechii",
+        imgLink: tyler
     }
 ];
 
-function UserDetailsEditable({ username }) {
+function ArtistDetailsEditable({ username }) {
     const [user, setUser] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({
@@ -121,7 +122,8 @@ function UserDetailsEditable({ username }) {
             ) : (
                 <div className={styles.details}>
                     <div className={styles.profileNameContainer}>
-                        <h2 className={styles.profileName}>{user.name}</h2>
+                        <span className={styles.profileName}>{user.name}</span>
+                        <div className={styles.artistText}>Artist</div>
                     </div>
                     <div className={styles.profileBioContainer}>
                         <p className={styles.profileBio}>{user.bio}</p>
@@ -139,4 +141,4 @@ function UserDetailsEditable({ username }) {
     );
 }
 
-export default UserDetailsEditable;
+export default ArtistDetailsEditable;

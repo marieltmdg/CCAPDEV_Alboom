@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import styles from "./ArtistDetails.module.css";
 import linkIcon from "../../assets/link.png";
 import pin from "../../assets/pin.png";
+
 import avatar from "../../assets/users/default.jpg";
-import userPhoto1 from "../../assets/users/UserPhoto1.jpg";
-import userPhoto2 from "../../assets/users/UserPhoto2.jpg";
-import userPhoto3 from "../../assets/users/UserPhoto3.jpg";
+import kendrick from "../../assets/artists/kendrick.jpg";
+import doechii from "../../assets/artists/doechii.jpg";
+import tyler from "../../assets/artists/tyler.jpg";
 
 const mockUserData = [
     {
@@ -13,24 +14,24 @@ const mockUserData = [
         name: "Kendrick Lamar",
         bio: "Music enthusiast and avid concert-goer.",
         country: "United States",
-        link: "https://example.com/johndoe",
-        imgLink: userPhoto1
+        link: "https://example.com/kendrick",
+        imgLink: kendrick
     },
     {
         username: "tyler,-the-creator",
         name: "Tyler The Creator",
         bio: "Lover of all things rock and roll.",
         country: "Canada",
-        link: "https://example.com/janedoe",
-        imgLink: userPhoto3
+        link: "https://example.com/tyler",
+        imgLink: tyler
     },
     {
         username: "doechii",
         name: "doechii",
         bio: "DENIAL IS A RIVER.",
         country: "United Kingdom",
-        link: "https://example.com/musicfan",
-        imgLink: userPhoto2
+        link: "https://example.com/doechii",
+        imgLink: doechii
     }
 ];
 

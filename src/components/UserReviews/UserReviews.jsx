@@ -9,6 +9,7 @@ import chromakopia from "../../assets/albums/chromakopia.jpg";
 import flowerBoy from "../../assets/albums/flower-boy.jpg";
 import letsStartHere from "../../assets/albums/lets-start-here.jpg";
 import toPimpAButterfly from "../../assets/albums/to-pimp-a-butterfly.jpg";
+import channelOrange from "../../assets/albums/channel-orange.jpg";
 
 const mockReviews = [
     {
@@ -63,21 +64,6 @@ const mockReviews = [
                 title: 'CHROMAKOPIA',
                 cover: chromakopia,
                 rating: 3
-            },
-            {
-                title: 'Flower Boy',
-                cover: flowerBoy,
-                rating: 5
-            },
-            {
-                title: 'Let\'s Start Here',
-                cover: letsStartHere,
-                rating: 4
-            },
-            {
-                title: 'To Pimp a Butterfly',
-                cover: toPimpAButterfly,
-                rating: 5
             }
         ]
     },
@@ -85,34 +71,9 @@ const mockReviews = [
         username: "musicfan",
         reviews: [
             {
-                title: 'The Dark Side of the Moon',
-                cover: theDarkSideOfTheMoon,
-                rating: 5
-            },
-            {
-                title: 'SKIPP',
-                cover: skipp,
-                rating: 4
-            },
-            {
-                title: 'CHROMAKOPIA',
-                cover: chromakopia,
-                rating: 3
-            },
-            {
-                title: 'Flower Boy',
-                cover: flowerBoy,
-                rating: 5
-            },
-            {
-                title: 'Let\'s Start Here',
-                cover: letsStartHere,
-                rating: 4
-            },
-            {
-                title: 'To Pimp a Butterfly',
+                title: 'Channel Orange',
                 cover: toPimpAButterfly,
-                rating: 5
+                rating: 3
             }
         ]
     }

@@ -6,7 +6,7 @@ import Header from "../components/Header/Header.jsx"
 import Main from "../components/Main"
 
 import UserDetails from '../components/UserDetails/UserDetails.jsx';
-import UserDetailsEditable from '../components/UserDetailsEditable/UserDetailsEditable.jsx';
+import UserDetailsEditable from '../components/UserDetails/UserDetailsEditable.jsx';
 import UserLatestReview from '../components/UserLatestReview/UserLatestReview.jsx';
 import UserReviews from '../components/UserReviews/UserReviews.jsx';
 

@@ -1,40 +1,40 @@
 import React, { useEffect, useState } from "react";
-import styles from "./ArtistDetailsEditable.module.css";
+import styles from "./UserDetails.module.css";
 import linkIcon from "../../assets/link.png";
 import pin from "../../assets/pin.png";
-import avatar from "../../assets/users/default.jpg";
+import avatar from "../../assets/avatar.png";
 import userPhoto1 from "../../assets/users/UserPhoto1.jpg";
 import userPhoto2 from "../../assets/users/UserPhoto2.jpg";
 import userPhoto3 from "../../assets/users/UserPhoto3.jpg";
 
 const mockUserData = [
     {
-        username: "kendrick-lamar",
-        name: "Kendrick Lamar",
+        username: "johndoe",
+        name: "John Doe",
         bio: "Music enthusiast and avid concert-goer.",
         country: "United States",
         link: "https://example.com/johndoe",
         imgLink: userPhoto1
     },
     {
-        username: "tyler,-the-creator",
-        name: "Tyler The Creator",
+        username: "janedoe",
+        name: "Jane Doe",
         bio: "Lover of all things rock and roll.",
         country: "Canada",
         link: "https://example.com/janedoe",
         imgLink: userPhoto3
     },
     {
-        username: "doechii",
-        name: "doechii",
-        bio: "DENIAL IS A RIVER.",
+        username: "musicfan",
+        name: "Music Fan",
+        bio: "Always on the lookout for new tunes.",
         country: "United Kingdom",
         link: "https://example.com/musicfan",
         imgLink: userPhoto2
     }
 ];
 
-function ArtistDetailsEditable({ username }) {
+function UserDetailsEditable({ username }) {
     const [user, setUser] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({
@@ -121,8 +121,7 @@ function ArtistDetailsEditable({ username }) {
             ) : (
                 <div className={styles.details}>
                     <div className={styles.profileNameContainer}>
-                        <span className={styles.profileName}>{user.name}</span>
-                        <div className={styles.artistText}>Artist</div>
+                        <h2 className={styles.profileName}>{user.name}</h2>
                     </div>
                     <div className={styles.profileBioContainer}>
                         <p className={styles.profileBio}>{user.bio}</p>
@@ -140,4 +139,4 @@ function ArtistDetailsEditable({ username }) {
     );
 }
 
-export default ArtistDetailsEditable;
+export default UserDetailsEditable;

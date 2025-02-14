@@ -27,12 +27,13 @@
     border-radius: 50%;
 }
 
-.profileNameContainer{
+.profileNameContainer {
     width: 100%;
     text-align: center;
     margin-top: 15px;
     margin-bottom: 50px;
 }
+
 
 .artistText{
     margin-top: 3px;
@@ -93,6 +94,75 @@
 
 .link:hover {
     text-decoration: underline;
+}
+
+.editForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputName, .inputBio {
+    width: 100%;
+    font: inherit;
+    max-width: 300px;
+
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+
+.inputLink, .inputCountry {
+    width: 89%;
+    font: inherit;
+    text-align: left;
+
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    background-color: var(--primary-color);
+    color: #fff;
+
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-left: 10px;
+}
+
+.inputBio {
+    height: 200px;
+    background-color: var(--primary-color);
+}
+
+.saveButton, .editButton {
+    position: absolute;
+    font: inherit;
+    text-align: center;
+    align-items: center;
+
+    right: 20px;
+    bottom: 30px;
+    height: auto;
+    width: 64px;
+    padding: 10px;
+    background-color: #FF8000;
+    color: #fff;
+
+    width: 64px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.saveButton:hover, .editButton:hover {
+    background-color: #e67300;
 }
 
 @media (max-width: 768px) {

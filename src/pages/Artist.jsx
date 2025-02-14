@@ -6,7 +6,7 @@ import Header from "../components/Header/Header.jsx"
 import Main from "../components/Main"
 
 import ArtistDetails from "../components/ArtistDetails/ArtistDetails.jsx"
-import ArtistDetailsEditable from "../components/ArtistDetailsEditable/ArtistDetailsEditable.jsx"
+import ArtistDetailsEditable from "../components/ArtistDetails/ArtistDetailsEditable.jsx"
 import ArtistAlbums from '../components/ArtistAlbums/ArtistAlbums.jsx';
 
 function Artist({ currentUser }) {
