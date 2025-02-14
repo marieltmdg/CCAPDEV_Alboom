@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./ArtistDetails.module.css";
 import linkIcon from "../../assets/link.png";
 import pin from "../../assets/pin.png";
-import avatar from "../../assets/avatar.png";
+import avatar from "../../assets/users/default.jpg";
 import userPhoto1 from "../../assets/users/UserPhoto1.jpg";
 import userPhoto2 from "../../assets/users/UserPhoto2.jpg";
 import userPhoto3 from "../../assets/users/UserPhoto3.jpg";
@@ -25,9 +25,9 @@ const mockUserData = [
         imgLink: userPhoto3
     },
     {
-        username: "Doechii",
-        name: "Doechii",
-        bio: "Always on the lookout for new tunes.",
+        username: "doechii",
+        name: "doechii",
+        bio: "DENIAL IS A RIVER.",
         country: "United Kingdom",
         link: "https://example.com/musicfan",
         imgLink: userPhoto2
@@ -60,7 +60,7 @@ function ArtistDetails({ username }) {
 
             <div className={styles.profileNameContainer}>
                 <span className={styles.profileName}>{userData.name}</span>
-                <span className={styles.artistText}>Artist</span>
+                <div className={styles.artistText}>Artist</div>
             </div>
 
             <div className={styles.profileBioContainer}>

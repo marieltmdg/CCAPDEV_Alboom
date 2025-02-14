@@ -50,7 +50,7 @@ const mockUserData = [
     }
 ];
 
-function UserProfile({ username }) {
+function UserDetails({ username }) {
     const [userData, setUserData] = useState({
         name: "Default Name",
         bio: "This is a default bio. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -97,4 +97,4 @@ function UserProfile({ username }) {
     );
 }
 
-export default UserProfile;
+export default UserDetails;

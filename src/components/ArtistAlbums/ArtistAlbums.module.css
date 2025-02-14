@@ -1,0 +1,51 @@
+.artistReviewContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 15px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.albumCover {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.albumCover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.albumCover:hover {
+    transform: scale(1.05);
+}
+
+.ratingContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+    background: #1A1A1A;
+    border: 1px solid #FF8000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    margin-top: 0.45rem;
+}
+
+.boomText {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: #FF8000;
+    text-align: center;
+}

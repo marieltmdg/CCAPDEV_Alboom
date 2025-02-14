@@ -25,16 +25,16 @@ const mockUserData = [
         imgLink: userPhoto3
     },
     {
-        username: "Doechii",
-        name: "Doechii",
-        bio: "Always on the lookout for new tunes.",
+        username: "doechii",
+        name: "doechii",
+        bio: "DENIAL IS A RIVER.",
         country: "United Kingdom",
         link: "https://example.com/musicfan",
         imgLink: userPhoto2
     }
 ];
 
-function UserDetailsEditable({ username }) {
+function ArtistDetailsEditable({ username }) {
     const [user, setUser] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({
@@ -122,7 +122,7 @@ function UserDetailsEditable({ username }) {
                 <div className={styles.details}>
                     <div className={styles.profileNameContainer}>
                         <span className={styles.profileName}>{user.name}</span>
-                        <span className={styles.artistText}>Artist</span>
+                        <div className={styles.artistText}>Artist</div>
                     </div>
                     <div className={styles.profileBioContainer}>
                         <p className={styles.profileBio}>{user.bio}</p>

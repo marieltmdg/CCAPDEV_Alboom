@@ -3,34 +3,12 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./ArtistAlbums.module.css";
 
-import theDarkSideOfTheMoon from "../../assets/albums/the-dark-side-of-the-moon.jpg";
 import skipp from "../../assets/albums/skipp.jpg";
 import chromakopia from "../../assets/albums/chromakopia.jpg";
 import flowerBoy from "../../assets/albums/flower-boy.jpg";
-import letsStartHere from "../../assets/albums/lets-start-here.jpg";
 import toPimpAButterfly from "../../assets/albums/to-pimp-a-butterfly.jpg";
 
-const mockReviews = [
-    {
-        artist: "Pink-Floyd",
-        albums: [
-            {
-                title: 'The Dark Side of the Moon',
-                cover: theDarkSideOfTheMoon,
-                ratings: [5, 5, 5]
-            }
-        ]
-    },
-    {
-        artist: "Unknown-Artist",
-        albums: [
-            {
-                title: 'SKIPP',
-                cover: skipp,
-                ratings: [4, 4, 4]
-            }
-        ]
-    },
+const mockAlbums = [
     {
         artist: "Tyler,-The-Creator",
         albums: [
@@ -47,31 +25,31 @@ const mockReviews = [
         ]
     },
     {
-        artist: "Lil-Yachty",
+        artist: "doechii",
         albums: [
             {
-                title: 'Let\'s Start Here',
-                cover: letsStartHere,
-                ratings: [4, 4, 4]
+                title: 'Alligator Bites Never Heal',
+                cover: skipp,
+                ratings: [5, 5, 5]
             }
         ]
     },
     {
-        artist: "Kendrick-Lamar",
-        albums: [
-            {
-                title: 'To Pimp a Butterfly',
-                cover: toPimpAButterfly,
-                ratings: [5, 5, 5]
-            }
-        ]
+        artist: "kendrick-lamar",
+            albums: [
+                {
+                    title: 'To Pimp a Butterfly',
+                    cover: toPimpAButterfly,
+                    ratings: [5, 5, 5]
+                }
+            ]
     }
 ];
 
 function ArtistAlbums() {
     const { artist } = useParams(); 
 
-    const artistData = mockReviews.find(entry => entry.artist === artist);
+    const artistData = mockAlbums.find(entry => entry.artist === artist);
     const albums = artistData ? artistData.albums : [];
 
     return (
