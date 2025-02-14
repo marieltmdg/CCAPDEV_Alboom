@@ -54,7 +54,7 @@ const sampleData = [
         albumTitle: "ALBUM TITLE", 
         albumCover: albumCover3,
         albumRating: "X.X",
-        artistLink: "http://localhost:5173/artist/kendrick-lamar",
+        artistLink: "kendrick-lamar",
         albumArtist: "ARTIST NAME",
         albumReleaseDate: "MM/DD/YYYY",
         albumDesc: "TEMPORARY DESCRIPTION"
