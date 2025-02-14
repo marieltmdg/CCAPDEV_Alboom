@@ -21,11 +21,13 @@ const sampleReview1 = "This album isn’t just music—it’s a cosmic revelatio
 const sampleReview2 = "This album is like a midnight rendezvous—each track hits you like a whispered secret, smooth and slow, making you feel things you didn’t know you needed. The beats are so deep they’ll have you begging for more, like a lover who knows exactly how to tease and please with every drop."
 const sampleReview3 = "This album is Endgame-level—each track smacks like a charged creeper, leaving you in a Minecraft trance."
 
+
 const sampleData = [
     {
         albumTitle: "Flower Boy", 
         albumCover: albumCover1,
         albumRating: "4.4",
+        artistLink: "tyler,-the-creator",
         albumArtist: "Tyler, The Creator",
         albumReleaseDate: "MM/DD/YYYY",
         albumDesc: "TEMPORARY DESCRIPTION"
@@ -34,6 +36,7 @@ const sampleData = [
         albumTitle: "Alligator Bites Never Heal", 
         albumCover: albumCover2,
         albumRating: "4.7",
+        artistLink: "doechii",
         albumArtist: "Doechii",
         albumReleaseDate: "MM/DD/YYYY",
         albumDesc: "TEMPORARY DESCRIPTION"
@@ -42,6 +45,7 @@ const sampleData = [
         albumTitle: "To Pimp A Butterfly", 
         albumCover: albumCover3,
         albumRating: "4.9",
+        artistLink: "kendrick-lamar",
         albumArtist: "Kendrick Lamar",
         albumReleaseDate: "MM/DD/YYYY",
         albumDesc: "TEMPORARY DESCRIPTION"
@@ -50,6 +54,7 @@ const sampleData = [
         albumTitle: "ALBUM TITLE", 
         albumCover: albumCover3,
         albumRating: "X.X",
+        artistLink: "http://localhost:5173/artist/kendrick-lamar",
         albumArtist: "ARTIST NAME",
         albumReleaseDate: "MM/DD/YYYY",
         albumDesc: "TEMPORARY DESCRIPTION"
@@ -66,7 +71,7 @@ function Album() {
         <>
             <Header isAuth={true} />
             <Main>
-                <AlbumReview AlbumTitle={selected.albumTitle} AlbumCover={selected.albumCover} AlbumRating={selected.albumRating} AlbumArtist={selected.albumArtist} AlbumReleaseDate={selected.albumReleaseDate} albumDesc={selected.albumDesc}/>
+                <AlbumReview AlbumTitle={selected.albumTitle} AlbumCover={selected.albumCover} AlbumRating={selected.albumRating} ArtistLink={selected.artistLink} AlbumArtist={selected.albumArtist} AlbumReleaseDate={selected.albumReleaseDate} albumDesc={selected.albumDesc}/>
                 <h1>Reviews</h1>
                 <div className={styles.searchContainer}>
                     <input className={styles.search} type="search" size="1" placeholder="Search Reviews..." />

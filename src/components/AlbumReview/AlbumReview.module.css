@@ -71,6 +71,16 @@
     gap: 8px;
 }
 
+.artistName {
+    color: var(--secondary-color);
+    transition: 0.25s;
+}
+
+.artistName:hover {
+    color: var(--accent-color);
+    transform: scale(1.03);
+}
+
 .albumDescription {
     text-align: left;
     margin-top: 16px;
