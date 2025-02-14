@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     justify-content: center;
+    align-items: center;
     gap: 16px;
     width: 100%;
     max-width: 1200px;
@@ -11,15 +12,9 @@
     margin: auto;
 }
 
-.artistReviewContainer:only-child {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .reviewItem{
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
     max-width: 38rem;
     height: fit-content;
 }

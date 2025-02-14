@@ -10,7 +10,7 @@ import toPimpAButterfly from "../../assets/albums/to-pimp-a-butterfly.jpg";
 
 const mockAlbums = [
     {
-        username: "Tyler,-The-Creator",
+        username: "tyler,-the-creator",
         albums: [
             {
                 title: 'Flower-Boy',
