@@ -17,12 +17,13 @@ function Artist({ currentUser }) {
             <Header isAuth={true} />
             <Main>
                 <div className={styles.mainContainer}>
-                    {/* insert currentUser*/}
-                    {username === currentUser ? (
-                        <ArtistDetailsEditable username={username} />
-                    ) : (
-                        <ArtistDetails username={username} />
-                    )}
+                    <div className={styles.userProfileContainer}>
+                        {username === currentUser ? (
+                            <UserDetailsEditable username={username} />
+                        ) : (
+                            <UserDetails username={username} />
+                        )}
+                    </div>
 
                     <div className={styles.centerContainer}>
                         <div className={styles.albumsContainer}>

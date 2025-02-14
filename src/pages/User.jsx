@@ -19,11 +19,13 @@ function User({ currentUser }) {
             <Main>
                 <div className={styles.mainContainer}>
                     {/* insert currentUser*/}
-                    {username === currentUser ? (
-                        <UserDetailsEditable username={username} />
-                    ) : (
-                        <UserDetails username={username} />
-                    )}
+                    <div className={styles.userProfileContainer}>
+                        {username === currentUser ? (
+                            <UserDetailsEditable username={username} />
+                        ) : (
+                            <UserDetails username={username} />
+                        )}
+                    </div>
 
                     <div className={styles.reviewsContainer}>
                         <div className={styles.latestReviewContainer}>
