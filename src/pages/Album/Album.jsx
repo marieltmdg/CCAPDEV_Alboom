@@ -8,6 +8,10 @@ import Header from "../../components/Header/Header.jsx"
 import AlbumReview from "../../components/AlbumReview/AlbumReview.jsx"
 import ReviewCard from "../../components/ReviewCard/ReviewCard.jsx"
 
+import albumCover1 from "../../assets/albums/flower-boy.jpg"
+import albumCover2 from "../../assets/albums/skipp.jpg"
+import albumCover3 from "../../assets/albums/to-pimp-a-butterfly.jpg"
+
 import userPhoto1 from '../../assets/users/userPhoto1.jpg'
 import userPhoto2 from '../../assets/users/userPhoto2.jpg'
 import userPhoto3 from '../../assets/users/userPhoto3.jpg'
@@ -17,15 +21,52 @@ const sampleReview1 = "This album isn’t just music—it’s a cosmic revelatio
 const sampleReview2 = "This album is like a midnight rendezvous—each track hits you like a whispered secret, smooth and slow, making you feel things you didn’t know you needed. The beats are so deep they’ll have you begging for more, like a lover who knows exactly how to tease and please with every drop."
 const sampleReview3 = "This album is Endgame-level—each track smacks like a charged creeper, leaving you in a Minecraft trance."
 
+const sampleData = [
+    {
+        albumTitle: "Flower Boy", 
+        albumCover: albumCover1,
+        albumRating: "4.4",
+        albumArtist: "Tyler, The Creator",
+        albumReleaseDate: "MM/DD/YYYY",
+        albumDesc: "TEMPORARY DESCRIPTION"
+    },
+    {
+        albumTitle: "Alligator Bites Never Heal", 
+        albumCover: albumCover2,
+        albumRating: "4.7",
+        albumArtist: "Doechii",
+        albumReleaseDate: "MM/DD/YYYY",
+        albumDesc: "TEMPORARY DESCRIPTION"
+    },
+    {
+        albumTitle: "To Pimp A Butterfly", 
+        albumCover: albumCover3,
+        albumRating: "4.9",
+        albumArtist: "Kendrick Lamar",
+        albumReleaseDate: "MM/DD/YYYY",
+        albumDesc: "TEMPORARY DESCRIPTION"
+    },
+    {
+        albumTitle: "ALBUM TITLE", 
+        albumCover: albumCover3,
+        albumRating: "X.X",
+        albumArtist: "ARTIST NAME",
+        albumReleaseDate: "MM/DD/YYYY",
+        albumDesc: "TEMPORARY DESCRIPTION"
+    }
+    
+]
+
 
 function Album() {
     const { title } = useParams()
+    const selected = sampleData.find(album => album.albumTitle === title) || sampleData[sampleData.length - 1];
 
     return (
         <>
             <Header isAuth={true} />
             <Main>
-                <AlbumReview/>
+                <AlbumReview AlbumTitle={selected.albumTitle} AlbumCover={selected.albumCover} AlbumRating={selected.albumRating} AlbumArtist={selected.albumArtist} AlbumReleaseDate={selected.albumReleaseDate} albumDesc={selected.albumDesc}/>
                 <h1>Reviews</h1>
                 <div className={styles.searchContainer}>
                     <input className={styles.search} type="search" size="1" placeholder="Search Reviews..." />

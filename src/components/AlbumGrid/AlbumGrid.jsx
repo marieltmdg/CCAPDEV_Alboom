@@ -19,7 +19,7 @@ const albums = [
         cover: theDarkSideOfTheMoon
     },
     {
-        title: 'SKIPP',
+        title: 'Alligator Bites Never Heal',
         cover: skipp
     },
     {
