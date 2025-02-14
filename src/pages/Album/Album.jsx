@@ -12,6 +12,10 @@ import albumCover1 from "../../assets/albums/flower-boy.jpg"
 import albumCover2 from "../../assets/albums/skipp.jpg"
 import albumCover3 from "../../assets/albums/to-pimp-a-butterfly.jpg"
 
+import artistPhoto1 from "../../assets/artists/tyler.jpg"
+import artistPhoto2 from "../../assets/artists/doechii.jpg"
+import artistPhoto3 from "../../assets/artists/kendrick.jpg"
+
 import userPhoto1 from '../../assets/users/userPhoto1.jpg'
 import userPhoto2 from '../../assets/users/userPhoto2.jpg'
 import userPhoto3 from '../../assets/users/userPhoto3.jpg'
@@ -30,7 +34,8 @@ const sampleData = [
         artistLink: "tyler,-the-creator",
         albumArtist: "Tyler, The Creator",
         albumReleaseDate: "MM/DD/YYYY",
-        albumDesc: "TEMPORARY DESCRIPTION"
+        albumDesc: "TEMPORARY DESCRIPTION",
+        artistPhoto: artistPhoto1,
     },
     {
         albumTitle: "Alligator Bites Never Heal", 
@@ -39,7 +44,8 @@ const sampleData = [
         artistLink: "doechii",
         albumArtist: "Doechii",
         albumReleaseDate: "MM/DD/YYYY",
-        albumDesc: "TEMPORARY DESCRIPTION"
+        albumDesc: "TEMPORARY DESCRIPTION",
+        artistPhoto: artistPhoto2,
     },
     {
         albumTitle: "To Pimp A Butterfly", 
@@ -48,7 +54,8 @@ const sampleData = [
         artistLink: "kendrick-lamar",
         albumArtist: "Kendrick Lamar",
         albumReleaseDate: "MM/DD/YYYY",
-        albumDesc: "TEMPORARY DESCRIPTION"
+        albumDesc: "TEMPORARY DESCRIPTION",
+        artistPhoto: artistPhoto3,
     },
     {
         albumTitle: "ALBUM TITLE", 
@@ -57,7 +64,8 @@ const sampleData = [
         artistLink: "kendrick-lamar",
         albumArtist: "ARTIST NAME",
         albumReleaseDate: "MM/DD/YYYY",
-        albumDesc: "TEMPORARY DESCRIPTION"
+        albumDesc: "TEMPORARY DESCRIPTION",
+        artistPhoto: artistPhoto3,
     }
     
 ]
@@ -79,7 +87,7 @@ function Album() {
                         <img src={search} className={styles.icon} />
                     </button>
                 </div>
-                <ReviewCard Rating={5} Username="CarlegendelosReyes" UserPhoto={userPhoto1} UserReviewText={sampleReview1} IsEdited={true} IsReviewEditable={true} HasReply={true}/>
+                <ReviewCard Rating={5} Username="CarlegendelosReyes" UserPhoto={userPhoto1} UserReviewText={sampleReview1} IsEdited={true} IsReviewEditable={true} HasReply={true} Selected={selected}/>
                 <ReviewCard Rating={4} Username="ZappoTheDragon" UserPhoto={userPhoto2} UserReviewText={sampleReview2}/>
                 <ReviewCard Rating={4} Username="GOKAN-san" UserPhoto={userPhoto3} UserReviewText={sampleReview3}/>
             </Main>

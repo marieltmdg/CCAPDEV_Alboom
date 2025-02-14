@@ -38,6 +38,18 @@
     border: 2px solid var(--accent-color);
    
     margin: 32px 32px;
+
+    transition: 0.25s;
+}
+
+.userPhoto:hover {
+    opacity: 50%;
+    transform: scale(1.02);
+}
+
+.userPhoto:active {
+    opacity: 20%;
+    transform: scale(0.98);
 }
 
 .leftTop {
