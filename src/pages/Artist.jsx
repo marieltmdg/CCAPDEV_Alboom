@@ -27,7 +27,11 @@ function Artist({ currentUser }) {
 
                     <div className={styles.centerContainer}>
                         <div className={styles.albumsContainer}>
-                            <ArtistAlbums username={username} />
+                            {username === currentUser ? (
+                                <ArtistAlbumsEditable username={username} />
+                            ) : (
+                                <ArtistAlbums username={username} />
+                            )}
                         </div>
                     </div>
                 </div>
