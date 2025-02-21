@@ -2,12 +2,12 @@ import { useParams } from "react-router-dom"
 
 import styles from "./Artist.module.css"
 
-import Header from "../components/Header/Header.jsx"
-import Main from "../components/Main"
+import Header from "../../components/Header/Header.jsx"
+import Main from "../../components/Main"
 
-import ArtistDetails from "../components/ArtistDetails/ArtistDetails.jsx"
-import ArtistDetailsEditable from "../components/ArtistDetails/ArtistDetailsEditable.jsx"
-import ArtistAlbums from '../components/ArtistAlbums/ArtistAlbums.jsx';
+import ArtistDetails from "../../components/ArtistDetails/ArtistDetails.jsx"
+import ArtistDetailsEditable from "../../components/ArtistDetails/ArtistDetailsEditable.jsx"
+import ArtistAlbums from '../../components/ArtistAlbums/ArtistAlbums.jsx';
 
 function Artist({ currentUser }) {
     const { username } = useParams();

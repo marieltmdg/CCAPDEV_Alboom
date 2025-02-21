@@ -1,15 +1,15 @@
 import { useState } from "react";
-import Header from "../components/Header/Header.jsx";
-import Main from "../components/Main";
-import logo from "../assets/logo.png";
-import logoDark from "../assets/logoDark.png";
-import back from '../assets/back.svg'
+import Header from "../../components/Header/Header.jsx";
+import Main from "../../components/Main.jsx";
+import logo from "../../assets/logo.png";
+import logoDark from "../../assets/logoDark.png";
+import back from '../../assets/back.svg'
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import AlbumInfo from "../components/AlbumInfo/AlbumInfo.jsx"
+import AlbumInfo from "../../components/AlbumInfo/AlbumInfo.jsx"
 
 import styles from "./CreateReview.module.css"
-import Album from "../pages/Album/Album.jsx";
+import Album from "../Album/Album.jsx";
 
 function CreateReview() {
     const [rating, setRating] = useState(0);

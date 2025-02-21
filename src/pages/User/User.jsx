@@ -2,13 +2,13 @@ import { useParams } from "react-router-dom"
 
 import styles from "./User.module.css"
 
-import Header from "../components/Header/Header.jsx"
-import Main from "../components/Main"
+import Header from "../../components/Header/Header.jsx"
+import Main from "../../components/Main"
 
-import UserDetails from '../components/UserDetails/UserDetails.jsx';
-import UserDetailsEditable from '../components/UserDetails/UserDetailsEditable.jsx';
-import UserLatestReview from '../components/UserLatestReview/UserLatestReview.jsx';
-import UserReviews from '../components/UserReviews/UserReviews.jsx';
+import UserDetails from '../../components/UserDetails/UserDetails.jsx';
+import UserDetailsEditable from '../../components/UserDetails/UserDetailsEditable.jsx';
+import UserLatestReview from '../../components/UserLatestReview/UserLatestReview.jsx';
+import UserReviews from '../../components/UserReviews/UserReviews.jsx';
 
 function User({ currentUser }) {
     const { username } = useParams();

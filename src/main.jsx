@@ -6,11 +6,11 @@ import './main.css'
 
 import Home from './pages/Home/Home.jsx'
 import Album from './pages/Album/Album.jsx'
-import User from './pages/User.jsx'
+import User from './pages/User/User.jsx'
 import Login from './pages/Login/Login.jsx'
 import Register from './pages/Register/Register.jsx'
-import CreateReview from './pages/CreateReview.jsx'
-import Artist from './pages/Artist.jsx'
+import CreateReview from './pages/CreateReview/CreateReview.jsx'
+import Artist from './pages/Artist/Artist.jsx'
 
 const router = createBrowserRouter([
     {
