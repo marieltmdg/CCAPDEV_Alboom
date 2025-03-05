@@ -1,7 +1,10 @@
-const express = require("express")
-const apiRouter = express.Router()
-const albumRouter = require("./albumRouter")
+const express = require('express');
+const userRouter = require('./userRouter');
+const albumRouter = require('./albumRouter');
 
-apiRouter.use("/albums", albumRouter)
+const router = express.Router();
 
-module.exports = apiRouter
+router.use('/users', userRouter);
+router.use('/albums', albumRouter);
+
+module.exports = router;
