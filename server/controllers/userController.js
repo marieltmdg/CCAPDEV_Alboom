@@ -5,7 +5,7 @@ const fs = require("fs");
 
 module.exports = {
     create: asyncHandler(async (req, res) => {
-        const { username, email, bio } = req.body;
+        const { username, email, password, bio } = req.body;
         let picture = null;
 
         if (req.files && req.files.photo) {
@@ -14,7 +14,6 @@ module.exports = {
 
             fs.mkdirSync(uploadPath, { recursive: true });
 
-            // Save the uploaded file
             const photoPath = path.join(uploadPath, `${Date.now()}-${photo.name}`);
             await photo.mv(photoPath);
             picture = photoPath;
@@ -30,6 +29,7 @@ module.exports = {
             const user = new User({
                 username,
                 email,
+                password,
                 picture,
                 bio,
                 latest_review: null,
