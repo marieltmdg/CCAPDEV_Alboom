@@ -1,9 +1,11 @@
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-import styles from "./User.module.css"
+import styles from "./User.module.css";
 
-import Header from "../../components/Header/Header.jsx"
-import Main from "../../components/Main"
+import Header from "../../components/Header/Header.jsx";
+import Main from "../../components/Main";
 
 import UserDetails from '../../components/UserDetails/UserDetails.jsx';
 import UserDetailsEditable from '../../components/UserDetails/UserDetailsEditable.jsx';
@@ -12,18 +14,43 @@ import UserReviews from '../../components/UserReviews/UserReviews.jsx';
 
 function User({ currentUser }) {
     const { username } = useParams();
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await axios.get(`/api/users/${username}`);
+                setUserData(response.data);
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+            }
+        };
+
+        fetchUserData();
+    }, [username]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <>
             <Header isAuth={true} />
             <Main>
                 <div className={styles.mainContainer}>
-                    {/* insert currentUser*/}
                     <div className={styles.userProfileContainer}>
                         {username === currentUser ? (
-                            <UserDetailsEditable username={username} />
+                            <UserDetailsEditable username={username} userData={userData} />
                         ) : (
-                            <UserDetails username={username} />
+                            <UserDetails username={username} userData={userData} />
                         )}
                     </div>
 
