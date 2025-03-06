@@ -54,11 +54,21 @@ const albums = [
     }
 ];
 
+import axios from "axios"
+import { useEffect, useState } from "react"
+
 function AlbumGrid() {
+    const [albums, setAlbums] = useState([])
+
+    useEffect(() => {
+        axios.get("http://localhost:3000/api/albums")
+            .then(res => setAlbums(res.data))
+    }, [])
+
     return (
         <div className={styles.container}>
             {albums.map(album => (
-                <Link to={"/album/" + album.title} key={album.title} className={styles.item}><img src={album.cover} alt="" className={styles.cover} /></Link>
+                <Link to={"/album/" + album.title} key={album.title} className={styles.item}><img src={"http://localhost:3000/" + album.album_cover} alt="" className={styles.cover} /></Link>
             ))}
         </div>
     )

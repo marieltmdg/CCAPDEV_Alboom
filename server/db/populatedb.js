@@ -98,27 +98,27 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                 const sampleAlbums = [
                     { 
                         title: "Flower Boy", 
-                        album_cover: path.join(__dirname, "..", "uploads", "Flower-Boy", "1741173920904-flowerboy.jpg"), 
+                        album_cover: path.join("uploads", "Flower-Boy", "1741173920904-flowerboy.jpg"), 
                         artist_id: artistIds[2] 
                     },
                     { 
                         title: "IGOR", 
-                        album_cover: path.join(__dirname, "..", "uploads", "IGOR", "1741173920904-igor.jpg"),
+                        album_cover: path.join("uploads", "IGOR", "1741173920904-igor.jpg"),
                         artist_id: artistIds[2] 
                     },
                     { 
                         title: "Chromakopia", 
-                        album_cover: path.join(__dirname, "..", "uploads", "Chromakopia", "1741173920904-chromakopia.jpg"),
+                        album_cover: path.join("uploads", "Chromakopia", "1741173920904-chromakopia.jpg"),
                         artist_id: artistIds[2] 
                     },
                     { 
                         title: "Alligator Bites Never Heal", 
-                        album_cover: path.join(__dirname, "..", "uploads", "Alligator-Bites-Never-Heal", "1741173920904-alligatorbitesneverheal.jpg"),
+                        album_cover: path.join("uploads", "Alligator-Bites-Never-Heal", "1741173920904-alligatorbitesneverheal.jpg"),
                         artist_id: artistIds[1] 
                     },
                     { 
                         title: "To Pimp A Butterfly", 
-                        album_cover: path.join(__dirname, "..", "uploads", "To-Pimp-A-Butterfly", "1741173920904-topimpabutterfly.jpg"),
+                        album_cover: path.join("uploads", "To-Pimp-A-Butterfly", "1741173920904-topimpabutterfly.jpg"),
                         artist_id: artistIds[0] 
                     },
                 ];
