@@ -1,9 +1,12 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./db");
-const apiRouter = require("./routes/apiRouter");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
+const path = require("path");
+
+const apiRouter = require("./routes/apiRouter");
+const userRouter = require("./routes/userRouter");
 
 dotenv.config(); 
 const app = express();
@@ -16,7 +19,10 @@ app.use(express.json());
 app.use(express.static("public")); 
 app.use(fileUpload());
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 app.use("/api", apiRouter);
+app.use("/api/user", userRouter);
 
 app.use((err, req, res, next) => {
     res.status(500).json({ message: err.message });

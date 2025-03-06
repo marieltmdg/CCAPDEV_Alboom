@@ -18,12 +18,14 @@ function User({ currentUser }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    console.log("Current user:", currentUser);
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get(`/api/users/${username}`);
+                const response = await axios.get(`/api/user/${username}`);
                 setUserData(response.data);
                 setLoading(false);
+                console.log("Retrieved user data:", response.data);
             } catch (err) {
                 setError(err.message);
                 setLoading(false);
