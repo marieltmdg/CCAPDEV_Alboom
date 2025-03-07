@@ -26,68 +26,25 @@ const sampleReview2 = "This album is like a midnight rendezvous—each track hit
 const sampleReview3 = "This album is Endgame-level—each track smacks like a charged creeper, leaving you in a Minecraft trance."
 
 
-const sampleData = [
-    {
-        albumTitle: "Flower Boy", 
-        albumCover: albumCover1,
-        albumRating: "4.4",
-        artistLink: "tyler,-the-creator",
-        albumArtist: "Tyler, The Creator",
-        albumReleaseDate: "MM/DD/YYYY",
-        albumDesc: "TEMPORARY DESCRIPTION",
-        artistPhoto: artistPhoto1,
-    },
-    {
-        albumTitle: "Alligator Bites Never Heal", 
-        albumCover: albumCover2,
-        albumRating: "4.7",
-        artistLink: "doechii",
-        albumArtist: "Doechii",
-        albumReleaseDate: "MM/DD/YYYY",
-        albumDesc: "TEMPORARY DESCRIPTION",
-        artistPhoto: artistPhoto2,
-    },
-    {
-        albumTitle: "To Pimp A Butterfly", 
-        albumCover: albumCover3,
-        albumRating: "4.9",
-        artistLink: "kendrick-lamar",
-        albumArtist: "Kendrick Lamar",
-        albumReleaseDate: "MM/DD/YYYY",
-        albumDesc: "TEMPORARY DESCRIPTION",
-        artistPhoto: artistPhoto3,
-    },
-    {
-        albumTitle: "ALBUM TITLE", 
-        albumCover: albumCover3,
-        albumRating: "X.X",
-        artistLink: "kendrick-lamar",
-        albumArtist: "ARTIST NAME",
-        albumReleaseDate: "MM/DD/YYYY",
-        albumDesc: "TEMPORARY DESCRIPTION",
-        artistPhoto: artistPhoto3,
-    }
-    
-]
 
 import axios from "axios"
 import { useEffect, useState } from "react"
 
 function Album() {
     const { id } = useParams()
-    console.log(id)
-    const [album, setAlbum] = useState({})
+
+    const [album, setAlbum] = useState(null)
 
     useEffect(() => {
         axios.get("http://localhost:3000/api/albums/" + id)
             .then(res => setAlbum(res.data))
-    }, [])
+    }, [id])
 
-    return (
+    return album && (
         <>
             <Header isAuth={true} />
             <Main>
-                <AlbumReview AlbumTitle={album.title} AlbumCover={album.album_cover} AlbumRating="5" ArtistLink="temp" AlbumArtist="temp" AlbumReleaseDate="temp" albumDesc="temp"/>
+                <AlbumReview AlbumTitle={album.title} AlbumCover={album.album_cover} AlbumRating="5" ArtistLink={album.artist_id._id} AlbumArtist={album.artist_id.name} AlbumReleaseDate="temp" albumDesc="temp"/>
                 <h1>Reviews</h1>
                 <div className={styles.searchContainer}>
                     <input className={styles.search} type="search" size="1" placeholder="Search Reviews..." />
@@ -100,7 +57,7 @@ function Album() {
                 <ReviewCard Rating={4} Username="GOKAN-san" UserPhoto={userPhoto3} UserReviewText={sampleReview3}/>
             </Main>
         </>
-    ) 
+    )
 }
 
 export default Album

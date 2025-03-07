@@ -9,8 +9,7 @@ module.exports = {
     }),
 
     readID: asyncHandler(async (req, res) => {
-        console.log(req.params.id)
-        const selectedAlbum = await albumModel.findById(req.params.id) 
+        const selectedAlbum = await albumModel.findById(req.params.id).populate("artist_id")
         res.json(selectedAlbum)    
     }),
 
