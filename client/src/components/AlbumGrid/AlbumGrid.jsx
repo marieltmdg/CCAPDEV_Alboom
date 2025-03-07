@@ -68,7 +68,7 @@ function AlbumGrid() {
     return (
         <div className={styles.container}>
             {albums.map(album => (
-                <Link to={"/album/" + album.title} key={album.title} className={styles.item}><img src={"http://localhost:3000/" + album.album_cover} alt="" className={styles.cover} /></Link>
+                <Link to={"/album/" + album._id} key={album.title} className={styles.item}><img src={"http://localhost:3000/" + album.album_cover} alt="" className={styles.cover} /></Link>
             ))}
         </div>
     )

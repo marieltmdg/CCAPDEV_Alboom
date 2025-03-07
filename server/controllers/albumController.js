@@ -3,17 +3,15 @@ const asyncHandler = require("express-async-handler")
 const albumModel = require("../models/albumModel.js")
 
 module.exports = {
-    create: asyncHandler(async (req, res) => {
-        // Create API Endpoint
-    }),
-
     read: asyncHandler(async (req, res) => {
         const albums = await albumModel.find({})
         res.json(albums)
     }),
 
     readID: asyncHandler(async (req, res) => {
-        // Read ID API Endpoint
+        console.log(req.params.id)
+        const selectedAlbum = await albumModel.findById(req.params.id) 
+        res.json(selectedAlbum)    
     }),
 
     update: asyncHandler(async (req, res) => {
