@@ -13,34 +13,45 @@ const sampleUsers = [
         email: "martin_carlos_r_delosreyes@dlsu.edu.ph", 
         password: "iLoveAldrin",
         picture: path.join("uploads", "martin_carlos_r_delosreyes@dlsu.edu.ph", "1741164454701-carlosdelosreyes.jpg"), 
-        bio: "i love aldrin!" },
+        bio: "i love aldrin!" ,
+        country: "Philippines",
+        link: "https://example.com/carlos"
+    },
     { 
         username: "MarkGok-San", 
         email: "mark_gokan@dlsu.edu.ph", 
         password: "iamJapanese", 
         picture: path.join("uploads", "mark_gokan@dlsu.edu.ph", "1741173888519-markgokan.jpg"),
-        bio: "i love golf!" 
+        bio: "i love golf!" ,
+        country: "Philippines",
+        link: "https://example.com/carlos"
     },
     { 
         username: "ZappoTheDragon", 
         email: "izac_manikan@dlsu.edu.ph", 
         password: "Zaragoza", 
         picture: path.join("uploads", "mark_gokan@dlsu.edu.ph", "1741173920904-izacmanikan.jpg"), 
-        bio: "i love football!" 
+        bio: "i love football!",
+        country: "Singapore",
+        link: "https://example.com/ZAPPO" 
     },
     { 
         username: "JcTheKid", 
         email: "john_christian_llamas@dlsu.edu.ph", 
         password: "ark_dawn", 
         picture: path.join("uploads", "john_christian_llamas@dlsu.edu.ph", "1741173920904-johnchristianllamas.jpg"),
-        bio: "i love carlos!" 
+        bio: "i love carlos!" ,
+        country: "USA",
+        link: "https://example.com/JC"
     },
     { 
         username: "ItzVolkMC", 
         email: "aldrin_lorenz_tigulo@dlsu.edu.ph", 
         password: "iloveIzac", 
         picture: path.join("uploads", "aldrin_lorenz_tigulo@dlsu.edu.ph", "1741173920904-aldrinlorenztigulo.png"),
-        bio: "i love carlos!" 
+        bio: "i love carlos!" ,
+        country: "Philippines",
+        link: "https://example.com/volk"
     },
 ];
 

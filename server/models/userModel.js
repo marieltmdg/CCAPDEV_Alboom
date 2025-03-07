@@ -6,6 +6,8 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     picture: { type: String },
     bio: { type: String },
+    country: { type: String },
+    link: { type: String },
     latest_review: { type: mongoose.Schema.Types.ObjectId, ref: "Review" }
 });
 

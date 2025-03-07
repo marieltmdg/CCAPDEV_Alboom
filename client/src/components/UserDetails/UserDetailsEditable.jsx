@@ -95,6 +95,27 @@ function UserDetailsEditable({ username }) {
                         onChange={handleChange}
                         className={styles.inputBio}
                     />
+                    <div className={styles.countryContainer}>
+                        <img src={pin} alt="Country" className={styles.countryImage} /> 
+                        <input
+                            type="text"
+                            name="country"
+                            value={formData.country}
+                            onChange={handleChange}
+                            className={styles.inputCountry}
+                        />
+                    </div>
+                    <div className={styles.linkContainer}>
+                        <img src={linkIcon} alt="Link" className={styles.linkImage} />
+                    
+                        <input
+                            type="text"
+                            name="link"
+                            value={formData.link}
+                            onChange={handleChange}
+                            className={styles.inputLink}
+                        />
+                    </div>
                     <button onClick={handleSave} className={styles.saveButton}>Save</button>
                 </div>
             ) : (
@@ -105,8 +126,16 @@ function UserDetailsEditable({ username }) {
                     <div className={styles.profileBioContainer}>
                         <p className={styles.profileBio}>{user.bio}</p>
                     </div>
+
+                    <div className={styles.countryContainer}>
+                        <p><img src={pin} alt="Country" className={styles.countryImage} /> <span className={styles.country}>{user.country}</span></p>
+                    </div>
+                    <div className={styles.linkContainer}>
+                        <p><img src={linkIcon} alt="Link" className={styles.linkImage} /> <a href={user.link} target="_blank" rel="noopener noreferrer" className={styles.link}>{user.link}</a></p>
+                    </div>
                     <button onClick={() => setIsEditing(true)} className={styles.editButton}>Edit</button>
                 </div>
+                
             )}
         </div>
     );

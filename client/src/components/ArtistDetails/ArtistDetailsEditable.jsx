@@ -128,6 +128,13 @@ function ArtistDetailsEditable({ username }) {
                     <div className={styles.profileBioContainer}>
                         <p className={styles.profileBio}>{user.bio}</p>
                     </div>
+
+                    <div className={styles.countryContainer}>
+                        <p><img src={pin} alt="Country" className={styles.countryImage} /> <span className={styles.country}>{user.country}</span></p>
+                    </div>
+                    <div className={styles.linkContainer}>
+                        <p><img src={linkIcon} alt="Link" className={styles.linkImage} /> <a href={user.link} target="_blank" rel="noopener noreferrer" className={styles.link}>{user.link}</a></p>
+                    </div>
                     <button onClick={() => setIsEditing(true)} className={styles.editButton}>Edit</button>
                 </div>
             )}
