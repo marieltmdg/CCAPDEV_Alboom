@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         element: <Login />
     },
     {
-        path: "/artist/:username",
+        path: "/artist/:artistname",
         element: <Artist />
     },
     {

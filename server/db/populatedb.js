@@ -57,35 +57,35 @@ const sampleUsers = [
 
 const sampleArtists = [
     { 
-        name: "Kendrick Lamar", 
+        artistname: "Kendrick Lamar", 
         picture: path.join(__dirname, "..", "uploads", "Kendrick-Lamar", "1741173920904-kendricklamar.jpg"),
         bio: "temp bio", 
         location: "USA", 
         link: "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg",
     },
     { 
-        name: "Doechii", 
+        artistname: "Doechii", 
         picture: path.join(__dirname, "..", "uploads", "Doechii", "1741173920904-doechii.jpg"),
         bio: "temp bio", 
         location: "USA", 
         link: "https://open.spotify.com/artist/4E2rKHVDssGJm2SCDOMMJB" 
     },
     { 
-        name: "Tyler, The Creator", 
+        artistname: "Tyler, The Creator", 
         picture: path.join(__dirname, "..", "uploads", "Tyler,-The-Creator", "1741173920904-tylerthecreator.jpg"),
         bio: "temp bio", 
         location: "USA", 
         link: "https://open.spotify.com/artist/4V8LLVI7PbaPR0K2TGSxFF" 
     },
     { 
-        name: "Frank Ocean", 
+        artistname: "Frank Ocean", 
         picture: path.join(__dirname, "..", "uploads", "Frank-Ocean", "1741173920904-frankocean.png"),
         bio: "temp bio", 
         location: "USA", 
         link: "https://open.spotify.com/artist/2h93pZq0e7k5yf4dywlkpM" 
     },
     { 
-        name: "Billie Eilish", 
+        artistname: "Billie Eilish", 
         picture: path.join(__dirname, "..", "uploads", "Billie-Eilish", "1741173920904-billieeilish.png"),
         bio: "temp bio", 
         location: "USA", 
