@@ -61,7 +61,12 @@
     width: 100%;
     text-align: left;
     margin-top: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
+
 
 .profileName {
     font-size: 1.8rem;
