@@ -12,13 +12,13 @@ import UserDetailsEditable from '../../components/UserDetails/UserDetailsEditabl
 import UserLatestReview from '../../components/UserLatestReview/UserLatestReview.jsx';
 import UserReviews from '../../components/UserReviews/UserReviews.jsx';
 
-function User({ currentUser }) {
+function User() {
     const { username } = useParams();
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    console.log("Current user:", currentUser);
+    console.log("Current user:", username);
     useEffect(() => {
         const fetchUserData = async () => {
             try {
@@ -49,11 +49,7 @@ function User({ currentUser }) {
             <Main>
                 <div className={styles.mainContainer}>
                     <div className={styles.userProfileContainer}>
-                        {username === currentUser ? (
-                            <UserDetailsEditable username={username} userData={userData} />
-                        ) : (
-                            <UserDetails username={username} userData={userData} />
-                        )}
+                        <UserDetails userData={userData} />
                     </div>
 
                     <div className={styles.reviewsContainer}>

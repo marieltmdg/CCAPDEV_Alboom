@@ -56,7 +56,7 @@ module.exports = {
     readID: asyncHandler(async (req, res) => {
         try {
             const user = await User.findOne({ username: req.params.username });
-
+            console.log(user);
             if (user) {
                 res.json(user);
             } else {
