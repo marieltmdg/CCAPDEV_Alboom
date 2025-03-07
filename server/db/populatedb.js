@@ -12,34 +12,34 @@ const sampleUsers = [
         username: "Carlegendelosreyes", 
         email: "martin_carlos_r_delosreyes@dlsu.edu.ph", 
         password: "iLoveAldrin",
-        picture: path.join(__dirname, "..", "uploads", "martin_carlos_r_delosreyes@dlsu.edu.ph", "1741164454701-carlosdelosreyes.jpg"), 
+        picture: path.join("uploads", "martin_carlos_r_delosreyes@dlsu.edu.ph", "1741164454701-carlosdelosreyes.jpg"), 
         bio: "i love aldrin!" },
     { 
         username: "MarkGok-San", 
         email: "mark_gokan@dlsu.edu.ph", 
         password: "iamJapanese", 
-        picture: path.join(__dirname, "..", "uploads", "mark_gokan@dlsu.edu.ph", "1741173888519-markgokan.jpg"),
+        picture: path.join("uploads", "mark_gokan@dlsu.edu.ph", "1741173888519-markgokan.jpg"),
         bio: "i love golf!" 
     },
     { 
         username: "ZappoTheDragon", 
         email: "izac_manikan@dlsu.edu.ph", 
         password: "Zaragoza", 
-        picture: path.join(__dirname, "..", "uploads", "mark_gokan@dlsu.edu.ph", "1741173920904-izacmanikan.jpg"), 
+        picture: path.join("uploads", "mark_gokan@dlsu.edu.ph", "1741173920904-izacmanikan.jpg"), 
         bio: "i love football!" 
     },
     { 
         username: "JcTheKid", 
         email: "john_christian_llamas@dlsu.edu.ph", 
         password: "ark_dawn", 
-        picture: path.join(__dirname, "..", "uploads", "john_christian_llamas@dlsu.edu.ph", "1741173920904-johnchristianllamas.jpg"),
+        picture: path.join("uploads", "john_christian_llamas@dlsu.edu.ph", "1741173920904-johnchristianllamas.jpg"),
         bio: "i love carlos!" 
     },
     { 
         username: "ItzVolkMC", 
         email: "aldrin_lorenz_tigulo@dlsu.edu.ph", 
         password: "iloveIzac", 
-        picture: path.join(__dirname, "..", "uploads", "aldrin_lorenz_tigulo@dlsu.edu.ph", "1741173920904-aldrinlorenztigulo.png"),
+        picture: path.join("uploads", "aldrin_lorenz_tigulo@dlsu.edu.ph", "1741173920904-aldrinlorenztigulo.png"),
         bio: "i love carlos!" 
     },
 ];

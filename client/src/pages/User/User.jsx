@@ -19,21 +19,30 @@ function User() {
     const [error, setError] = useState(null);
 
     console.log("Current user:", username);
+    
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get(`/api/user/${username}`);
+                const apiUrl = `/api/user/${username}`;
+                console.log("Fetching user data from:", apiUrl);
+                
+                const response = await axios.get(apiUrl);
                 setUserData(response.data);
-                setLoading(false);
                 console.log("Retrieved user data:", response.data);
             } catch (err) {
+                console.error("Error fetching user:", err.response ? err.response.data : err.message);
                 setError(err.message);
+            } finally {
                 setLoading(false);
             }
         };
 
         fetchUserData();
     }, [username]);
+
+    useEffect(() => {
+        console.log("Updated userData state:", userData);
+    }, [userData]);
 
     if (loading) {
         return <div>Loading...</div>;

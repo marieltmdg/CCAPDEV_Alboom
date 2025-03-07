@@ -20,7 +20,12 @@ module.exports = {
         }
 
         try {
-            const userExists = await User.findOne({ email });
+            const emailExists = await User.findOne({ email });
+            const userExists = await User.findOne({ username });
+
+            if (emailExists) {
+                return res.status(400).json({ message: "Email already has an account" });
+            }
 
             if (userExists) {
                 return res.status(400).json({ message: "User already exists" });
@@ -37,16 +42,6 @@ module.exports = {
 
             const createdUser = await user.save();
             res.status(201).json(createdUser);
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: "Server error" });
-        }
-    }),
-
-    read: asyncHandler(async (req, res) => {
-        try {
-            const users = await User.find({});
-            res.json(users);
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: "Server error" });
