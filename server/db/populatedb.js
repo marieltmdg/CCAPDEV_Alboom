@@ -58,38 +58,48 @@ const sampleUsers = [
 const sampleArtists = [
     { 
         artistname: "Kendrick Lamar", 
-        picture: path.join(__dirname, "..", "uploads", "Kendrick-Lamar", "1741173920904-kendricklamar.jpg"),
-        bio: "temp bio", 
-        location: "USA", 
+        picture: path.join("uploads", "Kendrick-Lamar", "1741173920904-kendricklamar.jpg"),
+        bio: "Visionary rapper and lyricist redefining hip-hop with poetic storytelling and social consciousness.",
+        country: "USA", 
         link: "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg",
+        email: "kendrick.lamar@musicworld.com",
+        password: "HUMBLE_2024!"
     },
     { 
         artistname: "Doechii", 
-        picture: path.join(__dirname, "..", "uploads", "Doechii", "1741173920904-doechii.jpg"),
-        bio: "temp bio", 
-        location: "USA", 
-        link: "https://open.spotify.com/artist/4E2rKHVDssGJm2SCDOMMJB" 
+        picture: path.join("uploads", "Doechii", "1741173920904-doechii.jpg"),
+        bio: "Genre-blending artist bringing fierce energy, innovative flows, and a bold artistic vision.",
+        country: "USA", 
+        link: "https://open.spotify.com/artist/4E2rKHVDssGJm2SCDOMMJB",
+        email: "doechii@gmail.com",
+        password: "SWAMPQUEEN#99"
     },
     { 
         artistname: "Tyler, The Creator", 
-        picture: path.join(__dirname, "..", "uploads", "Tyler,-The-Creator", "1741173920904-tylerthecreator.jpg"),
-        bio: "temp bio", 
-        location: "USA", 
-        link: "https://open.spotify.com/artist/4V8LLVI7PbaPR0K2TGSxFF" 
+        picture: path.join("uploads", "Tyler,-The-Creator", "1741173920904-tylerthecreator.jpg"),
+        bio: "Creative mastermind fusing rap, jazz, and alternative sounds into a world of colorful chaos.",
+        country: "USA", 
+        link: "https://open.spotify.com/artist/4V8LLVI7PbaPR0K2TGSxFF",
+        email: "tyler.creator@gmail.com",
+        password: "IGOR_wolfGang42"
     },
     { 
         artistname: "Frank Ocean", 
-        picture: path.join(__dirname, "..", "uploads", "Frank-Ocean", "1741173920904-frankocean.png"),
-        bio: "temp bio", 
-        location: "USA", 
-        link: "https://open.spotify.com/artist/2h93pZq0e7k5yf4dywlkpM" 
+        picture: path.join("uploads", "Frank-Ocean", "1741173920904-frankocean.png"),
+        bio: "Soulful storyteller crafting deep emotional ballads with dreamlike melodies and raw lyricism.",
+        country: "USA", 
+        link: "https://open.spotify.com/artist/2h93pZq0e7k5yf4dywlkpM",
+        email: "frank.ocean@gmail.com",
+        password: "NostalgiaUltra_88"
     },
     { 
         artistname: "Billie Eilish", 
-        picture: path.join(__dirname, "..", "uploads", "Billie-Eilish", "1741173920904-billieeilish.png"),
-        bio: "temp bio", 
-        location: "USA", 
-        link: "https://open.spotify.com/artist/6qqNVTkY8uBg9cP3Jd7DAH" 
+        picture: path.join("uploads", "Billie-Eilish", "1741173920904-billieeilish.png"),
+        bio: "Whispery vocals, haunting beats, and boundary-pushing pop artistry define her unique sound.",
+        country: "USA", 
+        link: "https://open.spotify.com/artist/6qqNVTkY8uBg9cP3Jd7DAH",
+        email: "billie.eilish@yahoo.com",
+        password: "BadGuy$2025!"
     },
 ];
 

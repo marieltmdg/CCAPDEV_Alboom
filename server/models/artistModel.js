@@ -6,7 +6,7 @@ const artistSchema = new mongoose.Schema({
     password: { type: String, required: true }, 
     picture: { type: String },
     bio: { type: String },
-    location: { type: String },
+    country: { type: String },
     link: { type: String }
 });
 

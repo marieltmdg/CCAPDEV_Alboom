@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const User = require("../models/artistModel");
+const Artist = require("../models/artistModel");
 const path = require("path");
 const fs = require("fs");
 
@@ -7,8 +7,8 @@ module.exports = {
 
     readID: asyncHandler(async (req, res) => {
         try {
-            const artist = await Artist.findOne({ artistname: req.params.artistname });
-            console.log(artist);
+            const artist = await Artist.findOne({ artistname: new RegExp(`^${req.params.artistname}$`, "i") });
+            console.log("at readid: ", req.params.artistname);
             if (artist) {
                 res.json(artist);
             } else {
