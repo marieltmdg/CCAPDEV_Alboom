@@ -70,16 +70,24 @@ const sampleData = [
     
 ]
 
+import axios from "axios"
+import { useEffect, useState } from "react"
 
 function Album() {
-    const { title } = useParams()
-    const selected = sampleData.find(album => album.albumTitle === title) || sampleData[sampleData.length - 1];
+    const { id } = useParams()
+    console.log(id)
+    const [album, setAlbum] = useState({})
+
+    useEffect(() => {
+        axios.get("http://localhost:3000/api/albums/" + id)
+            .then(res => setAlbum(res.data))
+    }, [])
 
     return (
         <>
             <Header isAuth={true} />
             <Main>
-                <AlbumReview AlbumTitle={selected.albumTitle} AlbumCover={selected.albumCover} AlbumRating={selected.albumRating} ArtistLink={selected.artistLink} AlbumArtist={selected.albumArtist} AlbumReleaseDate={selected.albumReleaseDate} albumDesc={selected.albumDesc}/>
+                <AlbumReview AlbumTitle={album.title} AlbumCover={album.album_cover} AlbumRating="5" ArtistLink="temp" AlbumArtist="temp" AlbumReleaseDate="temp" albumDesc="temp"/>
                 <h1>Reviews</h1>
                 <div className={styles.searchContainer}>
                     <input className={styles.search} type="search" size="1" placeholder="Search Reviews..." />
@@ -87,7 +95,7 @@ function Album() {
                         <img src={search} className={styles.icon} />
                     </button>
                 </div>
-                <ReviewCard Rating={5} Username="CarlegendelosReyes" UserPhoto={userPhoto1} UserReviewText={sampleReview1} IsEdited={true} IsReviewEditable={true} HasReply={true} Selected={selected}/>
+                <ReviewCard Rating={5} Username="CarlegendelosReyes" UserPhoto={userPhoto1} UserReviewText={sampleReview1} IsEdited={true} IsReviewEditable={true} HasReply={true} Selected={album}/>
                 <ReviewCard Rating={4} Username="ZappoTheDragon" UserPhoto={userPhoto2} UserReviewText={sampleReview2}/>
                 <ReviewCard Rating={4} Username="GOKAN-san" UserPhoto={userPhoto3} UserReviewText={sampleReview3}/>
             </Main>

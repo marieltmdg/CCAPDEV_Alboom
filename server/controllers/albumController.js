@@ -9,7 +9,9 @@ module.exports = {
     }),
 
     readID: asyncHandler(async (req, res) => {
-        // Read ID API Endpoint
+        console.log(req.params.id)
+        const selectedAlbum = await albumModel.findById(req.params.id) 
+        res.json(selectedAlbum)    
     }),
 
     update: asyncHandler(async (req, res) => {

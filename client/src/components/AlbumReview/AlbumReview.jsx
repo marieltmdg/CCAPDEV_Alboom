@@ -9,7 +9,7 @@ function AlbumReview(props) {
 
             <div className={styles.left}>
                 <h1 className={styles.albumTitle}>{props.AlbumTitle}</h1>
-                <img src={props.AlbumCover} className={styles.albumCover}></img>
+                <img src={"http://localhost:3000/" + props.AlbumCover} className={styles.albumCover}></img>
                 <h1 className={styles.albumRating}>{props.AlbumRating} BOOMS</h1>
             </div>
 
