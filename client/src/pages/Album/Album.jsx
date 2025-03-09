@@ -8,14 +8,6 @@ import Header from "../../components/Header/Header.jsx"
 import AlbumReview from "../../components/AlbumReview/AlbumReview.jsx"
 import ReviewCard from "../../components/ReviewCard/ReviewCard.jsx"
 
-import albumCover1 from "../../assets/albums/flower-boy.jpg"
-import albumCover2 from "../../assets/albums/skipp.jpg"
-import albumCover3 from "../../assets/albums/to-pimp-a-butterfly.jpg"
-
-import artistPhoto1 from "../../assets/artists/tyler.jpg"
-import artistPhoto2 from "../../assets/artists/doechii.jpg"
-import artistPhoto3 from "../../assets/artists/kendrick.jpg"
-
 import userPhoto1 from '../../assets/users/userPhoto1.jpg'
 import userPhoto2 from '../../assets/users/userPhoto2.jpg'
 import userPhoto3 from '../../assets/users/userPhoto3.jpg'
@@ -34,6 +26,7 @@ function Album() {
     const { id } = useParams()
 
     const [album, setAlbum] = useState(null)
+    const [reviews, setReviews] = useState(null)
 
     useEffect(() => {
         axios.get("http://localhost:3000/api/albums/" + id)
@@ -44,7 +37,7 @@ function Album() {
         <>
             <Header isAuth={true} />
             <Main>
-                <AlbumReview AlbumTitle={album.title} AlbumCover={album.album_cover} AlbumRating="5" ArtistLink={album.artist_id._id} AlbumArtist={album.artist_id.name} AlbumReleaseDate="temp" albumDesc="temp"/>
+                <AlbumReview AlbumTitle={album.title} AlbumCover={album.cover} AlbumRating="5" ArtistLink={album.artist_id._id} AlbumArtist={album.artist_id.artistname} AlbumReleaseDate={album.release_date} AlbumDescription={album.description}/>
                 <h1>Reviews</h1>
                 <div className={styles.searchContainer}>
                     <input className={styles.search} type="search" size="1" placeholder="Search Reviews..." />

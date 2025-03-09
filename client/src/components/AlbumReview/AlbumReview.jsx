@@ -25,13 +25,4 @@ function AlbumReview(props) {
     )
 }
 
-AlbumReview.defaultProps = {
-    AlbumTitle: "Default Album Title",
-    AlbumCover: albumCover,
-    AlbumRating: 5.0,
-    AlbumArtist: "Carlos Delos Reyes",
-    AlbumReleaseDate: 2005,
-    AlbumDescription: "This album is Endgame-level—each track smacks like a charged creeper, leaving you in a Minecraft trance. The production hits harder than a diamond sword, while the beats are like obsidian, solid and unbreakable. You’ll be mining for more, stuck in an infinite loop of epic Redstone flows and Nether beats."
-}
-
 export default AlbumReview
