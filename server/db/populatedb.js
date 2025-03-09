@@ -4,7 +4,6 @@ const User = require("../models/userModel");
 const Artist = require("../models/artistModel");
 const Album = require("../models/albumModel");
 const Review = require("../models/reviewModel");
-const ArtistReply = require("../models/artistReplyModel");
 const path = require("path");
 
 const sampleUsers = [
@@ -119,28 +118,52 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                 const sampleAlbums = [
                     { 
                         title: "Flower Boy", 
-                        album_cover: path.join("uploads", "Flower-Boy", "1741173920904-flowerboy.jpg"), 
-                        artist_id: artistIds[2] 
+                        cover: path.join("uploads", "Flower-Boy", "1741173920904-flowerboy.jpg"), 
+                        artist_id: artistIds[2],
+                        release_date: "July 21, 2017",
+                        description: "temp",
                     },
                     { 
                         title: "IGOR", 
-                        album_cover: path.join("uploads", "IGOR", "1741173920904-igor.jpg"),
-                        artist_id: artistIds[2] 
+                        cover: path.join("uploads", "IGOR", "1741173920904-igor.jpg"),
+                        artist_id: artistIds[2],
+                        release_date: "May 17, 2019",
+                        description: "temp",
                     },
                     { 
                         title: "Chromakopia", 
-                        album_cover: path.join("uploads", "Chromakopia", "1741173920904-chromakopia.jpg"),
-                        artist_id: artistIds[2] 
+                        cover: path.join("uploads", "Chromakopia", "1741173920904-chromakopia.jpg"),
+                        artist_id: artistIds[2],
+                        release_date: "October 28, 2024",
+                        description: "temp",
                     },
                     { 
                         title: "Alligator Bites Never Heal", 
-                        album_cover: path.join("uploads", "Alligator-Bites-Never-Heal", "1741173920904-alligatorbitesneverheal.jpg"),
-                        artist_id: artistIds[1] 
+                        cover: path.join("uploads", "Alligator-Bites-Never-Heal", "1741173920904-alligatorbitesneverheal.jpg"),
+                        artist_id: artistIds[1], 
+                        release_date: "August 30, 2024",
+                        description: "temp",
                     },
                     { 
                         title: "To Pimp A Butterfly", 
-                        album_cover: path.join("uploads", "To-Pimp-A-Butterfly", "1741173920904-topimpabutterfly.jpg"),
-                        artist_id: artistIds[0] 
+                        cover: path.join("uploads", "To-Pimp-A-Butterfly", "1741173920904-topimpabutterfly.jpg"),
+                        artist_id: artistIds[0],
+                        release_date: "March 15, 2015",
+                        description: "temp",
+                    },
+                    {
+                        title: "Channel Orange",
+                        cover: path.join("uploads", "Channel-Orange", "1741173920904-channelorange.jpg"),
+                        artist_id: artistIds[3],
+                        release_date: "July 10, 2012",
+                        description: "temp",
+                    },
+                    {
+                        title: "Hit Me Hard and Soft",
+                        cover: path.join("uploads", "Hit-Me-Hard-And-Soft", "1741173920904-hitmehardandsoft.jpg"),
+                        artist_id: artistIds[4],
+                        release_date: "May 17, 2024",
+                        description: "temp",
                     },
                 ];
 
@@ -151,30 +174,57 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                         const albumIds = albums.map(album => album._id);
 
                         const sampleReviews = [
-                            { user_id: userIds[0], album_id: albumIds[0], review_text: "I LOVE THIS ALBUM" },
-                            { user_id: userIds[1], album_id: albumIds[1], review_text: "Banger album!" },
-                            { user_id: userIds[2], album_id: albumIds[2], review_text: "Incredible production!" },
-                            { user_id: userIds[3], album_id: albumIds[3], review_text: "This changed my life." },
-                            { user_id: userIds[4], album_id: albumIds[4], review_text: "Masterpiece of our generation." },
+                            { 
+                                user_id: userIds[0], 
+                                album_id: albumIds[0], 
+                                review_text: "I LOVE THIS ALBUM",
+                                title: "TEMP",
+                                rating: 5,
+                                upvotes: 0,
+                                downvotes: 0,
+                            },
+                            { 
+                                user_id: userIds[1], 
+                                album_id: albumIds[1], 
+                                review_text: "Banger album!",
+                                title: "TEMP",
+                                rating: 5,
+                                upvotes: 0,
+                                downvotes: 0,
+                            },
+                            { 
+                                user_id: userIds[2], 
+                                album_id: albumIds[2], 
+                                review_text: "Incredible production!",
+                                title: "TEMP",
+                                rating: 5,
+                                upvotes: 0,
+                                downvotes: 0,
+                            },
+                            { 
+                                user_id: userIds[3], 
+                                album_id: albumIds[3], 
+                                review_text: "This changed my life.",
+                                title: "TEMP",
+                                rating: 5,
+                                upvotes: 0,
+                                downvotes: 0,
+                            },
+                            { 
+                                user_id: userIds[4], 
+                                album_id: albumIds[4], 
+                                review_text: "Masterpiece of our generation.",
+                                title: "TEMP",
+                                rating: 5,
+                                upvotes: 0,
+                                downvotes: 0,
+                            },
                         ];
 
                         return Review.deleteMany({})
                             .then(() => Review.insertMany(sampleReviews))
                             .then(reviews => {
                                 console.log("Reviews inserted:", reviews.length);
-                                const reviewIds = reviews.map(review => review._id);
-
-                                const sampleArtistReplies = [
-                                    { review_id: reviewIds[0], artist_id: artistIds[2], reply_text: "Glad you love it!" },
-                                    { review_id: reviewIds[1], artist_id: artistIds[2], reply_text: "Appreciate the support!" },
-                                    { review_id: reviewIds[2], artist_id: artistIds[2], reply_text: "Thank you for listening!" },
-                                    { review_id: reviewIds[3], artist_id: artistIds[1], reply_text: "That's what we aim for!" },
-                                    { review_id: reviewIds[4], artist_id: artistIds[0], reply_text: "Much love!" },
-                                ];
-
-                                return ArtistReply.deleteMany({})
-                                    .then(() => ArtistReply.insertMany(sampleArtistReplies))
-                                    .then(() => console.log("Artist replies inserted"));
                             });
                     });
             });
