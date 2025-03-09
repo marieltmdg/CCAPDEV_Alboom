@@ -18,29 +18,29 @@ module.exports = {
     readUserID: asyncHandler(async (req, res) => {
         const reviews = await reviewModel.find({ user_id: req.params.id })
             .populate("user_id")
-            .populate("review_id")
+            .populate("album_id")
 
         res.json(reviews)    
     }),
 
     readAlbumID: asyncHandler(async (req, res) => {
-        const reviews = await reviewModel.findById({ review_id: req.params.id })
+        const reviews = await reviewModel.find({ album_id: req.params.id })
             .populate("user_id")
-            .populate("review_id")
+            .populate("album_id")
 
         res.json(reviews)    
     }),
 
     update: asyncHandler(async (req, res) => {
-        const { userID, reviewID } = req.params
+        const { userID, albumID } = req.params
 
         // Update API Endpoint
     }),
 
     delete: asyncHandler(async (req, res) => {
-        const { userID, reviewID } = req.params
+        const { userID, albumID } = req.params
 
-        await reviewModel.findOneAndDelete({ user_id: userID, review_id: reviewID })
+        await reviewModel.findOneAndDelete({ user_id: userID, album_id: albumID })
 
         res.json({})
     }),
