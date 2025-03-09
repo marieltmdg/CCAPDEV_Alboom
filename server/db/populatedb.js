@@ -29,7 +29,7 @@ const sampleUsers = [
         username: "ZappoTheDragon", 
         email: "izac_manikan@dlsu.edu.ph", 
         password: "Zaragoza", 
-        picture: path.join("uploads", "mark_gokan@dlsu.edu.ph", "1741173920904-izacmanikan.jpg"), 
+        picture: path.join("uploads", "izac_manikan@dlsu.edu.ph", "1741173920904-izacmanikan.jpg"), 
         bio: "i love football!",
         country: "Singapore",
         link: "https://example.com/ZAPPO" 
@@ -45,9 +45,9 @@ const sampleUsers = [
     },
     { 
         username: "ItzVolkMC", 
-        email: "aldrin_lorenz_tigulo@dlsu.edu.ph", 
+        email: "aldrin_lorenz_g_tigulo@dlsu.edu.ph", 
         password: "iloveIzac", 
-        picture: path.join("uploads", "aldrin_lorenz_tigulo@dlsu.edu.ph", "1741173920904-aldrinlorenztigulo.png"),
+        picture: path.join("uploads", "aldrin_lorenz_g_tigulo@dlsu.edu.ph", "1741173920904-aldrinlorenzgtigulo.png"),
         bio: "i love carlos!" ,
         country: "Philippines",
         link: "https://example.com/volk"
