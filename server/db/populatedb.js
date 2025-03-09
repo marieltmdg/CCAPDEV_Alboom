@@ -182,6 +182,16 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                                 rating: 5,
                                 upvotes: 0,
                                 downvotes: 0,
+                                reply_text: "FUCK U"
+                            },
+                            { 
+                                user_id: userIds[1], 
+                                album_id: albumIds[0], 
+                                review_text: "I LOVE THIS ALBUM (2)",
+                                title: "TEMP",
+                                rating: 3,
+                                upvotes: 0,
+                                downvotes: 0,
                             },
                             { 
                                 user_id: userIds[1], 
