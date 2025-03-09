@@ -11,7 +11,7 @@ module.exports = {
         const reviews = await reviewModel.find({})
             .populate("user_id")
             .populate("review_id")
-            
+
         res.json(reviews)
     }),
 
@@ -23,8 +23,8 @@ module.exports = {
         res.json(reviews)    
     }),
 
-    readreviewID: asyncHandler(async (req, res) => {
-        const reviews = await reviewModel.findById({ review_id: req.params.id }).populate("artist_id")
+    readAlbumID: asyncHandler(async (req, res) => {
+        const reviews = await reviewModel.findById({ review_id: req.params.id })
             .populate("user_id")
             .populate("review_id")
 
