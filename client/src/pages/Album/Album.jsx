@@ -16,23 +16,44 @@ function Album() {
     const { id } = useParams()
 
     const [album, setAlbum] = useState(null)
-    const [reviews, setReviews] = useState(null)
+    const [reviews, setReviews] = useState(null) 
+    const [originalReviews, setOriginalReviews] = useState(null)
     const [rating, setRating] = useState(0)
 
     useEffect(() => {
         axios.get("http://localhost:3000/api/albums/" + id)
             .then(albumResponse => setAlbum(albumResponse.data))
-            .catch(err => console.error("Error fetching album:", err));
-    
+            .catch(err => console.error("Error fetching album:", err))
+
         axios.get("http://localhost:3000/api/reviews/album/" + id)
             .then(reviewsResponse => {
-                setReviews(reviewsResponse.data); 
-                const sum = reviewsResponse.data.reduce((acc, review) => acc + review.rating, 0);
-                const averageRating = reviewsResponse.data.length > 0 ? sum / reviewsResponse.data.length : 0;
-                setRating(averageRating); 
+                setReviews(reviewsResponse.data)
+                setOriginalReviews(reviewsResponse.data)
+                const sum = reviewsResponse.data.reduce((acc, review) => acc + review.rating, 0)
+                const averageRating = reviewsResponse.data.length > 0 ? sum / reviewsResponse.data.length : 0
+                setRating(averageRating)
             })
+            .catch(err => console.error("Error fetching reviews:", err))
     }, [id]);
 
+    const handleDelete = async (userID, albumID) => {
+        await axios.delete("http://localhost:3000/api/reviews/user/" + userID + "/album/" + albumID)
+        setReviews(reviews.filter(review => review.user_id._id !== userID))
+        setOriginalReviews(originalReviews.filter(review => review.user_id._id !== userID))
+    };
+
+    const handleSearch = (event) => {
+        const searchTerm = event.target.value.toLowerCase();
+
+        if (searchTerm === "") {
+            setReviews(originalReviews);
+        } else {
+            const filteredReviews = originalReviews.filter(review =>
+                review.review_text.toLowerCase().includes(searchTerm)
+            );
+            setReviews(filteredReviews);
+        }
+    }
 
     return album && (
         <>
@@ -48,7 +69,7 @@ function Album() {
                     AlbumDescription={album.description}/>
                 <h1>Reviews</h1>
                 <div className={styles.searchContainer}>
-                    <input className={styles.search} type="search" size="1" placeholder="Search Reviews..." />
+                    <input onChange={(event) => handleSearch(event)} className={styles.search} type="search" size="1" placeholder="Search Reviews..." />
                     <button className={styles.button}>
                         <img src={search} className={styles.icon} />
                     </button>
@@ -56,17 +77,13 @@ function Album() {
                 {
                     reviews && reviews.map(review => (
                         <ReviewCard 
-                            Rating={review.rating} 
-                            Username={review.username}
-                            UserPhoto={"http://localhost:3000/" + review.user_id.picture} 
-                            UserReviewText={review.review_text} 
-                            Upvotes={review.upvotes}
-                            Downvotes={review.downvotes}
-                            ReviewTitle={review.title}
+                            Key={review._id}
+                            Album={album}
+                            Review={review}
+                            Delete={handleDelete}
                             IsEdited={true} 
-                            IsReviewEditable={true} 
-                            HasReply={review.reply_text} 
-                            Selected={album}/>
+                            IsReviewEditable={true}  
+                        />
                     ))
                 }
             </Main>

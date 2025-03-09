@@ -8,45 +8,45 @@ let reply = "Bro, it's just music. Chill. But also… keep going. Damn, you sure
 
 import { Link } from 'react-router-dom'
 
-function ReviewCard(props) {
+function ReviewCard({Album, Review, IsEdited, IsReviewEditable, Delete}) {
     return(
         <>
         <div className={styles.mainContainer}>
          
             <div className={styles.left}>
                 <div className={styles.leftTop}>
-                    <Link to={`/user/johndoe`}><img className={styles.userPhoto} src={props.UserPhoto}></img></Link>
+                    <Link to={`/user/johndoe`}><img className={styles.userPhoto} src={"http://localhost:3000/" + Review.user_id.picture}></img></Link>
                 </div>
                 <div className={styles.leftBottom}>
                     <div className={styles.voteBox}>
                         <img className={styles.votes} src={upvote}></img>
                     </div>
-                    <p className={styles.voteCount}>{props.Upvotes}</p>
+                    <p className={styles.voteCount}>{Review.upvotes}</p>
                     <div className={styles.voteBox}>
                         <img className={styles.votes} src={downvote}></img>
                     </div>
-                    <p className={styles.voteCount}>{props.Downvotes}</p>
+                    <p className={styles.voteCount}>{Review.downvotes}</p>
                 </div>
             </div>
 
             <div className={styles.right}>
                 <div className={styles.rightTop}>
-                    <BoomMeter className={styles.boomMeter} Rating={props.Rating}/>
+                    <BoomMeter className={styles.boomMeter} Rating={Review.rating}/>
                 </div>
                 <div className={styles.rightMiddle}>
-                    <h3 className={styles.userReviewHeading}>{props.ReviewTitle}</h3>
-                    {props.IsEdited && <p className={styles.isEdited}>Edited</p>}
+                    <h3 className={styles.userReviewHeading}>{Review.title}</h3>
+                    {IsEdited && <p className={styles.isEdited}>Edited</p>}
                     <p className={styles.userReviewText}>
-                        {props.UserReviewText.length > 400 
-                        ? props.UserReviewText.substring(0, 400) + "..." 
-                        : props.UserReviewText}
+                        {Review.review_text.length > 400 
+                        ? Review.review_text.substring(0, 400) + "..." 
+                        : Review.review_text}
                     </p>
                 </div>
                 <div className={styles.rightBottom}>
-                    {props.IsReviewEditable && (
+                    {IsReviewEditable && (
                         <>
                         <div className={styles.actionsContainer}>
-                        <h6>DELETE</h6>
+                        <h6 onClick={() => Delete(Review.user_id._id, Album._id)}>DELETE</h6>
                         </div>
                         <div className={styles.actionsContainer}>
                         <h6>EDIT</h6>
@@ -56,11 +56,11 @@ function ReviewCard(props) {
                 </div>
             </div>
             
-            {props.HasReply && (
+            {Review.reply_text && (
             <div className={styles.artistReplyContainer}>
                 <div className={styles.left}>
                     <div className={styles.leftTop}>
-                        <Link to={"/artist/" + props.Selected.artistLink}><img className={styles.userPhoto} src={props.Selected.artistPhoto} /></Link>
+                        <Link to={"/artist/" + Review.album_id.artist_id}><img className={styles.userPhoto} src={"http://localhost:3000/" + Album.artist_id.picture} /></Link>
                     </div>
                     <div className={styles.leftBottom}></div>
                 </div>
@@ -70,8 +70,8 @@ function ReviewCard(props) {
                         <h5>ARTIST</h5>
                     </div>
                     <div className={styles.rightMiddle}>
-                        <h3 className={styles.userReviewHeading}>Reply by {props.Selected.albumArtist}</h3>
-                        {props.IsEdited && <p className={styles.isEdited}>Edited</p>}
+                        <h3 className={styles.userReviewHeading}>Reply by {Album.artist_id.artistname}</h3>
+                        {/* {IsEdited && <p className={styles.isEdited}>Edited</p>} */}
                         <p className={styles.userReviewText}>
                         {reply.length > 400 
                             ? reply.substring(0, 400) + "..." 
@@ -79,7 +79,7 @@ function ReviewCard(props) {
                         </p>
                     </div>
                     <div className={styles.rightBottom}>
-                        {props.IsReplyEditable && (
+                        {/* {IsReviewEditable && (
                             <>
                             <div className={styles.actionsContainer}>
                             <h6>DELETE</h6>
@@ -88,7 +88,7 @@ function ReviewCard(props) {
                             <h6>EDIT</h6>
                             </div>
                             </>
-                        )}
+                        )} */}
                     </div>
                 </div>
             </div>
@@ -96,14 +96,6 @@ function ReviewCard(props) {
         </div>
         </>
     )
-}
-
-ReviewCard.defaultProps = {
-    UserPhoto: defaultUserPhoto,
-    IsEdited: false,
-    HasReply: false,
-    IsReviewEditable: false,
-    IsReplyEditable: false,
 }
 
 export default ReviewCard
