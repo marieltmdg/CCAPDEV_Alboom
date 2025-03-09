@@ -21,11 +21,11 @@ function ReviewCard(props) {
                     <div className={styles.voteBox}>
                         <img className={styles.votes} src={upvote}></img>
                     </div>
-                    <p className={styles.voteCount}>70</p>
+                    <p className={styles.voteCount}>{props.Upvotes}</p>
                     <div className={styles.voteBox}>
                         <img className={styles.votes} src={downvote}></img>
                     </div>
-                    <p className={styles.voteCount}>70</p>
+                    <p className={styles.voteCount}>{props.Downvotes}</p>
                 </div>
             </div>
 
@@ -34,7 +34,7 @@ function ReviewCard(props) {
                     <BoomMeter className={styles.boomMeter} Rating={props.Rating}/>
                 </div>
                 <div className={styles.rightMiddle}>
-                    <h3 className={styles.userReviewHeading}>Review by {props.Username}</h3>
+                    <h3 className={styles.userReviewHeading}>{props.ReviewTitle}</h3>
                     {props.IsEdited && <p className={styles.isEdited}>Edited</p>}
                     <p className={styles.userReviewText}>
                         {props.UserReviewText.length > 400 
