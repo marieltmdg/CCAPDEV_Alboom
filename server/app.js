@@ -8,6 +8,7 @@ const path = require("path");
 const apiRouter = require("./routes/apiRouter");
 const userRouter = require("./routes/userRouter");
 const artistRouter = require("./routes/artistRouter");
+const albumRouter = require("./routes/albumRouter");
 
 dotenv.config(); 
 const app = express();
@@ -26,6 +27,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api", apiRouter);
 app.use("/api/user", userRouter);
 app.use("/api/artist", artistRouter);
+app.use("/api/album", albumRouter);
 
 app.use((err, req, res, next) => {
     res.status(500).json({ message: err.message });

@@ -62,10 +62,10 @@ function User() {
 
                     <div className={styles.reviewsContainer}>
                         <div className={styles.latestReviewContainer}>
-                            <UserLatestReview username={username} />
+                            <UserLatestReview userData={userData} />
                         </div>
                         <div className={styles.userReviewContainer}>
-                            <UserReviews username={username} />
+                            <UserReviews userData={userData} />
                         </div>
                     </div>
                 </div>

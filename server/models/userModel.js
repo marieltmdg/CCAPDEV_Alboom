@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
     bio: { type: String },
     country: { type: String, default: "Unknown" },
     link: { type: String, default: "Unknown" },
-    latest_review: { type: mongoose.Schema.Types.ObjectId, ref: "Review" }
 });
 
 module.exports = mongoose.model('User', userSchema);

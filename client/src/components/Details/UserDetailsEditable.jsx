@@ -13,7 +13,6 @@ function UserDetailsEditable({ userData}) {
     const [isEditing, setIsEditing] = useState(false);
     const [photo, setPhoto] = useState(null);
     const [formData, setFormData] = useState({
-        name: userData?.username || "",
         bio: userData?.bio || "",
         country: userData?.country || "",
         link: userData?.link || ""

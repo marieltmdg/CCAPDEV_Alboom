@@ -1,59 +1,86 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import styles from "./UserLatestReview.module.css";
 import BoomMeter from "../BoomMeter/BoomMeter";
-import channelOrange from "../../assets/albums/channel-orange.jpg";
 
-const latestReviewData = [
-    {
-        username: "johndoe",
-        name: "John Doe",
-        albumTitle: "Channel Orange",
-        artist: "Frank Ocean",
-        reviewText: "A masterpiece that blends soul, R&B, and hip-hop seamlessly.",
-        topComment: "Incredible album. One of the best of the decade.",
-        albumCover: channelOrange,
-        boomRating: 5,
-    },
-    {
-        username: "janedoe",
-        name: "Jane Doe",
-        albumTitle: "Channel Orange",
-        artist: "Frank Ocean",
-        reviewText: "Lyrically deep and emotionally raw, a true work of art. The storytelling on this album is unmatched. Frank Ocean's voice is magnetic, and the album's mood is hauntingly beautiful.",
-        topComment: "The storytelling on this album is unmatched.",
-        albumCover: channelOrange,
-        boomRating: 4,
-    },
-    {
-        username: "musicfan",
-        name: "Music Fan",
-        albumTitle: "Channel Orange",
-        artist: "Frank Ocean",
-        reviewText: "The production is exquisite, and the emotions run high throughout. An instant classic, worth every listen.",
-        topComment: "An instant classic, worth every listen.",
-        albumCover: channelOrange,
-        boomRating: 5,
-    },
-    {
-        username: "concertlover",
-        name: "Concert Lover",
-        albumTitle: "Channel Orange",
-        artist: "Frank Ocean",
-        reviewText: "Frank Ocean's voice is magnetic, and the album's mood is hauntingly beautiful. Can't stop listening to this, every track hits differently.",
-        topComment: "Can't stop listening to this, every track hits differently.",
-        albumCover: channelOrange,
-        boomRating: 5,
-    }
-];
-
-function LatestReview() {
+function UserLatestReview({ userData }) {
     const { username } = useParams();
+    const [userReview, setUserReview] = useState(null);
+    const [album, setAlbum] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+                const apiUrl = `/api/user/readUserID/${userData._id}`;
+                console.log("Fetching user review data from:", apiUrl);
+                
+                const response = await axios.get(apiUrl);
+                const reviews = response.data;
+    
+                console.log("Review data:", reviews);
+    
+                if (reviews.length > 0) {
+                    const sortedRev = reviews.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+                    setUserReview(sortedRev);
+                } else {
+                    setUserReview(null);
+                }
+    
+            } catch (err) {
+                console.error("Error fetching user:", err.response ? err.response.data : err.message);
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+    
+        fetchReviews();
+    }, [userData._id]);  
 
-    const userReview = latestReviewData.find(user => user.username === username);
+    useEffect(() => {
+        console.log("Updated userReview:", userReview);
+    }, [userReview]);
+    
+    
+    useEffect(() => {
+        const fetchAlbum = async () => {
+            if (!userReview || !userReview.album_id) return; 
+    
+            try {
+                const albumId = userReview.album_id?._id || userReview.album_id;
+                console.log("Extracted albumId:", albumId);
+                
+                const apiUrl2 = `/api/album/${albumId}`;
+                console.log("Fetching album data from:", apiUrl2);
+                
+                const response = await axios.get(apiUrl2);
+    
+                if (!response.data) {
+                    setAlbum(null);
+                } else {
+                    setAlbum(response.data);
+                }
+    
+            } catch (err) {
+                console.error("Error fetching album:", err.response ? err.response.data : err.message);
+                setError(err.message);
+            }
+        };
+    
+        if (userReview) {
+            fetchAlbum();
+        }
+    }, [userReview]); 
+    
+    console.log("User review:", userReview);
+    console.log("Album:", album);
 
-    if (!userReview) {
+    if (!userReview || !album) {
         return (
             <div className={styles.container}>
                 <div className={styles.latestReviewText}>Latest Review</div>
@@ -67,30 +94,31 @@ function LatestReview() {
             <div className={styles.latestReviewText}>Latest Review</div>
 
             <div className={styles.albumCover}>
-                <Link to={"/album/" + userReview.albumTitle} key={userReview.albumTitle}>
-                    <img src={userReview.albumCover} alt={userReview.albumTitle} className={styles.albumCover} />
+                <Link to={"/album/" + album.title} key={album.title}>
+                    <img src={album.cover ? `http://localhost:3000/${album.cover}` : avatar} className={styles.albumCover} />
                 </Link>
             </div>
 
             <div className={styles.detailsContainer}>
                 <div className={styles.albumInfoContainer}>
-                    <div className={styles.albumTitle}>{userReview.albumTitle}</div>
-                    <div className={styles.artist}>By {userReview.artist}</div>
+                    <div className={styles.albumTitle}>{album.title}</div>
+                    <div className={styles.artist}>By {album.artist_id?.artistname}</div>
                 </div>
 
                 <div className={styles.reviewInfoContainer}>
-                    <div className={styles.reviewText}>{userReview.reviewText}</div>
+                    <div className={styles.reviewTitle}>"{userReview.title}"</div>
+                    <div className={styles.reviewText}>{userReview.review_text}</div>
                 </div>
 
                 <div className={styles.topCommentContainer}>
                     <div className={styles.topCommentText}>Top Comment</div>
-                    <div className={styles.topComment}>{userReview.topComment}</div>
+                    <div className={styles.topComment}>{album.description }</div>
                 </div>
             </div>
 
             
             <div className={styles.boomContainer}>
-                <BoomMeter Rating={userReview.boomRating} />
+                <BoomMeter Rating={userReview.rating} />
             </div>
 
         </div>
@@ -98,4 +126,4 @@ function LatestReview() {
     );
 }
 
-export default LatestReview;
+export default UserLatestReview;

@@ -10,6 +10,4 @@ reviewRouter.get("/album/:id", reviewController.readAlbumID)
 
 reviewRouter.put("/user/:userID/album/:albumID", reviewController.update)
 
-reviewRouter.delete("/user/:userID/album/:albumID", reviewController.delete)
-
 module.exports = reviewRouter

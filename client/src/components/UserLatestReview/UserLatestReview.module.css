@@ -95,6 +95,16 @@
     position: relative;
 }
 
+.reviewTitle {
+    font-family: 'Montserrat';
+    text-align: left;
+    font-size: 24px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    color: #FF8000;
+    margin-bottom: 2px;
+}
 .reviewText {
   font-family: 'Montserrat';
   text-align: left;
@@ -117,7 +127,7 @@
     align-items: flex-start;
     padding: 5px;
     margin-left: 1rem;
-    margin-top: 1.9rem;
+    margin-top: 3rem;
 
     max-width: 100%;
 }
