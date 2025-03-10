@@ -86,8 +86,7 @@ function Album() {
                 <AlbumReview 
                     AlbumTitle={album.title} 
                     AlbumCover={album.cover} 
-                    AlbumRating={rating} 
-                    ArtistLink={album.artist_id._id} 
+                    AlbumRating={rating}  
                     AlbumArtist={album.artist_id.artistname} 
                     AlbumReleaseDate={album.release_date} 
                     AlbumDescription={album.description}/>

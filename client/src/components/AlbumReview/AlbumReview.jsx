@@ -14,7 +14,7 @@ function AlbumReview(props) {
             </div>
 
             <div className={styles.right}>
-                <Link to={"/artist/" + props.ArtistLink}><h3 className={styles.artistName}>{props.AlbumArtist}</h3></Link>
+                <Link to={"/artist/" + props.AlbumArtist}><h3 className={styles.artistName}>{props.AlbumArtist}</h3></Link>
                 <h3>{props.AlbumReleaseDate}</h3>
                 <p className={styles.albumDescription}>
                     {props.AlbumDescription}
