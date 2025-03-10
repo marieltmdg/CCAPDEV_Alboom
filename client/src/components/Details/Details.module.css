@@ -22,8 +22,10 @@
 }
 
 .profilePictureImage {
-    max-width: 340px;
-    max-height: 340px;
+    max-width: 300px;
+    min-width: 300px;
+    max-height: 300px;
+    min-height: 300px; 
     width: 80%;
     border-radius: 50%;
 }
@@ -108,6 +110,36 @@
     flex-direction: column;
     align-items: center;
 }
+.avatar {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.preview {
+    width: 250px;
+    height: 250px;
+}
+
+.upload {
+    display: none;
+}
+
+.uploadIcon {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    bottom: calc(50% - 125px);
+    right: calc(50% - 125px);
+    opacity: 0;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.uploadIcon:hover {
+    opacity: 0.5;
+}
+
 
 .inputName, .inputBio {
     width: 100%;

@@ -5,10 +5,13 @@ import pin from "../../assets/pin.png";
 import avatar from "../../assets/avatar.png";
 import { useParams } from "react-router-dom";
 
+import upload from '../../assets/upload.svg';
+
 function UserDetailsEditable({ userData}) {
     const {username} = useParams();
     const [user, setUser] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
+    const [photo, setPhoto] = useState(null);
     const [formData, setFormData] = useState({
         name: userData?.username || "",
         bio: userData?.bio || "",
@@ -24,14 +27,31 @@ function UserDetailsEditable({ userData}) {
         }));
     };
 
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setPhoto(file);
+            const imagePreviewUrl = URL.createObjectURL(file);
+            setFormData(prevState => ({
+                ...prevState,
+                picturePreview: imagePreviewUrl
+            }));
+        }
+    };
+
     const handleSave = async () => {
         try {
+            const formDataToSend = new FormData();
+            formDataToSend.append("bio", formData.bio);
+            formDataToSend.append("country", formData.country);
+            formDataToSend.append("link", formData.link);
+            if (photo) {
+                formDataToSend.append("picture", photo);
+            }
+    
             const response = await fetch(`http://localhost:3000/api/user/${username}`, {
                 method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
+                body: formDataToSend, 
             });
     
             if (!response.ok) {
@@ -52,11 +72,22 @@ function UserDetailsEditable({ userData}) {
 
     return (
         <div className={styles.userProfileContainer}>
-            <div className={styles.profilePictureContainer}>
-                <img src={userData.picture ? `http://localhost:3000/${userData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
-            </div>
+            
             {isEditing ? (
                 <div className={styles.editForm}>
+                    <div className={styles.profilePictureContainer}>
+                        <label htmlFor="avatar" className={styles.avatar}>
+                            <img 
+                                id="preview"
+                                src={formData.picturePreview || (userData.picture ? `http://localhost:3000/${userData.picture}` : avatar)} 
+                                className={styles.profilePictureImage} 
+                                alt="Avatar" 
+                            />
+                            <input type="file" id="avatar" accept="image/*" className={styles.upload} onChange={handleFileChange} />
+                            <img src={upload} alt="Upload" className={styles.uploadIcon} />
+                        </label>
+                    </div>
+
                     <div className={styles.profileNameContainerEditing}>
                         <span className={styles.profileName}>{userData.username}</span>
                     </div>

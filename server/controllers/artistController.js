@@ -32,6 +32,20 @@ module.exports = {
                 artist.country = country || artist.country;
                 artist.link = link || artist.link;
 
+                if (req.files && req.files.picture) {
+                    const file = req.files.picture;
+                    const uploadDir = "uploads/" + artist.email;
+                    
+                    if (!fs.existsSync(uploadDir)) {
+                        fs.mkdirSync(uploadDir, { recursive: true });
+                    }
+        
+                    picturePath = `uploads/${artist.email}/${Date.now()}-${file.name}`;
+                    await file.mv(picturePath);
+        
+                    artist.picture = picturePath;
+                }
+
                 const updatedArtist = await artist.save();
                 res.json(updatedArtist);
             } else {

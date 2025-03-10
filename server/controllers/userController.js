@@ -10,7 +10,7 @@ module.exports = {
 
         if (req.files && req.files.photo) {
             const photo = req.files.photo;
-            const uploadPath = path.join(__dirname, "..", "uploads", email);
+            const uploadPath = "uploads/" + email;
 
             fs.mkdirSync(uploadPath, { recursive: true });
 
@@ -75,6 +75,20 @@ module.exports = {
                 user.latest_review = latest_review || user.latest_review;
                 user.country = country || user.country;
                 user.link = link || user.link;
+
+                if (req.files && req.files.picture) {
+                    const file = req.files.picture;
+                    const uploadDir = "uploads/" + user.email;
+                    
+                    if (!fs.existsSync(uploadDir)) {
+                        fs.mkdirSync(uploadDir, { recursive: true });
+                    }
+        
+                    picturePath = `uploads/${user.email}/${Date.now()}-${file.name}`;
+                    await file.mv(picturePath);
+        
+                    user.picture = picturePath;
+                }
     
                 const updatedUser = await user.save();
                 res.json(updatedUser);

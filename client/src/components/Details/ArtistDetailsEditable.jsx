@@ -5,12 +5,14 @@ import pin from "../../assets/pin.png";
 import avatar from "../../assets/users/default.jpg";
 import { useParams } from "react-router-dom";
 
+import upload from '../../assets/upload.svg';
+
 function ArtistDetailsEditable({ artistData }) {
     const { artistname } = useParams();
     const [user, setUser] = useState(artistData || {});
     const [isEditing, setIsEditing] = useState(false);
+    const [photo, setPhoto] = useState(null);
     const [formData, setFormData] = useState({
-        name: artistData?.artistname || "",
         bio: artistData?.bio || "",
         country: artistData?.country || "",
         link: artistData?.link || ""
@@ -24,18 +26,35 @@ function ArtistDetailsEditable({ artistData }) {
         }));
     };
 
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setPhoto(file);
+            const imagePreviewUrl = URL.createObjectURL(file);
+            setFormData(prevState => ({
+                ...prevState,
+                picturePreview: imagePreviewUrl
+            }));
+        }
+    };
+
     const handleSave = async () => {
         try {
+            const formDataToSend = new FormData();
+            formDataToSend.append("bio", formData.bio);
+            formDataToSend.append("country", formData.country);
+            formDataToSend.append("link", formData.link);
+            if (photo) {
+                formDataToSend.append("picture", photo);
+            }
+
             const response = await fetch(`http://localhost:3000/api/artist/${artistname}`, {
                 method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
+                body: formDataToSend, 
             });
-
+    
             if (!response.ok) {
-                throw new Error("Failed to update artist");
+                throw new Error("Failed to update user");
             }
 
             const updatedUser = await response.json();
@@ -52,12 +71,22 @@ function ArtistDetailsEditable({ artistData }) {
 
     return (
         <div className={styles.userProfileContainer}>
-            <div className={styles.profilePictureContainer}>
-                <img src={artistData.picture ? `http://localhost:3000/${artistData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
-            </div>
 
             {isEditing ? (
                 <div className={styles.editForm}>
+                    <div className={styles.profilePictureContainer}>
+                        <label htmlFor="avatar" className={styles.avatar}>
+                            <img 
+                                id="preview"
+                                src={formData.picturePreview || (artistData.picture ? `http://localhost:3000/${artistData.picture}` : avatar)} 
+                                className={styles.profilePictureImage} 
+                                alt="Avatar" 
+                            />
+                            <input type="file" id="avatar" accept="image/*" className={styles.upload} onChange={handleFileChange} />
+                            <img src={upload} alt="Upload" className={styles.uploadIcon} />
+                        </label>
+                    </div>
+
                     <div className={styles.profileNameContainerEditing}>
                         <span className={styles.profileName}>{artistData.artistname}</span>
                     </div>
@@ -92,6 +121,9 @@ function ArtistDetailsEditable({ artistData }) {
                 </div>
             ) : (
                 <div className={styles.details}>
+                    <div className={styles.profilePictureContainer}>
+                        <img src={artistData.picture ? `http://localhost:3000/${artistData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
+                    </div>
                     <div className={styles.profileNameContainer}>
                         <span className={styles.profileName}>{user.artistname}</span>
                         <div className={styles.artistText}>Artist</div>
