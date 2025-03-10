@@ -178,58 +178,65 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                                 user_id: userIds[0], 
                                 album_id: albumIds[0], 
                                 review_text: "I LOVE THIS ALBUM",
-                                title: "TEMP",
+                                title: "A Timeless Classic",
                                 rating: 5,
                                 upvotes: 0,
                                 downvotes: 0,
-                                reply_text: "FUCK U"
+                                reply_text: "THANK U",
+                                date: new Date("2024-02-15T10:30:00Z")
                             },
                             { 
                                 user_id: userIds[1], 
                                 album_id: albumIds[0], 
                                 review_text: "I LOVE THIS ALBUM (2)",
-                                title: "TEMP",
+                                title: "An Underrated Gem",
                                 rating: 3,
                                 upvotes: 0,
                                 downvotes: 0,
+                                date: new Date("2023-12-20T15:45:00Z")
                             },
                             { 
                                 user_id: userIds[1], 
                                 album_id: albumIds[1], 
                                 review_text: "Banger album!",
-                                title: "TEMP",
+                                title: "Non-Stop Hits",
                                 rating: 5,
                                 upvotes: 0,
                                 downvotes: 0,
+                                date: new Date("2024-01-05T08:20:00Z")
                             },
                             { 
                                 user_id: userIds[2], 
                                 album_id: albumIds[2], 
                                 review_text: "Incredible production!",
-                                title: "TEMP",
+                                title: "A Sonic Masterpiece",
                                 rating: 5,
                                 upvotes: 0,
                                 downvotes: 0,
+                                date: new Date("2023-11-10T18:10:00Z")
                             },
                             { 
                                 user_id: userIds[3], 
                                 album_id: albumIds[3], 
                                 review_text: "This changed my life.",
-                                title: "TEMP",
+                                title: "Music That Speaks to the Soul",
                                 rating: 5,
                                 upvotes: 0,
                                 downvotes: 0,
+                                date: new Date("2024-02-01T13:55:00Z")
                             },
                             { 
                                 user_id: userIds[4], 
                                 album_id: albumIds[4], 
                                 review_text: "Masterpiece of our generation.",
-                                title: "TEMP",
+                                title: "A Generation-Defining Album",
                                 rating: 5,
                                 upvotes: 0,
                                 downvotes: 0,
-                            },
+                                date: new Date("2023-09-25T09:40:00Z")
+                            }
                         ];
+                        
 
                         return Review.deleteMany({})
                             .then(() => Review.insertMany(sampleReviews))
