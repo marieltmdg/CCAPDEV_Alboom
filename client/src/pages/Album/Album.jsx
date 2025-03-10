@@ -34,24 +34,24 @@ function Album() {
                 setRating(averageRating)
             })
             .catch(err => console.error("Error fetching reviews:", err))
-    }, [id]);
+    }, [id])
 
     const handleDelete = async (userID, albumID) => {
         await axios.delete("http://localhost:3000/api/reviews/user/" + userID + "/album/" + albumID)
         setReviews(reviews.filter(review => review.user_id._id !== userID))
         setOriginalReviews(originalReviews.filter(review => review.user_id._id !== userID))
-    };
+    }
 
     const handleSearch = (event) => {
         const searchTerm = event.target.value.toLowerCase();
 
         if (searchTerm === "") {
-            setReviews(originalReviews);
+            setReviews(originalReviews)
         } else {
             const filteredReviews = originalReviews.filter(review =>
-                review.review_text.toLowerCase().includes(searchTerm)
-            );
-            setReviews(filteredReviews);
+                review.review_text.toLowerCase().includes(searchTerm) || review.title.toLowerCase().includes(searchTerm)
+            )
+            setReviews(filteredReviews)
         }
     }
 
