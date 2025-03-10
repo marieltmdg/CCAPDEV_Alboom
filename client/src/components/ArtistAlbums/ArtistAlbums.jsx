@@ -57,7 +57,7 @@ function ArtistAlbums() {
             {albums.map((album) => {
                 const averageRating = (album.ratings.reduce((a, b) => a + b, 0) / album.ratings.length).toFixed(1);
                 return (
-                    <Link to={"/album/" + album.title} key={album.title} className={styles.item}>
+                    <Link to={"/album/" + album._id} key={album.title} className={styles.item}>
                         <div className={styles.reviewItem}> 
                             <div className={styles.albumCover}>
                                 <img src={album.cover} alt={`${album.title} Cover`} className={styles.albumCover} />

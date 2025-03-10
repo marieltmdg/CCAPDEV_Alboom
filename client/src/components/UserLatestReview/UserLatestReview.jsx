@@ -16,7 +16,7 @@ function UserLatestReview({ userData }) {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const apiUrl = `/api/user/readUserID/${userData._id}`;
+                const apiUrl = `/api/reviews/user/${userData._id}`;
                 console.log("Fetching user review data from:", apiUrl);
                 
                 const response = await axios.get(apiUrl);
@@ -55,7 +55,7 @@ function UserLatestReview({ userData }) {
                 const albumId = userReview.album_id?._id || userReview.album_id;
                 console.log("Extracted albumId:", albumId);
                 
-                const apiUrl2 = `/api/album/${albumId}`;
+                const apiUrl2 = `/api/albums/${albumId}`;
                 console.log("Fetching album data from:", apiUrl2);
                 
                 const response = await axios.get(apiUrl2);
@@ -94,7 +94,7 @@ function UserLatestReview({ userData }) {
             <div className={styles.latestReviewText}>Latest Review</div>
 
             <div className={styles.albumCover}>
-                <Link to={"/album/" + album.title} key={album.title}>
+                <Link to={"/album/" + album._id} key={album.title}>
                     <img src={album.cover ? `http://localhost:3000/${album.cover}` : avatar} alt={album.title} className={styles.albumCover} />
                 </Link>
             </div>

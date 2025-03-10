@@ -9,13 +9,8 @@ module.exports = {
     }),
 
     readID: asyncHandler(async (req, res) => {
-        const selectedAlbum = await albumModel.findById(req.params.albumID).populate("artist_id", "artistname");
-        
-        if (!selectedAlbum) {
-            return res.status(404).json({ error: "Album not found" });
-        }
-    
-        res.json(selectedAlbum);
+        const selectedAlbum = await albumModel.findById(req.params.id).populate("artist_id")
+        res.json(selectedAlbum) 
     }),
     
 

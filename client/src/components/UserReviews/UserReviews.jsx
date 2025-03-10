@@ -14,7 +14,7 @@ function UserReviews({ userData }) {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const apiUrl = `/api/user/readUserID/${userData._id}`;
+                const apiUrl = `/api/reviews/user/${userData._id}`;
                 console.log("Fetching user review data from:", apiUrl);
                 
                 const response = await axios.get(apiUrl);
@@ -50,7 +50,7 @@ function UserReviews({ userData }) {
                 for (const albumId of albumIds) {
                     if (!albumId || uniqueAlbums[albumId]) continue; 
     
-                    const response = await axios.get(`/api/album/${albumId}`);
+                    const response = await axios.get(`/api/albums/${albumId}`);
                     uniqueAlbums[albumId] = response.data;
                 }
     
@@ -85,7 +85,7 @@ function UserReviews({ userData }) {
                 const album = albums[index] || {}; 
 
                 return (
-                    <Link to={`/album/${album.title || "unknown"}`} key={review._id} className={styles.item}>
+                    <Link to={`/album/${album._id || "unknown"}`} key={review._id} className={styles.item}>
                         <div className={styles.reviewItem}>
                             <div className={styles.albumCover}>
                                 <img 

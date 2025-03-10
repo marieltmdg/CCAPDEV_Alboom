@@ -1,9 +1,8 @@
 const express = require('express');
-const router = express.Router();
+const artistRouter = express.Router();
 const artistController = require('../controllers/artistController');  
 
-router.route('/:artistname')
-    .get(artistController.readID)
-    .put(artistController.update)
+artistRouter.get("/:artistname", artistController.readID)
+artistRouter.put("/:artistname", artistController.update)
 
-module.exports = router;
+module.exports = artistRouter;
