@@ -8,7 +8,7 @@ const path = require("path");
 
 const sampleUsers = [
     { 
-        username: "Carlegendelosreyes", 
+        username: "carlegendelosreyes", 
         email: "martin_carlos_r_delosreyes@dlsu.edu.ph", 
         password: "iLoveAldrin",
         picture: path.join("uploads", "martin_carlos_r_delosreyes@dlsu.edu.ph", "1741164454701-carlosdelosreyes.jpg"), 
@@ -56,7 +56,7 @@ const sampleUsers = [
 
 const sampleArtists = [
     { 
-        artistname: "Kendrick Lamar", 
+        artistname: "kendrick_lamar", 
         picture: path.join("uploads", "Kendrick-Lamar", "1741173920904-kendricklamar.jpg"),
         bio: "Visionary rapper and lyricist redefining hip-hop with poetic storytelling and social consciousness.",
         country: "USA", 
@@ -65,7 +65,7 @@ const sampleArtists = [
         password: "HUMBLE_2024!"
     },
     { 
-        artistname: "Doechii", 
+        artistname: "doechii", 
         picture: path.join("uploads", "Doechii", "1741173920904-doechii.jpg"),
         bio: "Genre-blending artist bringing fierce energy, innovative flows, and a bold artistic vision.",
         country: "USA", 
@@ -74,7 +74,7 @@ const sampleArtists = [
         password: "SWAMPQUEEN#99"
     },
     { 
-        artistname: "Tyler, The Creator", 
+        artistname: "tyler,_the_creator", 
         picture: path.join("uploads", "Tyler,-The-Creator", "1741173920904-tylerthecreator.jpg"),
         bio: "Creative mastermind fusing rap, jazz, and alternative sounds into a world of colorful chaos.",
         country: "USA", 
@@ -83,7 +83,7 @@ const sampleArtists = [
         password: "IGOR_wolfGang42"
     },
     { 
-        artistname: "Frank Ocean", 
+        artistname: "frank_ocean", 
         picture: path.join("uploads", "Frank-Ocean", "1741173920904-frankocean.png"),
         bio: "Soulful storyteller crafting deep emotional ballads with dreamlike melodies and raw lyricism.",
         country: "USA", 
@@ -92,7 +92,7 @@ const sampleArtists = [
         password: "NostalgiaUltra_88"
     },
     { 
-        artistname: "Billie Eilish", 
+        artistname: "billie_eilish", 
         picture: path.join("uploads", "Billie-Eilish", "1741173920904-billieeilish.png"),
         bio: "Whispery vocals, haunting beats, and boundary-pushing pop artistry define her unique sound.",
         country: "USA", 
