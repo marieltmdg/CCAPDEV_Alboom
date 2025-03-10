@@ -15,7 +15,7 @@ function ReviewCard({Album, Review, IsEdited, IsReviewEditable, Delete}) {
          
             <div className={styles.left}>
                 <div className={styles.leftTop}>
-                    <Link to={`/user/johndoe`}><img className={styles.userPhoto} src={"http://localhost:3000/" + Review.user_id.picture}></img></Link>
+                    <Link to={`/user/` + Review.user_id.username}><img className={styles.userPhoto} src={"http://localhost:3000/" + Review.user_id.picture}></img></Link>
                 </div>
                 <div className={styles.leftBottom}>
                     <div className={styles.voteBox}>
@@ -60,7 +60,7 @@ function ReviewCard({Album, Review, IsEdited, IsReviewEditable, Delete}) {
             <div className={styles.artistReplyContainer}>
                 <div className={styles.left}>
                     <div className={styles.leftTop}>
-                        <Link to={"/artist/" + Review.album_id.artist_id}><img className={styles.userPhoto} src={"http://localhost:3000/" + Album.artist_id.picture} /></Link>
+                        <Link to={"/artist/" + Album.artist_id.artistname}><img className={styles.userPhoto} src={"http://localhost:3000/" + Album.artist_id.picture} /></Link>
                     </div>
                     <div className={styles.leftBottom}></div>
                 </div>
