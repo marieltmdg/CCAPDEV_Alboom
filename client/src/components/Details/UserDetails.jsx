@@ -1,12 +1,10 @@
 import React from "react";
-import styles from "./UserDetails.module.css";
+import styles from "./Details.module.css";
 import avatar from "../../assets/avatar.png";
 import pin from "../../assets/pin.png";
 import linkIcon from "../../assets/link.png";
 
 function UserDetails({  userData }) {
-    console.log("Final Image URL:", userData.picture ? `http://localhost:3000${userData.picture}` : avatar);
-
     if (!userData) {
         return <div>Loading...</div>;
     }

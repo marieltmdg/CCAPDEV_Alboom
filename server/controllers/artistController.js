@@ -8,7 +8,7 @@ module.exports = {
     readID: asyncHandler(async (req, res) => {
         try {
             const artist = await Artist.findOne({ artistname: new RegExp(`^${req.params.artistname}$`, "i") });
-            console.log("at readid: ", req.params.artistname);
+            
             if (artist) {
                 res.json(artist);
             } else {
@@ -30,6 +30,8 @@ module.exports = {
                 artist.artistname = artistname || artist.artistname;
                 artist.bio = bio || artist.bio;
                 artist.picture = picture || artist.picture;
+                artist.country = country || artist.country;
+                artist.link = link || artist.link;
 
                 const updatedArtist = await artist.save();
                 res.json(updatedArtist);

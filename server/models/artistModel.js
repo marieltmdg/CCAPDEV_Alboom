@@ -6,8 +6,8 @@ const artistSchema = new mongoose.Schema({
     password: { type: String, required: true }, 
     picture: { type: String },
     bio: { type: String },
-    country: { type: String },
-    link: { type: String }
+    country: { type: String, default: "Unknown" },
+    link: { type: String, default: "Unknown" },
 });
 
 module.exports = mongoose.model('Artist', artistSchema)

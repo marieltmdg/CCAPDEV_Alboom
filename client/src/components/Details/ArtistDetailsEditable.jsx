@@ -1,62 +1,23 @@
 import React, { useEffect, useState } from "react";
-import styles from "./ArtistDetails.module.css";
+import styles from "./Details.module.css";
 import linkIcon from "../../assets/link.png";
 import pin from "../../assets/pin.png";
-
 import avatar from "../../assets/users/default.jpg";
-import kendrick from "../../assets/artists/kendrick.jpg";
-import doechii from "../../assets/artists/doechii.jpg";
-import tyler from "../../assets/artists/tyler.jpg";
+import { useParams } from "react-router-dom";
 
-const mockUserData = [
-    {
-        username: "kendrick-lamar",
-        name: "Kendrick Lamar",
-        bio: "Music enthusiast and avid concert-goer.",
-        country: "United States",
-        link: "https://example.com/kendrick",
-        imgLink: kendrick
-    },
-    {
-        username: "tyler,-the-creator",
-        name: "Tyler The Creator",
-        bio: "Lover of all things rock and roll.",
-        country: "Canada",
-        link: "https://example.com/tyler",
-        imgLink: doechii
-    },
-    {
-        username: "doechii",
-        name: "doechii",
-        bio: "DENIAL IS A RIVER.",
-        country: "United Kingdom",
-        link: "https://example.com/doechii",
-        imgLink: tyler
-    }
-];
-
-function ArtistDetailsEditable({ username }) {
-    const [user, setUser] = useState(null);
+function ArtistDetailsEditable({ artistData }) {
+    const { artistname } = useParams();
+    const [user, setUser] = useState(artistData || {});
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({
-        name: "",
-        bio: "",
-        country: "",
-        link: ""
+        name: artistData?.artistname || "",
+        bio: artistData?.bio || "",
+        country: artistData?.country || "",
+        link: artistData?.link || ""
     });
 
-    useEffect(() => {
-        const userData = mockUserData.find(user => user.username === username);
-        if (userData) {
-            setUser(userData);
-            setFormData({
-                name: userData.name,
-                bio: userData.bio,
-                country: userData.country,
-                link: userData.link
-            });
-        }
-    }, [username]);
+    console.log("Current artist:", artistname);
+    console.log("User data:", artistData);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -66,12 +27,26 @@ function ArtistDetailsEditable({ username }) {
         }));
     };
 
-    const handleSave = () => {
-        setUser(prevState => ({
-            ...prevState,
-            ...formData
-        }));
-        setIsEditing(false);
+    const handleSave = async () => {
+        try {
+            const response = await fetch(`http://localhost:3000/api/artist/${artistname}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to update artist");
+            }
+
+            const updatedUser = await response.json();
+            setUser(updatedUser);
+            setIsEditing(false);
+        } catch (error) {
+            console.error("Error updating artist:", error);
+        }
     };
 
     if (!user) return <div>Loading...</div>;
@@ -79,8 +54,9 @@ function ArtistDetailsEditable({ username }) {
     return (
         <div className={styles.userProfileContainer}>
             <div className={styles.profilePictureContainer}>
-                <img src={user.imgLink || avatar} alt="User Avatar" className={styles.profilePictureImage} />
+                <img src={artistData.picture ? `http://localhost:3000/${artistData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
             </div>
+
             {isEditing ? (
                 <div className={styles.editForm}>
                     <input
@@ -97,7 +73,7 @@ function ArtistDetailsEditable({ username }) {
                         className={styles.inputBio}
                     />
                     <div className={styles.countryContainer}>
-                        <img src={pin} alt="Country" className={styles.countryImage} /> 
+                        <img src={pin} alt="Country" className={styles.countryImage} />
                         <input
                             type="text"
                             name="country"
@@ -108,7 +84,6 @@ function ArtistDetailsEditable({ username }) {
                     </div>
                     <div className={styles.linkContainer}>
                         <img src={linkIcon} alt="Link" className={styles.linkImage} />
-                    
                         <input
                             type="text"
                             name="link"
@@ -118,11 +93,12 @@ function ArtistDetailsEditable({ username }) {
                         />
                     </div>
                     <button onClick={handleSave} className={styles.saveButton}>Save</button>
+                    <button onClick={() => setIsEditing(false)} className={styles.cancelButton}>Cancel</button>
                 </div>
             ) : (
                 <div className={styles.details}>
                     <div className={styles.profileNameContainer}>
-                        <span className={styles.profileName}>{user.name}</span>
+                        <span className={styles.profileName}>{user.artistname}</span>
                         <div className={styles.artistText}>Artist</div>
                     </div>
                     <div className={styles.profileBioContainer}>

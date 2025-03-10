@@ -34,7 +34,6 @@
     margin-bottom: 50px;
 }
 
-
 .artistText{
     margin-top: 3px;
     font-family: 'Raleway';
@@ -65,8 +64,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-
 
 .profileName {
     font-size: 1.8rem;
@@ -111,6 +108,7 @@
     width: 100%;
     font: inherit;
     max-width: 300px;
+    max-height: 150px;
 
     margin-top: 15px;
     margin-bottom: 10px;
@@ -121,7 +119,6 @@
     background-color: var(--primary-color);
     color: #fff;
 }
-
 
 .inputLink, .inputCountry {
     width: 89%;
@@ -136,7 +133,7 @@
     background-color: var(--primary-color);
     color: #fff;
 
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #ccc;
     margin-left: 10px;
 }
@@ -155,15 +152,37 @@
     right: 20px;
     bottom: 30px;
     height: auto;
-    width: 64px;
+    width: 72px;
     padding: 10px;
     background-color: #FF8000;
     color: #fff;
 
-    width: 64px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.cancelButton {
+    position: absolute;
+    font: inherit;
+    text-align: center;
+    align-items: center;
+
+    right: 100px;
+    bottom: 30px;
+    height: auto;
+    width: 72px;
+    padding: 10px;
+    background-color: gray;
+    color: #fff;
+
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancelButton:hover {
+    background-color: black;
 }
 
 .saveButton:hover, .editButton:hover {

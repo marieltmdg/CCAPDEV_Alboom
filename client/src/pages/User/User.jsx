@@ -7,8 +7,8 @@ import styles from "./User.module.css";
 import Header from "../../components/Header/Header.jsx";
 import Main from "../../components/Main";
 
-import UserDetails from '../../components/UserDetails/UserDetails.jsx';
-import UserDetailsEditable from '../../components/UserDetails/UserDetailsEditable.jsx';
+import UserDetails from '../../components/Details/UserDetails.jsx';
+import UserDetailsEditable from '../../components/Details/UserDetailsEditable.jsx';
 import UserLatestReview from '../../components/UserLatestReview/UserLatestReview.jsx';
 import UserReviews from '../../components/UserReviews/UserReviews.jsx';
 
@@ -28,7 +28,6 @@ function User() {
                 
                 const response = await axios.get(apiUrl);
                 setUserData(response.data);
-                console.log("Retrieved user data:", response.data);
             } catch (err) {
                 console.error("Error fetching user:", err.response ? err.response.data : err.message);
                 setError(err.message);
@@ -58,7 +57,7 @@ function User() {
             <Main>
                 <div className={styles.mainContainer}>
                     <div className={styles.userProfileContainer}>
-                        <UserDetails userData={userData} />
+                        <UserDetailsEditable userData={userData} />
                     </div>
 
                     <div className={styles.reviewsContainer}>

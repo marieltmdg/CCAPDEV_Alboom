@@ -7,7 +7,8 @@ import styles from "./Artist.module.css";
 import Header from "../../components/Header/Header.jsx";
 import Main from "../../components/Main";
 
-import ArtistDetails from "../../components/ArtistDetails/ArtistDetails.jsx";
+import ArtistDetails from "../../components/Details/ArtistDetails.jsx";
+import ArtistDetailsEditable from "../../components/Details/ArtistDetailsEditable.jsx"; 
 import ArtistAlbums from "../../components/ArtistAlbums/ArtistAlbums.jsx";
 
 function Artist() {
@@ -54,7 +55,7 @@ function Artist() {
             <Main>
                 <div className={styles.mainContainer}>
                     <div className={styles.userProfileContainer}>
-                        <ArtistDetails artistData={artistData} />
+                        <ArtistDetailsEditable artistData={artistData} />
                     </div>
 
                     <div className={styles.centerContainer}>
