@@ -95,7 +95,7 @@ function UserLatestReview({ userData }) {
 
             <div className={styles.albumCover}>
                 <Link to={"/album/" + album.title} key={album.title}>
-                    <img src={album.cover ? `http://localhost:3000/${album.cover}` : avatar} className={styles.albumCover} />
+                    <img src={album.cover ? `http://localhost:3000/${album.cover}` : avatar} alt={album.title} className={styles.albumCover} />
                 </Link>
             </div>
 
@@ -111,7 +111,7 @@ function UserLatestReview({ userData }) {
                 </div>
 
                 <div className={styles.topCommentContainer}>
-                    <div className={styles.topCommentText}>Top Comment</div>
+                    <div className={styles.topCommentText}>Artist Comment</div>
                     <div className={styles.topComment}>{album.description }</div>
                 </div>
             </div>

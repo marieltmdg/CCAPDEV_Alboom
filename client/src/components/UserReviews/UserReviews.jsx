@@ -1,103 +1,106 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import axios from "axios";
 import styles from "./UserReviews.module.css";
+import avatar from "../../assets/avatar.png"; // Default album cover
 
-import theDarkSideOfTheMoon from "../../assets/albums/the-dark-side-of-the-moon.jpg";
-import skipp from "../../assets/albums/skipp.jpg";
-import chromakopia from "../../assets/albums/chromakopia.jpg";
-import flowerBoy from "../../assets/albums/flower-boy.jpg";
-import letsStartHere from "../../assets/albums/lets-start-here.jpg";
-import toPimpAButterfly from "../../assets/albums/to-pimp-a-butterfly.jpg";
-import channelOrange from "../../assets/albums/channel-orange.jpg";
+function UserReviews({ userData }) {
+    const { username } = useParams();
+    const [userReviews, setUserReviews] = useState([]);
+    const [albums, setAlbums] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-const mockReviews = [
-    {
-        username: "johndoe",
-        reviews: [
-            {
-                title: 'The Dark Side of the Moon',
-                cover: theDarkSideOfTheMoon,
-                rating: 5
-            },
-            {
-                title: 'SKIPP',
-                cover: skipp,
-                rating: 4
-            },
-            {
-                title: 'CHROMAKOPIA',
-                cover: chromakopia,
-                rating: 3
-            },
-            {
-                title: 'Flower Boy',
-                cover: flowerBoy,
-                rating: 5
-            },
-            {
-                title: 'Let\'s Start Here',
-                cover: letsStartHere,
-                rating: 4
-            },
-            {
-                title: 'To Pimp a Butterfly',
-                cover: toPimpAButterfly,
-                rating: 5
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+                const apiUrl = `/api/user/readUserID/${userData._id}`;
+                console.log("Fetching user review data from:", apiUrl);
+                
+                const response = await axios.get(apiUrl);
+                const reviews = response.data;
+
+                console.log("User Reviews:", reviews);
+
+                if (reviews.length > 0) {
+                    reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    setUserReviews(reviews);
+                } else {
+                    setUserReviews([]);
+                }
+            } catch (err) {
+                console.error("Error fetching user:", err.response ? err.response.data : err.message);
+                setError(err.message);
+            } finally {
+                setLoading(false);
             }
-        ]
-    },
-    {
-        username: "janedoe",
-        reviews: [
-            {
-                title: 'The Dark Side of the Moon',
-                cover: theDarkSideOfTheMoon,
-                rating: 5
-            },
-            {
-                title: 'SKIPP',
-                cover: skipp,
-                rating: 4
-            },
-            {
-                title: 'CHROMAKOPIA',
-                cover: chromakopia,
-                rating: 3
+        };
+
+        fetchReviews();
+    }, [userData._id]);
+
+    useEffect(() => {
+        const fetchAlbums = async () => {
+            if (!userReviews || !userReviews.length) return;
+    
+            try {
+                const albumIds = userReviews.map(review => review.album_id?._id || review.album_id);  
+                const uniqueAlbums = {};
+    
+                for (const albumId of albumIds) {
+                    if (!albumId || uniqueAlbums[albumId]) continue; 
+    
+                    const response = await axios.get(`/api/album/${albumId}`);
+                    uniqueAlbums[albumId] = response.data;
+                }
+    
+                setAlbums(Object.values(uniqueAlbums)); 
+    
+            } catch (err) {
+                console.error("Error fetching albums:", err.response ? err.response.data : err.message);
             }
-        ]
-    },
-    {
-        username: "musicfan",
-        reviews: [
-            {
-                title: 'Channel Orange',
-                cover: toPimpAButterfly,
-                rating: 3
-            }
-        ]
+        };
+    
+        if (userReviews.length > 0) {
+            fetchAlbums();
+        }
+    }, [userReviews]);
+    
+
+    if (loading) {
+        return <div>Loading reviews...</div>;
     }
-];
 
-function UserReviews() {
-    const { username } = useParams(); 
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
-    const userReviews = mockReviews.find(user => user.username === username)?.reviews || [];
+    if (userReviews.length === 0) {
+        return <div></div>;
+    }
 
     return (
         <div className={styles.userReviewContainer}>
-            {userReviews.map((review, index) => (
-                <Link to={"/album/" + review.title} key={review.title} className={styles.item}>
-                    <div className={styles.reviewItem}> 
-                        <div className={styles.albumCover}>
-                            <img src={review.cover} alt={`${review.title} Cover`} className={styles.albumCover} />
+            {userReviews.map((review, index) => {
+                const album = albums[index] || {}; 
+
+                return (
+                    <Link to={`/album/${album.title || "unknown"}`} key={review._id} className={styles.item}>
+                        <div className={styles.reviewItem}>
+                            <div className={styles.albumCover}>
+                                <img 
+                                    src={album.cover ? `http://localhost:3000/${album.cover}` : avatar} 
+                                    alt={`${album.title || "Album"} Cover`} 
+                                    className={styles.albumCover} 
+                                />
+                            </div>
+                            <div className={styles.ratingContainer}>
+                                <span className={styles.boomText}>{review.rating} BOOMS</span>
+                            </div>
                         </div>
-                        <div className={styles.ratingContainer}>
-                            <span className={styles.boomText}>{review.rating} BOOMS</span>
-                        </div>
-                    </div>
-                </Link>
-            ))}
+                    </Link>
+                );
+            })}
         </div>
     );
 }
