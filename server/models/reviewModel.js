@@ -9,7 +9,8 @@ const reviewSchema = new mongoose.Schema({
     picture: { type: String},
     upvotes: { type: Number, required: true},
     downvotes: { type: Number, required: true},
-    reply_text: { type: String}
+    reply_text: { type: String},
+    date: { type: Date, default: Date.now }
 }, {_id: false});
 
 reviewSchema.index({user_id: 1, album_id: 1}, {required: true})
