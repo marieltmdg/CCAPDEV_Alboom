@@ -12,41 +12,46 @@ import ArtistDetailsEditable from "../../components/Details/ArtistDetailsEditabl
 import ArtistAlbums from "../../components/ArtistAlbums/ArtistAlbums.jsx";
 
 function Artist() {
-    const { artistname } = useParams();
-    const [artistData, setArtistData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    console.log("Current artist:", artistname);
+    const { artistname } = useParams()
+    const [artistData, setArtistData] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
+    const [album, setAlbum] = useState(null)
     
     useEffect(() => {
         const fetchArtistData = async () => {
             try {
-                const apiUrl = `/api/artist/${artistname}`;
-                
-                const response = await axios.get(apiUrl);
-                setArtistData(response.data);
+                const apiUrl = `/api/artist/${artistname}`
+                const artistResponse = await axios.get(apiUrl)
+                setArtistData(artistResponse.data)
+
+                const albumResponse = await axios.get("http://localhost:3000/api/albums")
+
+                const filteredAlbums = albumResponse.data.filter(album => 
+                    album.artist_id === artistResponse.data._id
+                )
+                setAlbum(filteredAlbums)
             } catch (err) {
-                console.error("Error fetching artist:", err.response ? err.response.data : err.message);
-                setError(err.message);
+                console.error("Error fetching artist:", err.response ? err.response.data : err.message)
+                setError(err.message)
             } finally {
-                setLoading(false);
+                setLoading(false)
             }
         };
 
-        fetchArtistData();
-    }, [artistname]);
+        fetchArtistData()
+    }, [artistname])
 
     useEffect(() => {
-        console.log("Updated artistData state:", artistData);
-    }, [artistData]);
+        console.log("Updated artistData state:", artistData)
+    }, [artistData])
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>Loading...</div>
     }
 
     if (error) {
-        return <div>Error: {error}</div>;
+        return <div>Error: {error}</div>
     }
 
     return (
@@ -60,13 +65,13 @@ function Artist() {
 
                     <div className={styles.centerContainer}>
                         <div className={styles.albumsContainer}>
-                            <ArtistAlbums artistname={artistname} />
+                            <ArtistAlbums artistname={artistname} Albums={album}/>
                         </div>
                     </div>
                 </div>
             </Main>
         </>
-    );
+    )
 }
 
-export default Artist;
+export default Artist
