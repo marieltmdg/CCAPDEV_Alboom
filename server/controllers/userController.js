@@ -64,19 +64,18 @@ module.exports = {
     }),
 
     update: asyncHandler(async (req, res) => {
-        const { username, bio, picture } = req.body;
-
+        const { bio, picture, latest_review, country, link } = req.body;
+    
         try {
-            const user = await User.findById(req.params.id);
-
+            const user = await User.findOne( { username: req.params.username }); 
+    
             if (user) {
-                user.username = username || user.username;
                 user.bio = bio || user.bio;
                 user.picture = picture || user.picture;
                 user.latest_review = latest_review || user.latest_review;
                 user.country = country || user.country;
                 user.link = link || user.link;
-
+    
                 const updatedUser = await user.save();
                 res.json(updatedUser);
             } else {
@@ -87,5 +86,7 @@ module.exports = {
             res.status(500).json({ message: "Server error" });
         }
     }),
+    
+    
 
 };

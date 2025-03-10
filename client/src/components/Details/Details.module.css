@@ -34,6 +34,11 @@
     margin-bottom: 50px;
 }
 
+.profileNameContainerEditing {
+    width: 100%;
+    text-align: center;
+}
+
 .artistText{
     margin-top: 3px;
     font-family: 'Raleway';

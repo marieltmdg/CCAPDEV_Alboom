@@ -41,6 +41,8 @@ function UserDetailsEditable({ userData}) {
             const updatedUser = await response.json();
             setUser(updatedUser);
             setIsEditing(false);
+            
+            window.location.reload();
         } catch (error) {
             console.error("Error updating user:", error);
         }
@@ -55,13 +57,9 @@ function UserDetailsEditable({ userData}) {
             </div>
             {isEditing ? (
                 <div className={styles.editForm}>
-                    <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className={styles.inputName}
-                    />
+                    <div className={styles.profileNameContainerEditing}>
+                        <span className={styles.profileName}>{userData.username}</span>
+                    </div>
                     <textarea
                         name="bio"
                         value={formData.bio}

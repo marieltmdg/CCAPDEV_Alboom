@@ -21,13 +21,12 @@ module.exports = {
     }),
 
     update: asyncHandler(async (req, res) => {
-        const { artistname, bio, picture } = req.body;
+        const { bio, picture, country, link } = req.body;
 
         try {
-            const artist = await Artist.findById(req.params.id);
+            const artist = await Artist.findOne({ artistname: req.params.artistname });
 
             if (artist) {
-                artist.artistname = artistname || artist.artistname;
                 artist.bio = bio || artist.bio;
                 artist.picture = picture || artist.picture;
                 artist.country = country || artist.country;
