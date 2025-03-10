@@ -11,8 +11,8 @@ const reviewSchema = new mongoose.Schema({
     downvotes: { type: Number, required: true},
     reply_text: { type: String},
     date: { type: Date, default: Date.now }
-}, {_id: false});
+},);
 
-reviewSchema.index({user_id: 1, album_id: 1}, {required: true})
+reviewSchema.index({user_id: 1, album_id: 1}, {unique: true})
   
 module.exports = mongoose.model('Review', reviewSchema)

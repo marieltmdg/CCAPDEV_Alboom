@@ -37,6 +37,20 @@ module.exports = {
         // Update API Endpoint
     }),
 
+    upvote: asyncHandler(async (req, res) => {
+        const review = await reviewModel.findById(req.params.reviewID)
+        review.upvotes += 1
+        await review.save()
+        res.json(review)
+    }),
+
+    downvote: asyncHandler(async (req, res) => {
+        const review = await reviewModel.findById(req.params.reviewID)
+        review.downvotes += 1
+        await review.save()
+        res.json(review)
+    }),
+
     delete: asyncHandler(async (req, res) => {
         const { userID, albumID } = req.params
 

@@ -55,6 +55,30 @@ function Album() {
         }
     }
 
+    const handleUpvote = async (reviewId) => {
+        try {
+            const response = await axios.patch("http://localhost:3000/api/reviews/upvote/" + reviewId)
+
+            setReviews(reviews.map(review =>
+                review._id === reviewId ? { ...review, upvotes: response.data.upvotes } : review
+            ))
+        } catch (err) {
+            console.error("Error upvoting review:", err);
+        }
+    }
+
+    const handleDownvote = async (reviewId) => {
+        try {
+            const response = await axios.patch("http://localhost:3000/api/reviews/downvote/" + reviewId)
+
+            setReviews(reviews.map(review =>
+                review._id === reviewId ? { ...review, downvotes: response.data.downvotes } : review
+            ))
+        } catch (err) {
+            console.error("Error downvoting review:", err);
+        }
+    }
+
     return album && (
         <>
             <Header isAuth={true} />
@@ -81,6 +105,8 @@ function Album() {
                             Album={album}
                             Review={review}
                             Delete={handleDelete}
+                            Upvote={handleUpvote}
+                            Downvote={handleDownvote}
                             IsEdited={true} 
                             IsReviewEditable={true}  
                         />
