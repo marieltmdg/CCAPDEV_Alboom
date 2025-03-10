@@ -8,7 +8,7 @@ const path = require("path");
 
 const sampleUsers = [
     { 
-        username: "Carlegendelosreyes", 
+        username: "carlegendelosreyes", 
         email: "martin_carlos_r_delosreyes@dlsu.edu.ph", 
         password: "iLoveAldrin",
         picture: path.join("uploads", "martin_carlos_r_delosreyes@dlsu.edu.ph", "1741164454701-carlosdelosreyes.jpg"), 
@@ -17,46 +17,46 @@ const sampleUsers = [
         link: "https://example.com/carlos"
     },
     { 
-        username: "MarkGok-San", 
-        email: "mark_gokan@dlsu.edu.ph", 
+        username: "paolocruzado", 
+        email: "jose_paolo_cruzado@dlsu.edu.ph", 
         password: "iamJapanese", 
-        picture: path.join("uploads", "mark_gokan@dlsu.edu.ph", "1741173888519-markgokan.jpg"),
+        picture: path.join("uploads", "jose_paolo_cruzado@dlsu.edu.ph", "1741173888519-paolocruzado.jpg"),
         bio: "i love golf!" ,
         country: "Philippines",
-        link: "https://example.com/carlos"
+        link: "https://example.com/paolo"
     },
     { 
-        username: "ZappoTheDragon", 
-        email: "izac_manikan@dlsu.edu.ph", 
+        username: "notlorenzo", 
+        email: "lorenzo_alfred_b_nery@dlsu.edu.ph", 
         password: "Zaragoza", 
-        picture: path.join("uploads", "mark_gokan@dlsu.edu.ph", "1741173920904-izacmanikan.jpg"), 
+        picture: path.join("uploads", "lorenzo_alfred_b_nery@dlsu.edu.ph", "1741173920904-lorenzonery.jpg"), 
         bio: "i love football!",
         country: "Singapore",
-        link: "https://example.com/ZAPPO" 
+        link: "https://example.com/no" 
     },
     { 
-        username: "JcTheKid", 
-        email: "john_christian_llamas@dlsu.edu.ph", 
+        username: "ronalddaws", 
+        email: "Dawson_catignas@dlsu.edu.ph", 
         password: "ark_dawn", 
-        picture: path.join("uploads", "john_christian_llamas@dlsu.edu.ph", "1741173920904-johnchristianllamas.jpg"),
+        picture: path.join("uploads", "Dawson_catignas@dlsu.edu.ph", "1741173920904-dawsoncatignas.jpg"),
         bio: "i love carlos!" ,
         country: "USA",
-        link: "https://example.com/JC"
+        link: "https://example.com/daws"
     },
     { 
-        username: "ItzVolkMC", 
-        email: "aldrin_lorenz_tigulo@dlsu.edu.ph", 
+        username: "marieltamondong", 
+        email: "mariel_tamondong_a@dlsu.edu.ph", 
         password: "iloveIzac", 
-        picture: path.join("uploads", "aldrin_lorenz_tigulo@dlsu.edu.ph", "1741173920904-aldrinlorenztigulo.png"),
-        bio: "i love carlos!" ,
+        picture: path.join("uploads", "mariel_tamondong_a@dlsu.edu.ph", "1741173920904-marieltamondong.jpg"),
+        bio: "RAH" ,
         country: "Philippines",
-        link: "https://example.com/volk"
+        link: "https://example.com/mariel"
     },
 ];
 
 const sampleArtists = [
     { 
-        artistname: "Kendrick Lamar", 
+        artistname: "kendrick_lamar", 
         picture: path.join("uploads", "Kendrick-Lamar", "1741173920904-kendricklamar.jpg"),
         bio: "Visionary rapper and lyricist redefining hip-hop with poetic storytelling and social consciousness.",
         country: "USA", 
@@ -65,7 +65,7 @@ const sampleArtists = [
         password: "HUMBLE_2024!"
     },
     { 
-        artistname: "Doechii", 
+        artistname: "doechii", 
         picture: path.join("uploads", "Doechii", "1741173920904-doechii.jpg"),
         bio: "Genre-blending artist bringing fierce energy, innovative flows, and a bold artistic vision.",
         country: "USA", 
@@ -74,7 +74,7 @@ const sampleArtists = [
         password: "SWAMPQUEEN#99"
     },
     { 
-        artistname: "Tyler, The Creator", 
+        artistname: "tyler,_the_creator", 
         picture: path.join("uploads", "Tyler,-The-Creator", "1741173920904-tylerthecreator.jpg"),
         bio: "Creative mastermind fusing rap, jazz, and alternative sounds into a world of colorful chaos.",
         country: "USA", 
@@ -83,7 +83,7 @@ const sampleArtists = [
         password: "IGOR_wolfGang42"
     },
     { 
-        artistname: "Frank Ocean", 
+        artistname: "frank_ocean", 
         picture: path.join("uploads", "Frank-Ocean", "1741173920904-frankocean.png"),
         bio: "Soulful storyteller crafting deep emotional ballads with dreamlike melodies and raw lyricism.",
         country: "USA", 
@@ -92,7 +92,7 @@ const sampleArtists = [
         password: "NostalgiaUltra_88"
     },
     { 
-        artistname: "Billie Eilish", 
+        artistname: "billie_eilish", 
         picture: path.join("uploads", "Billie-Eilish", "1741173920904-billieeilish.png"),
         bio: "Whispery vocals, haunting beats, and boundary-pushing pop artistry define her unique sound.",
         country: "USA", 
@@ -178,48 +178,65 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                                 user_id: userIds[0], 
                                 album_id: albumIds[0], 
                                 review_text: "I LOVE THIS ALBUM",
-                                title: "TEMP",
+                                title: "A Timeless Classic",
                                 rating: 5,
                                 upvotes: 0,
                                 downvotes: 0,
+                                reply_text: "THANK U",
+                                date: new Date("2024-02-15T10:30:00Z")
+                            },
+                            { 
+                                user_id: userIds[1], 
+                                album_id: albumIds[0], 
+                                review_text: "I LOVE THIS ALBUM (2)",
+                                title: "An Underrated Gem",
+                                rating: 3,
+                                upvotes: 0,
+                                downvotes: 0,
+                                date: new Date("2023-12-20T15:45:00Z")
                             },
                             { 
                                 user_id: userIds[1], 
                                 album_id: albumIds[1], 
                                 review_text: "Banger album!",
-                                title: "TEMP",
+                                title: "Non-Stop Hits",
                                 rating: 5,
                                 upvotes: 0,
                                 downvotes: 0,
+                                date: new Date("2024-01-05T08:20:00Z")
                             },
                             { 
                                 user_id: userIds[2], 
                                 album_id: albumIds[2], 
                                 review_text: "Incredible production!",
-                                title: "TEMP",
+                                title: "A Sonic Masterpiece",
                                 rating: 5,
                                 upvotes: 0,
                                 downvotes: 0,
+                                date: new Date("2023-11-10T18:10:00Z")
                             },
                             { 
                                 user_id: userIds[3], 
                                 album_id: albumIds[3], 
                                 review_text: "This changed my life.",
-                                title: "TEMP",
+                                title: "Music That Speaks to the Soul",
                                 rating: 5,
                                 upvotes: 0,
                                 downvotes: 0,
+                                date: new Date("2024-02-01T13:55:00Z")
                             },
                             { 
                                 user_id: userIds[4], 
                                 album_id: albumIds[4], 
                                 review_text: "Masterpiece of our generation.",
-                                title: "TEMP",
+                                title: "A Generation-Defining Album",
                                 rating: 5,
                                 upvotes: 0,
                                 downvotes: 0,
-                            },
+                                date: new Date("2023-09-25T09:40:00Z")
+                            }
                         ];
+                        
 
                         return Review.deleteMany({})
                             .then(() => Review.insertMany(sampleReviews))

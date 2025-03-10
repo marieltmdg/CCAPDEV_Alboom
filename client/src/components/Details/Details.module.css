@@ -14,7 +14,7 @@
 
 .profilePictureContainer {
     width: 100%;
-    height: 30%;
+    height: 355px;
     display: flex;
     margin-top: 20px;
     justify-content: center;
@@ -22,18 +22,24 @@
 }
 
 .profilePictureImage {
-    width: 75%;
-    height: auto;
+    max-width: 300px;
+    min-width: 300px;
+    max-height: 300px;
+    min-height: 300px; 
+    width: 80%;
     border-radius: 50%;
 }
 
 .profileNameContainer {
     width: 100%;
     text-align: center;
-    margin-top: 15px;
     margin-bottom: 50px;
 }
 
+.profileNameContainerEditing {
+    width: 100%;
+    text-align: center;
+}
 
 .artistText{
     margin-top: 3px;
@@ -65,8 +71,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-
 
 .profileName {
     font-size: 1.8rem;
@@ -106,11 +110,42 @@
     flex-direction: column;
     align-items: center;
 }
+.avatar {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.preview {
+    width: 250px;
+    height: 250px;
+}
+
+.upload {
+    display: none;
+}
+
+.uploadIcon {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    bottom: calc(50% - 125px);
+    right: calc(50% - 125px);
+    opacity: 0;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.uploadIcon:hover {
+    opacity: 0.5;
+}
+
 
 .inputName, .inputBio {
     width: 100%;
     font: inherit;
     max-width: 300px;
+    max-height: 150px;
 
     margin-top: 15px;
     margin-bottom: 10px;
@@ -121,7 +156,6 @@
     background-color: var(--primary-color);
     color: #fff;
 }
-
 
 .inputLink, .inputCountry {
     width: 89%;
@@ -136,7 +170,7 @@
     background-color: var(--primary-color);
     color: #fff;
 
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #ccc;
     margin-left: 10px;
 }
@@ -155,15 +189,37 @@
     right: 20px;
     bottom: 30px;
     height: auto;
-    width: 64px;
+    width: 72px;
     padding: 10px;
     background-color: #FF8000;
     color: #fff;
 
-    width: 64px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.cancelButton {
+    position: absolute;
+    font: inherit;
+    text-align: center;
+    align-items: center;
+
+    right: 100px;
+    bottom: 30px;
+    height: auto;
+    width: 72px;
+    padding: 10px;
+    background-color: gray;
+    color: #fff;
+
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancelButton:hover {
+    background-color: black;
 }
 
 .saveButton:hover, .editButton:hover {

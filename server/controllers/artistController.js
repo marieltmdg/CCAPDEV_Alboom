@@ -8,7 +8,7 @@ module.exports = {
     readID: asyncHandler(async (req, res) => {
         try {
             const artist = await Artist.findOne({ artistname: new RegExp(`^${req.params.artistname}$`, "i") });
-            console.log("at readid: ", req.params.artistname);
+            
             if (artist) {
                 res.json(artist);
             } else {
@@ -21,15 +21,30 @@ module.exports = {
     }),
 
     update: asyncHandler(async (req, res) => {
-        const { artistname, bio, picture } = req.body;
+        const { bio, picture, country, link } = req.body;
 
         try {
-            const artist = await Artist.findById(req.params.id);
+            const artist = await Artist.findOne({ artistname: req.params.artistname });
 
             if (artist) {
-                artist.artistname = artistname || artist.artistname;
                 artist.bio = bio || artist.bio;
                 artist.picture = picture || artist.picture;
+                artist.country = country || artist.country;
+                artist.link = link || artist.link;
+
+                if (req.files && req.files.picture) {
+                    const file = req.files.picture;
+                    const uploadDir = "uploads/" + artist.email;
+                    
+                    if (!fs.existsSync(uploadDir)) {
+                        fs.mkdirSync(uploadDir, { recursive: true });
+                    }
+        
+                    picturePath = `uploads/${artist.email}/${Date.now()}-${file.name}`;
+                    await file.mv(picturePath);
+        
+                    artist.picture = picturePath;
+                }
 
                 const updatedArtist = await artist.save();
                 res.json(updatedArtist);

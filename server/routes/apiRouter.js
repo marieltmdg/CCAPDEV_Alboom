@@ -13,6 +13,8 @@ router.use('/albums', albumRouter);
 router.use('/artists', artistRouter);
 router.use('/reviews', reviewRouter)
 router.get("/user/:username", userController.readID);
+router.put("user/:username", userController.update);
 router.get("/artist/:artistname", artistController.readID);
+router.put("/artist/:artistname", artistController.update);
 
 module.exports = router;

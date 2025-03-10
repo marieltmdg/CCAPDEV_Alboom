@@ -10,7 +10,7 @@ module.exports = {
 
         if (req.files && req.files.photo) {
             const photo = req.files.photo;
-            const uploadPath = path.join(__dirname, "..", "uploads", email);
+            const uploadPath = "uploads/" + email;
 
             fs.mkdirSync(uploadPath, { recursive: true });
 
@@ -64,16 +64,32 @@ module.exports = {
     }),
 
     update: asyncHandler(async (req, res) => {
-        const { username, bio, picture } = req.body;
-
+        const { bio, picture, latest_review, country, link } = req.body;
+    
         try {
-            const user = await User.findById(req.params.id);
-
+            const user = await User.findOne( { username: req.params.username }); 
+    
             if (user) {
-                user.username = username || user.username;
                 user.bio = bio || user.bio;
                 user.picture = picture || user.picture;
+                user.latest_review = latest_review || user.latest_review;
+                user.country = country || user.country;
+                user.link = link || user.link;
 
+                if (req.files && req.files.picture) {
+                    const file = req.files.picture;
+                    const uploadDir = "uploads/" + user.email;
+                    
+                    if (!fs.existsSync(uploadDir)) {
+                        fs.mkdirSync(uploadDir, { recursive: true });
+                    }
+        
+                    picturePath = `uploads/${user.email}/${Date.now()}-${file.name}`;
+                    await file.mv(picturePath);
+        
+                    user.picture = picturePath;
+                }
+    
                 const updatedUser = await user.save();
                 res.json(updatedUser);
             } else {
@@ -84,20 +100,7 @@ module.exports = {
             res.status(500).json({ message: "Server error" });
         }
     }),
+    
+    
 
-    delete: asyncHandler(async (req, res) => {
-        try {
-            const user = await User.findById(req.params.id);
-
-            if (user) {
-                await user.remove();
-                res.json({ message: "User removed" });
-            } else {
-                res.status(404).json({ message: "User not found" });
-            }
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: "Server error" });
-        }
-    }),
 };

@@ -1,12 +1,10 @@
 import React from "react";
-import styles from "./ArtistDetails.module.css";
+import styles from "./Details.module.css";
 import avatar from "../../assets/avatar.png";
 import pin from "../../assets/pin.png";
 import linkIcon from "../../assets/link.png";
 
 function ArtistDetails({ artistData }) {
-    console.log("Final Image URL:", artistData.picture ? `http://localhost:3000${artistData.picture}` : avatar);
-
     if (!artistData) {
         return <div>Loading...</div>;
     }
