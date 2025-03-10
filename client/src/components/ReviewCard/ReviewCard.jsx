@@ -8,7 +8,7 @@ let reply = "Bro, it's just music. Chill. But also… keep going. Damn, you sure
 
 import { Link } from 'react-router-dom'
 
-function ReviewCard({Album, Review, IsEdited, IsReviewEditable, Delete}) {
+function ReviewCard({Album, Review, IsEdited, IsReviewEditable, Delete, Upvote, Downvote}) {
     return(
         <>
         <div className={styles.mainContainer}>
@@ -18,11 +18,11 @@ function ReviewCard({Album, Review, IsEdited, IsReviewEditable, Delete}) {
                     <Link to={`/user/` + Review.user_id.username}><img className={styles.userPhoto} src={"http://localhost:3000/" + Review.user_id.picture}></img></Link>
                 </div>
                 <div className={styles.leftBottom}>
-                    <div className={styles.voteBox}>
+                    <div onClick={() => Upvote(Review._id)} className={styles.voteBox}>
                         <img className={styles.votes} src={upvote}></img>
                     </div>
                     <p className={styles.voteCount}>{Review.upvotes}</p>
-                    <div className={styles.voteBox}>
+                    <div onClick={() => Downvote(Review._id)} className={styles.voteBox}>
                         <img className={styles.votes} src={downvote}></img>
                     </div>
                     <p className={styles.voteCount}>{Review.downvotes}</p>

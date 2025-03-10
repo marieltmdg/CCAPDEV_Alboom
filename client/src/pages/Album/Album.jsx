@@ -34,24 +34,48 @@ function Album() {
                 setRating(averageRating)
             })
             .catch(err => console.error("Error fetching reviews:", err))
-    }, [id]);
+    }, [id])
 
     const handleDelete = async (userID, albumID) => {
         await axios.delete("http://localhost:3000/api/reviews/user/" + userID + "/album/" + albumID)
         setReviews(reviews.filter(review => review.user_id._id !== userID))
         setOriginalReviews(originalReviews.filter(review => review.user_id._id !== userID))
-    };
+    }
 
     const handleSearch = (event) => {
         const searchTerm = event.target.value.toLowerCase();
 
         if (searchTerm === "") {
-            setReviews(originalReviews);
+            setReviews(originalReviews)
         } else {
             const filteredReviews = originalReviews.filter(review =>
-                review.review_text.toLowerCase().includes(searchTerm)
-            );
-            setReviews(filteredReviews);
+                review.review_text.toLowerCase().includes(searchTerm) || review.title.toLowerCase().includes(searchTerm)
+            )
+            setReviews(filteredReviews)
+        }
+    }
+
+    const handleUpvote = async (reviewId) => {
+        try {
+            const response = await axios.patch("http://localhost:3000/api/reviews/upvote/" + reviewId)
+
+            setReviews(reviews.map(review =>
+                review._id === reviewId ? { ...review, upvotes: response.data.upvotes } : review
+            ))
+        } catch (err) {
+            console.error("Error upvoting review:", err);
+        }
+    }
+
+    const handleDownvote = async (reviewId) => {
+        try {
+            const response = await axios.patch("http://localhost:3000/api/reviews/downvote/" + reviewId)
+
+            setReviews(reviews.map(review =>
+                review._id === reviewId ? { ...review, downvotes: response.data.downvotes } : review
+            ))
+        } catch (err) {
+            console.error("Error downvoting review:", err);
         }
     }
 
@@ -81,6 +105,8 @@ function Album() {
                             Album={album}
                             Review={review}
                             Delete={handleDelete}
+                            Upvote={handleUpvote}
+                            Downvote={handleDownvote}
                             IsEdited={true} 
                             IsReviewEditable={true}  
                         />
