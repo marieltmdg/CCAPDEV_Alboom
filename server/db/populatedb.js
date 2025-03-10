@@ -17,40 +17,40 @@ const sampleUsers = [
         link: "https://example.com/carlos"
     },
     { 
-        username: "MarkGok-San", 
-        email: "mark_gokan@dlsu.edu.ph", 
+        username: "paolocruzado", 
+        email: "jose_paolo_cruzado@dlsu.edu.ph", 
         password: "iamJapanese", 
-        picture: path.join("uploads", "mark_gokan@dlsu.edu.ph", "1741173888519-markgokan.jpg"),
+        picture: path.join("uploads", "jose_paolo_cruzado@dlsu.edu.ph", "1741173888519-paolocruzado.jpg"),
         bio: "i love golf!" ,
         country: "Philippines",
-        link: "https://example.com/carlos"
+        link: "https://example.com/paolo"
     },
     { 
-        username: "ZappoTheDragon", 
-        email: "izac_manikan@dlsu.edu.ph", 
+        username: "notlorenzo", 
+        email: "lorenzo_alfred_b_nery@dlsu.edu.ph", 
         password: "Zaragoza", 
-        picture: path.join("uploads", "izac_manikan@dlsu.edu.ph", "1741173920904-izacmanikan.jpg"), 
+        picture: path.join("uploads", "lorenzo_alfred_b_nery@dlsu.edu.ph", "1741173920904-lorenzonery.jpg"), 
         bio: "i love football!",
         country: "Singapore",
-        link: "https://example.com/ZAPPO" 
+        link: "https://example.com/no" 
     },
     { 
-        username: "JcTheKid", 
-        email: "john_christian_llamas@dlsu.edu.ph", 
+        username: "ronalddaws", 
+        email: "Dawson_catignas@dlsu.edu.ph", 
         password: "ark_dawn", 
-        picture: path.join("uploads", "john_christian_llamas@dlsu.edu.ph", "1741173920904-johnchristianllamas.jpg"),
+        picture: path.join("uploads", "Dawson_catignas@dlsu.edu.ph", "1741173920904-dawsoncatignas.jpg"),
         bio: "i love carlos!" ,
         country: "USA",
-        link: "https://example.com/JC"
+        link: "https://example.com/daws"
     },
     { 
-        username: "ItzVolkMC", 
-        email: "aldrin_lorenz_g_tigulo@dlsu.edu.ph", 
+        username: "marieltamondong", 
+        email: "mariel_tamondong_a@dlsu.edu.ph", 
         password: "iloveIzac", 
-        picture: path.join("uploads", "aldrin_lorenz_g_tigulo@dlsu.edu.ph", "1741173920904-aldrinlorenzgtigulo.png"),
-        bio: "i love carlos!" ,
+        picture: path.join("uploads", "mariel_tamondong_a@dlsu.edu.ph", "1741173920904-marieltamondong.jpg"),
+        bio: "RAH" ,
         country: "Philippines",
-        link: "https://example.com/volk"
+        link: "https://example.com/mariel"
     },
 ];
 
