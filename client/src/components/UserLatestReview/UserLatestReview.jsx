@@ -102,7 +102,9 @@ function UserLatestReview({ userData }) {
             <div className={styles.detailsContainer}>
                 <div className={styles.albumInfoContainer}>
                     <div className={styles.albumTitle}>{album.title}</div>
-                    <div className={styles.artist}>By {album.artist_id?.artistname}</div>
+                    <div className={styles.artist}>
+                        By <Link to={`/artist/${album.artist_id?.artistname}`} className={styles.artist}>{album.artist_id?.artistname}</Link>
+                    </div>
                 </div>
 
                 <div className={styles.reviewInfoContainer}>
@@ -110,10 +112,12 @@ function UserLatestReview({ userData }) {
                     <div className={styles.reviewText}>{userReview.review_text}</div>
                 </div>
 
-                <div className={styles.topCommentContainer}>
-                    <div className={styles.topCommentText}>Artist Comment</div>
-                    <div className={styles.topComment}>{album.description }</div>
-                </div>
+                {userReview.reply_text && (
+                    <div className={styles.topCommentContainer}>
+                        <div className={styles.topCommentText}>Artist Comment</div>
+                        <div className={styles.topComment}>{userReview.reply_text}</div>
+                    </div>
+                )}
             </div>
 
             
