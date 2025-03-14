@@ -19,7 +19,7 @@ function ArtistAlbums({Albums}) {
                     if (isNaN(averageRating)) {
                         ratings[album._id] = "-1";
                     } else {
-                        ratings[album._id] = averageRating.toFixed(0); 
+                        ratings[album._id] = averageRating.toFixed(2); 
                     }
                 } catch (error) {
                     console.error("Error fetching reviews:", error);
