@@ -44,8 +44,8 @@ function ReviewCard({Album, Review, IsEdited, IsReviewEditable, Delete, Upvote, 
                 <div className={styles.rightBottom}>
                     {IsReviewEditable && (
                         <>
-                        <div className={styles.actionsContainer}>
-                        <h6 onClick={() => Delete(Review._id)}>DELETE</h6>
+                        <div className={styles.actionsContainer} onClick={() => Delete(Review._id)}>
+                        <h6>DELETE</h6>
                         </div>
                         <div className={styles.actionsContainer}>
                         <h6>EDIT</h6>
