@@ -37,7 +37,8 @@ module.exports = {
                 password,
                 picture,
                 bio,
-                latest_review: null,
+                country: "Unknown",
+                link: "Unknown"
             });
 
             const createdUser = await user.save();

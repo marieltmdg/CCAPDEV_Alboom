@@ -18,7 +18,7 @@ function CreateReview() {
     const [formData, setFormData] = useState({
         title: '',
         review: '',
-        file: null,
+        picture: null,
     });
     const [userData, setUserData] = useState(null);
 
@@ -38,7 +38,7 @@ function CreateReview() {
         const { name, value, files } = event.target;
         setFormData(prev => ({
             ...prev,
-            [name]: name === "file" ? files[0] : value,
+            [name]: name === "picture" ? files[0] : value,
         }));
     };
 
@@ -51,13 +51,18 @@ function CreateReview() {
             data.append("review_text", formData.review);
             data.append("rating", String(rating)); // Convert to string
             data.append("user_id", userData._id);
-            data.append("album_id", album._id)
+            data.append("album_id", album._id);
+
+            if (formData.picture) {
+                data.append("picture", formData.picture);
+            }
         
             console.log(data.get("title")); // Logs the value of "title"
             console.log(data.get("review_text")); // Logs the value of "review_text"
             console.log(data.get("rating")); // Logs the value of "rating"
             console.log(data.get("user_id")); // Logs the value of "user_id"
             console.log(data.get("album_id")); // Logs the value of "album_id"
+            console.log(data.get("picture")); // Logs the value of "photo"
 
 
             try {
@@ -106,7 +111,7 @@ function CreateReview() {
                                     <label className={styles.uploadLabel}>
                                         <input
                                             type="file"
-                                            name="file"
+                                            name="picture"
                                             className={styles.uploadInput}
                                             hidden
                                             onChange={handleChange}
@@ -114,7 +119,7 @@ function CreateReview() {
                                         />
                                         Upload Files
                                     </label>
-                                    {formData.file && <p className={styles.fileName}>{formData.file.name}</p>}
+                                    {formData.picture && <p className={styles.fileName}>{formData.picture.name}</p>}
                                 </div>
                             </div>
                             <div className={styles.boomContainer}>

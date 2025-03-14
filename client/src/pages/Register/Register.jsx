@@ -37,6 +37,7 @@ function Register() {
         if (photo) {
             formData.append("photo", photo);
         }
+        console.log(formData.get("photo"));
 
         try {
             const response = await api.post("/users", formData, {

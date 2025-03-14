@@ -1,21 +1,38 @@
 const asyncHandler = require("express-async-handler")
 
 const reviewModel = require("../models/reviewModel.js")
+const path = require("path")
+const fs = require("fs")
 
 module.exports = {
     create: asyncHandler(async (req, res) => {
         const { user_id, album_id, title, review_text, rating } = req.body;
+        let picture = null;
+        const userIDString = user_id.toString();
+        console.log(userIDString);
+
+        if (req.files && req.files.picture) {
+            const photo = req.files.picture;
+            const uploadPath = "uploads/" + userIDString;
+
+            fs.mkdirSync(uploadPath, { recursive: true });
+
+            const photoPath = path.join(uploadPath, `${Date.now()}-${photo.name}`);
+            await photo.mv(photoPath);
+            picture = photoPath;
+        }
 
         try {
-            const review = reviewModel.create({
-                title: title,
-                review_text: review_text,
-                rating: rating,
-                user_id: user_id,
-                album_id: album_id,
+            const review = await Review.create({
+                title,
+                review_text,
+                rating,
+                user_id,
+                album_id,
+                picture,
                 upvotes: 0,
                 downvotes: 0
-            })
+            });
             res.status(201).json(review);
         } catch (error) {
             console.error(error);
