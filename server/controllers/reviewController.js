@@ -101,6 +101,13 @@ module.exports = {
         res.json(review);
     }),
 
+    updateReply: asyncHandler(async (req, res) => {
+        const review = await Review.findById(req.params.reviewID)
+        review.replyText = req.body.replyText
+        await review.save()
+        res.json(review)
+    }),
+
     upvote: asyncHandler(async (req, res) => {
         const review = await Review.findById(req.params.reviewID)
         review.upvotes += 1

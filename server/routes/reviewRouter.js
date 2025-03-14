@@ -10,6 +10,7 @@ reviewRouter.get("/user/:id", reviewController.readUserID)
 reviewRouter.get("/album/:id", reviewController.readAlbumID)
 
 reviewRouter.put("/:id", reviewController.update)
+reviewRouter.put("/updateReply/:id", reviewController.updateReply)
 
 reviewRouter.patch("/upvote/:reviewID", reviewController.upvote)
 reviewRouter.patch("/downvote/:reviewID", reviewController.downvote)
