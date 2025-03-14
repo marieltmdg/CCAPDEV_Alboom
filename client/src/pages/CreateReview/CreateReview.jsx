@@ -13,13 +13,14 @@ function CreateReview() {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
     const navigate = useNavigate();
-
+    
     const [album, setAlbum] = useState(null);
     const [formData, setFormData] = useState({
         title: '',
         review: '',
         file: null,
     });
+    const [userData, setUserData] = useState(null);
 
     const { id } = useParams();
 
@@ -27,6 +28,10 @@ function CreateReview() {
         axios.get(`http://localhost:3000/api/albums/${id}`)
             .then(albumResponse => setAlbum(albumResponse.data))
             .catch(err => console.error("Error fetching album:", err));
+
+        axios.get(`http://localhost:3000/api/user/carlegendelosreyes`)
+            .then(userResponse => setUserData(userResponse.data))
+            .catch(err => console.error("Error fetching user:", err));
     }, [id]);
 
     const handleChange = (event) => {
@@ -45,7 +50,7 @@ function CreateReview() {
             data.append("title", formData.title);
             data.append("review_text", formData.review);
             data.append("rating", String(rating)); // Convert to string
-            data.append("user_id", "67d44becf82f487eb21d9070")
+            data.append("user_id", userData._id);
             data.append("album_id", album._id)
         
             console.log(data.get("title")); // Logs the value of "title"
