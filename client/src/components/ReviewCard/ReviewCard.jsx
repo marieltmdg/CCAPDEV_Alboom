@@ -37,9 +37,7 @@ function ReviewCard({Album, Review, IsEdited, IsReviewEditable, Delete, Upvote, 
                     <h3 className={styles.userReviewHeading}>{Review.title}</h3>
                     {IsEdited && <p className={styles.isEdited}>Edited</p>}
                     <p className={styles.userReviewText}>
-                        {Review.review_text.length > 400 
-                        ? Review.review_text.substring(0, 400) + "..." 
-                        : Review.review_text}
+                        {Review.review_text}
                     </p>
                 </div>
                 <div className={styles.rightBottom}>
@@ -73,9 +71,7 @@ function ReviewCard({Album, Review, IsEdited, IsReviewEditable, Delete, Upvote, 
                         <h3 className={styles.userReviewHeading}>Reply by {Album.artist_id.artistname}</h3>
                         {/* {IsEdited && <p className={styles.isEdited}>Edited</p>} */}
                         <p className={styles.userReviewText}>
-                        {reply.length > 400 
-                            ? reply.substring(0, 400) + "..." 
-                            : reply}
+                            {reply}
                         </p>
                     </div>
                     <div className={styles.rightBottom}>
