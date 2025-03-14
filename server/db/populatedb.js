@@ -158,13 +158,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                         release_date: "July 10, 2012",
                         description: "temp",
                     },
-                    {
-                        title: "Hit Me Hard and Soft",
-                        cover: path.join("uploads", "Hit-Me-Hard-And-Soft", "1741173920904-hitmehardandsoft.jpg"),
-                        artist_id: artistIds[4],
-                        release_date: "May 17, 2024",
-                        description: "temp",
-                    },
                 ];
 
                 return Album.deleteMany({})
