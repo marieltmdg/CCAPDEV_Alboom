@@ -1,6 +1,4 @@
 import styles from './AlbumReview.module.css'
-import albumCover from '../../assets/albums/flower-boy.jpg'
-
 import { Link } from 'react-router-dom'
 
 function AlbumReview({Album, Rating}) {
@@ -10,7 +8,7 @@ function AlbumReview({Album, Rating}) {
             <div className={styles.left}>
                 <h1 className={styles.albumTitle}>{Album.title}</h1>
                 <img src={"http://localhost:3000/" + Album.cover} className={styles.albumCover}></img>
-                <h1 className={styles.albumRating}>{Rating} BOOMS</h1>
+                <h1 className={styles.albumRating}>{Rating.toFixed(2)} BOOMS</h1>
             </div>
 
             <div className={styles.right}>
