@@ -4,8 +4,26 @@ const reviewModel = require("../models/reviewModel.js")
 
 module.exports = {
     create: asyncHandler(async (req, res) => {
-        const {title, review, file} = req.body
-        await reviewModel.insertOne({title: title, review_text: review, })
+        const { user_id, album_id, title, review_text, rating } = req.body;
+
+        try {
+            const review = new Review({
+                user_id,
+                album_id,
+                title,
+                review_text,
+                rating,
+                upvotes: 0,
+                downvotes: 0,
+                reply_text: "",
+            });
+
+            const createdReview = await review.save();
+            res.status(201).json(createdReview);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: "Server error" });
+        }
     }),
 
     read: asyncHandler(async (req, res) => {
