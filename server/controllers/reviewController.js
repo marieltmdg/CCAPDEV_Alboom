@@ -43,15 +43,15 @@ module.exports = {
     read: asyncHandler(async (req, res) => {
         const reviews = await Review.find({})
             .populate("user_id")
-            .populate("review_id")
+            .populate("album_ids")
 
         res.json(reviews)
     }),
 
     readID: asyncHandler(async (req, res) => {
-        const review = await Review.find(req.params.id)
+        const review = await Review.findById(req.params.id)
             .populate("user_id")
-            .populate("review_id")
+            .populate("album_id")
 
         res.json(review)
     }),

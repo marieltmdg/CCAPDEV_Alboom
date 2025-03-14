@@ -21,10 +21,16 @@ function UpdateReview() {
         picture: null,
     });
     const [userData, setUserData] = useState(null);
+    const [review, setReview] = useState(null)
 
     const { id } = useParams();
 
     useEffect(() => {
+        axios.get(`http://localhost:3000/api/reviews/${id}`)
+            .then(reviewResponse => setReview(reviewResponse.data))
+            .then(console.log(review))
+            .catch(err => console.error("Error fetching review:", err));
+            
         axios.get(`http://localhost:3000/api/albums/${id}`)
             .then(albumResponse => setAlbum(albumResponse.data))
             .catch(err => console.error("Error fetching album:", err));
@@ -32,6 +38,7 @@ function UpdateReview() {
         axios.get(`http://localhost:3000/api/user/carlegendelosreyes`)
             .then(userResponse => setUserData(userResponse.data))
             .catch(err => console.error("Error fetching user:", err));
+
     }, [id]);
 
     const handleChange = (event) => {
@@ -79,7 +86,7 @@ function UpdateReview() {
         }, 0); // Small delay to ensure latest rating value
     };
 
-    return (
+    return review && (
         <>
             <Header isAuth={true} />
             <Main>
@@ -96,7 +103,7 @@ function UpdateReview() {
                                         name="title"
                                         className={styles.reviewTitle}
                                         placeholder="Title of your review"
-                                        value={formData.title}
+                                        value={review.title}
                                         onChange={handleChange}
                                         required
                                     />
@@ -104,7 +111,7 @@ function UpdateReview() {
                                         name="review"
                                         className={styles.reviewText}
                                         placeholder="Write your review here..."
-                                        value={formData.review}
+                                        value={review.review_text}
                                         onChange={handleChange}
                                         required
                                     />
@@ -119,7 +126,7 @@ function UpdateReview() {
                                         />
                                         Upload Files
                                     </label>
-                                    {formData.picture && <p className={styles.fileName}>{formData.picture.name}</p>}
+                                    {review.picture && <p className={styles.fileName}>{review.picture.name}</p>}
                                 </div>
                             </div>
                             <div className={styles.boomContainer}>
