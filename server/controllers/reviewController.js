@@ -43,7 +43,7 @@ module.exports = {
     read: asyncHandler(async (req, res) => {
         const reviews = await Review.find({})
             .populate("user_id")
-            .populate("album_ids")
+            .populate("album_id")
 
         res.json(reviews)
     }),
@@ -76,7 +76,7 @@ module.exports = {
     update: asyncHandler(async (req, res) => {
         const review = await Review.find(req.params.id)
             .populate("user_id")
-            .populate("review_id")
+            .populate("album_id")
         
         const { user_id, album_id, title, review_text, rating } = req.body;
         let picture = null;

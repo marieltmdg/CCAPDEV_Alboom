@@ -30,16 +30,25 @@ function UpdateReview() {
             .then(reviewResponse => setReview(reviewResponse.data))
             .then(console.log(review))
             .catch(err => console.error("Error fetching review:", err));
-            
-        axios.get(`http://localhost:3000/api/albums/${id}`)
+    }, [id]);
+
+    useEffect(() => {
+        if (review) {
+            axios.get(`http://localhost:3000/api/albums/${review.album_id._id}`)
             .then(albumResponse => setAlbum(albumResponse.data))
             .catch(err => console.error("Error fetching album:", err));
 
-        axios.get(`http://localhost:3000/api/user/carlegendelosreyes`)
+            axios.get(`http://localhost:3000/api/user/${review.user_id._id}`)
             .then(userResponse => setUserData(userResponse.data))
             .catch(err => console.error("Error fetching user:", err));
-
-    }, [id]);
+            setFormData({
+                title: review.title,
+                review: review.review_text,
+                picture: review.picture,
+            });
+            setRating(review.rating); // Set the rating from the review
+        }
+    }, [review]);
 
     const handleChange = (event) => {
         const { name, value, files } = event.target;
@@ -52,6 +61,7 @@ function UpdateReview() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+
         setTimeout(async () => {
             const data = new FormData();
             data.append("title", formData.title);
@@ -63,17 +73,10 @@ function UpdateReview() {
             if (formData.picture) {
                 data.append("picture", formData.picture);
             }
-        
-            console.log(data.get("title")); // Logs the value of "title"
-            console.log(data.get("review_text")); // Logs the value of "review_text"
-            console.log(data.get("rating")); // Logs the value of "rating"
-            console.log(data.get("user_id")); // Logs the value of "user_id"
-            console.log(data.get("album_id")); // Logs the value of "album_id"
-            console.log(data.get("picture")); // Logs the value of "photo"
 
 
             try {
-                const response = await axios.post("http://localhost:3000/api/reviews/", data, {
+                const response = await axios.put("http://localhost:3000/api/reviews/", data, {
                     headers: { "Content-Type": "multipart/form-data" },
                 });
                 console.log("Review submitted:", response.data);
@@ -103,7 +106,7 @@ function UpdateReview() {
                                         name="title"
                                         className={styles.reviewTitle}
                                         placeholder="Title of your review"
-                                        value={review.title}
+                                        value={formData.title}
                                         onChange={handleChange}
                                         required
                                     />
@@ -111,7 +114,7 @@ function UpdateReview() {
                                         name="review"
                                         className={styles.reviewText}
                                         placeholder="Write your review here..."
-                                        value={review.review_text}
+                                        value={formData.review}
                                         onChange={handleChange}
                                         required
                                     />
