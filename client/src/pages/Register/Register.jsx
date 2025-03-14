@@ -40,7 +40,7 @@ function Register() {
         console.log(formData.get("photo"));
 
         try {
-            const response = await api.post("/users", formData, {
+            const response = await api.post("/user", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
