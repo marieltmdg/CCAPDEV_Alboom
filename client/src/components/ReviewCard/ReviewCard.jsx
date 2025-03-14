@@ -39,6 +39,7 @@ function ReviewCard({Album, Review, IsEdited, IsReviewEditable, Delete, Upvote, 
                     <p className={styles.userReviewText}>
                         {Review.review_text}
                     </p>
+                    {Review.picture && (<img src={"http://localhost:3000/" + Review.picture} className={styles.reviewImage}></img>)}
                 </div>
                 <div className={styles.rightBottom}>
                     {IsReviewEditable && (

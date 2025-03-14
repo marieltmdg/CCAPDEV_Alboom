@@ -111,7 +111,7 @@
     display: flex;
     flex-direction: row-reverse;
 
-    height: 20%;
+    height: 15%;
     
     padding: 16px 16px;
 }
@@ -121,7 +121,7 @@
 }
 
 .rightMiddle {
-    height: 60%;
+    height: 65%;
 }
 
 .userReviewText {
@@ -130,6 +130,15 @@
     margin-top: 8px;
     word-wrap: break-word;
     overflow-wrap: break-word;
+}
+
+.reviewImage {
+    max-height: 90%;
+    max-width: 90%;
+    margin-top: 4px;
+    margin-bottom: 0px;
+    padding-right: 185px;
+    scale: 80%;
 }
 
 .isEdited {
