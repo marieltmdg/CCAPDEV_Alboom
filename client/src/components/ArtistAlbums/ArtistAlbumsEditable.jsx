@@ -16,6 +16,10 @@ function ArtistAlbumsEditable({ Albums }) {
                     const response = await axios.get(`/api/reviews/album/${album._id}`);
                     const reviews = response.data;
                     const averageRating = reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length;
+                    if (isNaN(averageRating)) {
+                        ratings[album._id] = "-1";
+                        continue;
+                    }
                     ratings[album._id] = averageRating.toFixed(0);
                 } catch (error) {
                     console.error("Error fetching reviews:", error);
@@ -78,9 +82,7 @@ function ArtistAlbumsEditable({ Albums }) {
                                 />
                                 
                                 <div className={styles.buttonContainerEdit}>
-                                    <button 
-                                            onClick={(event) => { 
-                                                event.stopPropagation(); 
+                                    <button onClick={(event) => { 
                                                 setEditingAlbumId(null); 
                                             }} 
                                             className={styles.buttonCancel}
