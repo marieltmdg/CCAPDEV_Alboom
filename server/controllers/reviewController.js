@@ -74,9 +74,31 @@ module.exports = {
     }),
 
     update: asyncHandler(async (req, res) => {
-        const { userID, albumID } = req.params
+        const review = await Review.find(req.params.id)
+            .populate("user_id")
+            .populate("review_id")
+        
+        const { user_id, album_id, title, review_text, rating } = req.body;
+        let picture = null;
 
-        // Update API Endpoint
+        if (req.files && req.files.picture) {
+            const photo = req.files.picture;
+            const uploadPath = "uploads/"+ user_id.toString();
+
+            fs.mkdirSync(uploadPath, { recursive: true });
+            
+            const photoPath = path.join(uploadPath, `${Date.now()}-${photo.name}`);
+            await photo.mv(photoPath);
+            picture = photoPath;
+        }
+
+        review.title = title
+        review.review_text = review_text
+        review.rating = rating
+        review.picture = picture
+        
+        review.save();
+        res.json(review);
     }),
 
     upvote: asyncHandler(async (req, res) => {
