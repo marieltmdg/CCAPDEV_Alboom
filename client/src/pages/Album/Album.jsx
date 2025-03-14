@@ -84,12 +84,9 @@ function Album() {
             <Header isAuth={true} />
             <Main>
                 <AlbumReview 
-                    AlbumTitle={album.title} 
-                    AlbumCover={album.cover} 
-                    AlbumRating={rating}  
-                    AlbumArtist={album.artist_id.artistname} 
-                    AlbumReleaseDate={album.release_date} 
-                    AlbumDescription={album.description}/>
+                    Album={album}
+                    Rating={rating}
+                />
                 <h1>Reviews</h1>
                 <div className={styles.searchContainer}>
                     <input onChange={(event) => handleSearch(event)} className={styles.search} type="search" size="1" placeholder="Search Reviews..." />
@@ -100,7 +97,7 @@ function Album() {
                 {
                     reviews && reviews.map(review => (
                         <ReviewCard 
-                            Key={review._id}
+                            key={review._id}
                             Album={album}
                             Review={review}
                             Delete={handleDelete}

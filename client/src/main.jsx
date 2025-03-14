@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         element: <Album />
     },
     {
-        path: "/album/:title/create",
+        path: "/album/:id/create",
         element: <CreateReview />
     },
     {
