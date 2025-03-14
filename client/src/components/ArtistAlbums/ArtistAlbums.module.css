@@ -59,11 +59,19 @@
 }
 
 .buttonContainer {
-    display: none;
+    display: flex;
     position: absolute;
-    top: 10px;
-    right: 10px;
-    gap: 10px;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 5px;
+}
+
+.buttonContainerEdit{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 5px;
 }
 
 .reviewItem:hover .buttonContainer {
@@ -79,7 +87,6 @@
     width: auto;
     padding: 10px;
     margin-left: 5px;
-    background-color: #FF8000;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -93,3 +100,74 @@
 .button:hover {
     background-color: #e67300;
 }
+
+.buttonEditing {
+    font: inherit;
+    text-align: center;
+    align-items: center;
+
+    height: auto;
+    width: auto;
+    padding: 10px;
+    margin-left: 5px;
+    background-color: #FF8000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    opacity: 0.9;
+    box-shadow: 0px 6px 12px 2px rgba(0, 0, 0, 0.85);
+}
+
+.buttonCancel {
+    font: inherit;
+    text-align: center;
+    align-items: center;
+
+    height: auto;
+    width: auto;
+    padding: 10px;
+    margin-left: 5px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    opacity: 0.9;
+    box-shadow: 0px 6px 12px 2px rgba(0, 0, 0, 0.85);
+    background-color: gray;
+}
+
+.buttonEditing:hover {
+    background-color: var(--primary-color);
+}
+
+.editForm {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%; /* Keep width consistent */
+    max-width: 400px; /* Optional: limit width to avoid overflow */
+    padding: 10px;
+    border: 1px solid #FF8000;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+}
+
+.descriptionEdit {
+    width: 100%; /* Keep it consistent with .editForm */
+    height: 120px; /* Adjust height for better usability */
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    background-color: var(--secondary-color);
+    box-sizing: border-box; /* Ensures padding and border are included in the size */
+}
+

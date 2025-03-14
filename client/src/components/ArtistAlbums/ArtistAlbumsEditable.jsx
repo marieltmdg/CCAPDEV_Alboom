@@ -1,81 +1,119 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import styles from "./ArtistAlbums.module.css";
 
-import skipp from "../../assets/albums/skipp.jpg";
-import chromakopia from "../../assets/albums/chromakopia.jpg";
-import flowerBoy from "../../assets/albums/flower-boy.jpg";
-import toPimpAButterfly from "../../assets/albums/to-pimp-a-butterfly.jpg";
+function ArtistAlbumsEditable({ Albums }) {
+    const [albumRatings, setAlbumRatings] = useState({});
+    const [editingAlbumId, setEditingAlbumId] = useState(null);
+    const [description, setDescription] = useState("");
 
-const mockAlbums = [
-    {
-        username: "tyler,-the-creator",
-        albums: [
-            {
-                title: 'Flower-Boy',
-                cover: flowerBoy,
-                ratings: [5, 5, 5]
-            },
-            {
-                title: 'CHROMAKOPIA',
-                cover: chromakopia,
-                ratings: [3, 3, 3]
-            }
-        ]
-    },
-    {
-        username: "doechii",
-        albums: [
-            {
-                title: 'Alligator Bites Never Heal',
-                cover: skipp,
-                ratings: [5, 5, 5]
-            }
-        ]
-    },
-    {
-        username: "kendrick-lamar",
-            albums: [
-                {
-                    title: 'To Pimp a Butterfly',
-                    cover: toPimpAButterfly,
-                    ratings: [5, 5, 5]
+    useEffect(() => {
+        const fetchRatings = async () => {
+            const ratings = {};
+            for (const album of Albums) {
+                try {
+                    const response = await axios.get(`/api/reviews/album/${album._id}`);
+                    const reviews = response.data;
+                    const averageRating = reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length;
+                    ratings[album._id] = averageRating.toFixed(0);
+                } catch (error) {
+                    console.error("Error fetching reviews:", error);
                 }
-            ]
-    }
-];
+            }
+            setAlbumRatings(ratings);
+        };
 
-function ArtistAlbums() {
-    const { username } = useParams(); 
+        if (Albums.length > 0) {
+            fetchRatings();
+        }
+    }, [Albums]);
 
-    const artistData = mockAlbums.find(entry => entry.username === username);
-    const albums = artistData ? artistData.albums : [];
+    const handleEditClick = (album, event) => {
+        event.stopPropagation();
+        setEditingAlbumId(album._id);
+        setDescription(album.description);
+    };
+
+    const handleSaveClick = async (albumId, event) => {
+        event.stopPropagation();
+        try {
+            const response = await axios.put(`http://localhost:3000/api/albums/${albumId}`, {
+                description,
+            });
+
+            if (response.status !== 200) {
+                throw new Error("Failed to update album");
+            }
+
+            setEditingAlbumId(null);
+            window.location.reload();
+        } catch (error) {
+            console.error("Error updating album:", error);
+        }
+    };
 
     return (
         <div className={styles.artistReviewContainer}>
-            {albums.map((album) => {
-                const averageRating = (album.ratings.reduce((a, b) => a + b, 0) / album.ratings.length).toFixed(1);
-                return (
-                    <Link to={"/album/" + album.title} key={album.title} className={styles.item}>
-                        <div className={styles.reviewItem}> 
+            {Albums && Albums.map((album) => (
+                <div key={album._id} className={styles.item}>
+                
+                    <div className={styles.reviewItem}>
+                        <Link to={"/album/" + album._id} className={styles.albumLink}>
                             <div className={styles.albumCover}>
-                                <img src={album.cover} alt={`${album.title} Cover`} className={styles.albumCover} />
-                                <div className={styles.buttonContainer}>
-                                <button className={styles.button}>Edit</button>
-                                <button className={styles.button}>Delete</button>
+                                 <img src={"http://localhost:3000/" + album.cover} alt={`${album.title} Cover`} className={styles.albumCover} />
                             </div>
-                            </div>
-                            <div className={styles.ratingContainer}>
-                                <span className={styles.boomText}>{averageRating} BOOMS</span>
-                            </div>
-                            
+                        </Link>
+                        <div className={styles.ratingContainer}>
+                            <span className={styles.boomText}>
+                                {albumRatings[album._id] === "-1" ? "No ratings" : `${albumRatings[album._id]} BOOMS`}
+                            </span>
                         </div>
-                    </Link>
-                );
-            })}
+            
+                        {editingAlbumId === album._id ? (
+                            <div className={styles.editForm}>
+                                <textarea className={styles.descriptionEdit}
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                />
+                                
+                                <div className={styles.buttonContainerEdit}>
+                                    <button 
+                                            onClick={(event) => { 
+                                                event.stopPropagation(); 
+                                                setEditingAlbumId(null); 
+                                            }} 
+                                            className={styles.buttonCancel}
+                                        >
+                                            Cancel
+                                    </button>
+                                    <button 
+                                        onClick={(event) => handleSaveClick(album._id, event)} 
+                                        className={styles.buttonEditing}
+                                    >
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className={styles.buttonContainer}>
+                                <button 
+                                    onClick={(event) => { 
+                                        event.stopPropagation(); 
+                                        handleEditClick(album, event); 
+                                    }} 
+                                    className={styles.button}
+                                >
+                                    Edit
+                                </button>
+                            </div>
+                        )}
+                    </div>
+            </div>
+            
+            ))}
         </div>
     );
 }
 
-export default ArtistAlbums;
+export default ArtistAlbumsEditable;

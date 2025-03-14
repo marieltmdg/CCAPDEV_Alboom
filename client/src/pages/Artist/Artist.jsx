@@ -10,6 +10,7 @@ import Main from "../../components/Main";
 import ArtistDetails from "../../components/Details/ArtistDetails.jsx";
 import ArtistDetailsEditable from "../../components/Details/ArtistDetailsEditable.jsx"; 
 import ArtistAlbums from "../../components/ArtistAlbums/ArtistAlbums.jsx";
+import ArtistAlbumsEditable from "../../components/ArtistAlbums/ArtistAlbumsEditable.jsx";
 
 function Artist() {
     const { artistname } = useParams()
@@ -65,7 +66,7 @@ function Artist() {
 
                     <div className={styles.centerContainer}>
                         <div className={styles.albumsContainer}>
-                            <ArtistAlbums artistname={artistname} Albums={album}/>
+                            <ArtistAlbumsEditable Albums={album}/>
                         </div>
                     </div>
                 </div>
