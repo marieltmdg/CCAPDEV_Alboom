@@ -4,7 +4,8 @@ const reviewModel = require("../models/reviewModel.js")
 
 module.exports = {
     create: asyncHandler(async (req, res) => {
-        // Create API Endpoint
+        const {title, review, file} = req.body
+        await reviewModel.insertOne({title: title, review_text: review, })
     }),
 
     read: asyncHandler(async (req, res) => {

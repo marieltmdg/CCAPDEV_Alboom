@@ -4,8 +4,7 @@ import Main from "../../components/Main.jsx";
 import logo from "../../assets/logo.png";
 import logoDark from "../../assets/logoDark.png";
 import back from '../../assets/back.svg';
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import AlbumInfo from "../../components/AlbumInfo/AlbumInfo.jsx";
 import styles from "./CreateReview.module.css";
 import axios from "axios";
@@ -19,59 +18,51 @@ function CreateReview() {
     const [formData, setFormData] = useState({
         title: '',
         review: '',
-        file: null, // Use null for file initially
+        file: null,
     });
 
     const { id } = useParams();
-    console.log("ID IS " + id);
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/albums/" + id)
+        axios.get(`http://localhost:3000/api/albums/${id}`)
             .then(albumResponse => setAlbum(albumResponse.data))
             .catch(err => console.error("Error fetching album:", err));
     }, [id]);
 
-    // Handle changes in input fields
     const handleChange = (event) => {
         const { name, value, files } = event.target;
-
-        // If the input is a file, use the first file in the files array
-        if (name === "file") {
-            setFormData({
-                ...formData,
-                [name]: files[0], // Store the file object
-            });
-        } else {
-            // For other inputs, update the state with the value
-            setFormData({
-                ...formData,
-                [name]: value,
-            });
-        }
+        setFormData(prev => ({
+            ...prev,
+            [name]: name === "file" ? files[0] : value,
+        }));
     };
 
-    // Handle form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Create a FormData object to send files and other data
-        const data = new FormData();
-        data.append("title", formData.title);
-        data.append("review", formData.review);
-        data.append("file", formData.file); // Append the file
+        setTimeout(async () => {
+            const data = new FormData();
+            data.append("title", formData.title);
+            data.append("review", formData.review);
+            data.append("file", formData.file);
+            data.append("rating", String(rating)); // Convert to string
 
-        try {
-            const response = await axios.post("http://localhost:3000/api/reviews/", data, {
-                headers: {
-                    "Content-Type": "multipart/form-data", // Required for file uploads
-                },
-            });
-            console.log("Review submitted successfully:", response.data);
-            alert("Review submitted successfully!");
-        } catch (error) {
-            console.error("Error submitting review:", error);
-            alert("An error occurred while submitting the review.");
-        }
+            for (let pair of data.entries()) {
+                console.log(`${pair[0]}: ${pair[1]}`);
+            }
+
+            try {
+                const response = await axios.post("http://localhost:3000/api/reviews/", data, {
+                    headers: { "Content-Type": "multipart/form-data" },
+                });
+                console.log("Review submitted:", response.data);
+                alert("Review submitted successfully!");
+                navigate(-1);
+            } catch (error) {
+                console.error("Error submitting review:", error);
+                alert("An error occurred while submitting the review.");
+            }
+        }, 0); // Small delay to ensure latest rating value
     };
 
     return (
@@ -81,53 +72,59 @@ function CreateReview() {
                 <div className={styles.mainContainer}>
                     <div className={styles.spacer}></div>
                     <div className={styles.bodyContainer}>
-                        <h2 className={styles.titleText}>Create a Review</h2>
-                        <div className={styles.splitContainer}>
-                            <AlbumInfo Album={album} />
-                            <div className={styles.reviewSection}>
-                                <input
-                                    type="text"
-                                    name="title"
-                                    className={styles.reviewTitle}
-                                    placeholder="Title of your review"
-                                    value={formData.title}
-                                    onChange={handleChange}
-                                />
-                                <textarea
-                                    name="review"
-                                    className={styles.reviewText}
-                                    placeholder="Write your review here..."
-                                    value={formData.review}
-                                    onChange={handleChange}
-                                />
-                                <label className={styles.uploadLabel}>
+                        <form onSubmit={handleSubmit} className={styles.reviewSection} style={{ width: "100%" }}>
+                            <h2 className={styles.titleText}>Create a Review</h2>
+                            <div className={styles.splitContainer}>
+                                <AlbumInfo Album={album} />
+                                <div className={styles.reviewSection}>
                                     <input
-                                        type="file"
-                                        name="file"
-                                        className={styles.uploadInput}
-                                        hidden
+                                        type="text"
+                                        name="title"
+                                        className={styles.reviewTitle}
+                                        placeholder="Title of your review"
+                                        value={formData.title}
                                         onChange={handleChange}
+                                        required
                                     />
-                                    Upload Files
-                                </label>
+                                    <textarea
+                                        name="review"
+                                        className={styles.reviewText}
+                                        placeholder="Write your review here..."
+                                        value={formData.review}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <label className={styles.uploadLabel}>
+                                        <input
+                                            type="file"
+                                            name="file"
+                                            className={styles.uploadInput}
+                                            hidden
+                                            onChange={handleChange}
+                                            accept="image/*"
+                                        />
+                                        Upload Files
+                                    </label>
+                                    {formData.file && <p className={styles.fileName}>{formData.file.name}</p>}
+                                </div>
                             </div>
-                        </div>
-                        <div className={styles.boomContainer}>
-                            {[1, 2, 3, 4, 5].map((boom) => (
-                                <img
-                                    key={boom}
-                                    src={hover >= boom || rating >= boom ? logo : logoDark}
-                                    alt={`${boom} Boom`}
-                                    className={styles.boom}
-                                    onClick={() => setRating(boom)}
-                                    onMouseEnter={() => setHover(boom)}
-                                    onMouseLeave={() => setHover(0)}
-                                />
-                            ))}
-                        </div>
-                        <button type="submit" className={styles.submitButton} onClick={handleSubmit}>
-                            Submit Review
-                        </button>
+                            <div className={styles.boomContainer}>
+                                {[1, 2, 3, 4, 5].map((boom) => (
+                                    <img
+                                        key={boom}
+                                        src={hover >= boom || rating >= boom ? logo : logoDark}
+                                        alt={`${boom} Boom`}
+                                        className={styles.boom}
+                                        onClick={() => setRating(boom)}
+                                        onMouseEnter={() => setHover(boom)}
+                                        onMouseLeave={() => setHover(0)}
+                                    />
+                                ))}
+                            </div>
+                            <button type="submit" className={styles.submitButton}>
+                                Submit Review
+                            </button>
+                        </form>
                     </div>
                     <div className={styles.backContainer}>
                         <button onClick={() => navigate(-1)} className={styles.backButton}>
