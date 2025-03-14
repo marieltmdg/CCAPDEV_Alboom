@@ -102,8 +102,8 @@ module.exports = {
     }),
 
     updateReply: asyncHandler(async (req, res) => {
-        const review = await Review.findById(req.params.reviewID)
-        review.replyText = req.body.replyText
+        const review = await Review.findById(req.params.id)
+        review.reply_text = req.body.replyText
         await review.save()
         res.json(review)
     }),

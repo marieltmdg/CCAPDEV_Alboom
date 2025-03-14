@@ -5,12 +5,13 @@ import defaultUserPhoto from '../../assets/users/UserPhoto2.jpg';
 import upvote from '../../assets/helpful.svg';
 import downvote from '../../assets/unhelpful.svg';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 let reply = "Bro, it's just music. Chill. But also… keep going. Damn, you sure you ain't off some psychedelics? Hope your neurons are doin’ alright tho. But nah, I appreciate it. That’s the kinda review that makes me wanna go back in the studio and get even weirder. Respect.";
 
 function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Upvote, Downvote }) {
-    const [showReplyForm, setShowReplyForm] = useState(false); // State to toggle reply form
-    const [replyText, setReplyText] = useState(''); // State to store reply text
+    const [showReplyForm, setShowReplyForm] = useState(false);
+    const [replyText, setReplyText] = useState('');
 
     // Toggle reply form visibility
     const handleReplyClick = () => {
@@ -20,11 +21,16 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Upvote,
     // Handle reply submission
     const handleReplySubmit = (event) => {
         event.preventDefault();
-        console.log("Reply submitted:", replyText); // Log the reply text
-        // Add your API call here to submit the reply
-        setReplyText(''); // Clear the textarea
-        setShowReplyForm(false); // Hide the form after submission
-    };
+        setTimeout(async () => {
+            console.log("Reply submitted:", replyText);
+            await axios.put("http://localhost:3000/api/reviews/updateReply/" + Review._id, {replyText: replyText}, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
+            setReplyText('');
+            setShowReplyForm(false);
+        }, 0);
+    }
+        
 
     return (
         <>
@@ -119,7 +125,6 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Upvote,
                                 </p>
                             </div>
                             <div className={styles.rightBottom}>
-                                {/* Additional actions can be added here */}
                             </div>
                         </div>
                     </div>

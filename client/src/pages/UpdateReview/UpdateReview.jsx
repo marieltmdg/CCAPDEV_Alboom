@@ -46,7 +46,7 @@ function UpdateReview() {
                 review: review.review_text,
                 picture: review.picture,
             });
-            setRating(review.rating); // Set the rating from the review
+            setRating(review.rating);
         }
     }, [review]);
 
@@ -86,7 +86,7 @@ function UpdateReview() {
                 console.error("Error submitting review:", error);
                 alert("An error occurred while submitting the review.");
             }
-        }, 0); // Small delay to ensure latest rating value
+        }, 0);
     };
 
     return review && (
