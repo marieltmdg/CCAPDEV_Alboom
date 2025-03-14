@@ -19,6 +19,7 @@ function Album() {
     const [reviews, setReviews] = useState(null) 
     const [originalReviews, setOriginalReviews] = useState(null)
     const [rating, setRating] = useState(0)
+    const [refresh, setRefresh] = useState(false)
 
     useEffect(() => {
         axios.get("http://localhost:3000/api/albums/" + id)
@@ -34,7 +35,11 @@ function Album() {
                 setRating(averageRating)
             })
             .catch(err => console.error("Error fetching reviews:", err))
-    }, [id])
+    }, [id, refresh])
+
+    const refreshReviews = () => {
+        setRefresh(!refresh);
+    }
 
     const handleDelete = async (reviewID) => {
         await axios.delete("http://localhost:3000/api/reviews/" + reviewID)
@@ -104,7 +109,8 @@ function Album() {
                             Upvote={handleUpvote}
                             Downvote={handleDownvote}
                             IsEdited={true} 
-                            IsReviewEditable={true}  
+                            IsReviewEditable={true}
+                            Refresh={refreshReviews}
                         />
                     ))
                 }

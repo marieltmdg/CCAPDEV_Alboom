@@ -7,9 +7,7 @@ import downvote from '../../assets/unhelpful.svg';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-let reply = "Bro, it's just music. Chill. But also… keep going. Damn, you sure you ain't off some psychedelics? Hope your neurons are doin’ alright tho. But nah, I appreciate it. That’s the kinda review that makes me wanna go back in the studio and get even weirder. Respect.";
-
-function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Upvote, Downvote }) {
+function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Upvote, Downvote, Refresh }) {
     const [showReplyForm, setShowReplyForm] = useState(false);
     const [replyText, setReplyText] = useState('');
 
@@ -28,6 +26,7 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Upvote,
             });
             setReplyText('');
             setShowReplyForm(false);
+            Refresh();
         }, 0);
     }
         
@@ -121,7 +120,7 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Upvote,
                             <div className={styles.rightMiddle}>
                                 <h3 className={styles.userReviewHeading}>Reply by {Album.artist_id.artistname}</h3>
                                 <p className={styles.userReviewText}>
-                                    {reply}
+                                    {Review.reply_text}
                                 </p>
                             </div>
                             <div className={styles.rightBottom}>
