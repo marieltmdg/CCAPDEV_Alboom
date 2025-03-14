@@ -8,11 +8,11 @@ reviewRouter.get("/", reviewController.read)
 reviewRouter.get("/user/:id", reviewController.readUserID)
 reviewRouter.get("/album/:id", reviewController.readAlbumID)
 
-reviewRouter.put("/user/:userID/album/:albumID", reviewController.update)
+reviewRouter.put("/:id", reviewController.update)
 
 reviewRouter.patch("/upvote/:reviewID", reviewController.upvote)
 reviewRouter.patch("/downvote/:reviewID", reviewController.downvote)
 
-reviewRouter.delete("/user/:userID/album/:albumID", reviewController.delete)
+reviewRouter.delete("/:id", reviewController.delete)
 
 module.exports = reviewRouter

@@ -12,7 +12,5 @@ const reviewSchema = new mongoose.Schema({
     reply_text: { type: String},
     date: { type: Date, default: Date.now }
 },);
-
-reviewSchema.index({user_id: 1, album_id: 1}, {unique: true})
   
 module.exports = mongoose.model('Review', reviewSchema)

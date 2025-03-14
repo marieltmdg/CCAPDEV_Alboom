@@ -85,9 +85,9 @@ module.exports = {
     }),
 
     delete: asyncHandler(async (req, res) => {
-        const { userID, albumID } = req.params
+        const { id } = req.params
 
-        await Review.findOneAndDelete({ user_id: userID, album_id: albumID })
+        await Review.findOneAndDelete({ _id: id })
 
         res.json({})
     }),
