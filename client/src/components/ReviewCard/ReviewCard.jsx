@@ -67,9 +67,9 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Upvote,
                                 <div className={styles.actionsContainer} onClick={() => Delete(Review._id)}>
                                     <h6>DELETE</h6>
                                 </div>
-                                <div className={styles.actionsContainer}>
-                                    <h6><Link to={`/album/` + Review._id + "/update"}>EDIT</Link></h6>
-                                </div>
+                                <Link to={`/album/` + Review._id + "/update"}><div className={styles.actionsContainer}>
+                                    <h6 className={styles.buttonText}>EDIT</h6>
+                                </div></Link>
                             </>
                         )}
                         {/* Reply Button */}
@@ -77,29 +77,6 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Upvote,
                             <h6>REPLY</h6>
                         </div>
                     </div>
-            <div className={styles.right}>
-                <div className={styles.rightTop}>
-                    <BoomMeter className={styles.boomMeter} Rating={Review.rating}/>
-                </div>
-                <div className={styles.rightMiddle}>
-                    <h3 className={styles.userReviewHeading}>{Review.title}</h3>
-                    {IsEdited && <p className={styles.isEdited}>Edited</p>}
-                    <p className={styles.userReviewText}>
-                        {Review.review_text}
-                    </p>
-                    {Review.picture && (<img src={"http://localhost:3000/" + Review.picture} className={styles.reviewImage}></img>)}
-                </div>
-                <div className={styles.rightBottom}>
-                    {IsReviewEditable && (
-                        <>
-                        <div className={styles.actionsContainer} onClick={() => Delete(Review._id)}>
-                        <h6>DELETE</h6>
-                        </div>
-                        <Link to={`/album/` + Review._id + "/update"}><div className={styles.actionsContainer}>
-                        <h6 className={styles.buttonText}>EDIT</h6>
-                        </div></Link>
-                        </>
-                    )}
                 </div>
 
                 {/* Reply Form */}
