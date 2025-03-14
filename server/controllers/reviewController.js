@@ -7,19 +7,16 @@ module.exports = {
         const { user_id, album_id, title, review_text, rating } = req.body;
 
         try {
-            const review = new Review({
-                user_id,
-                album_id,
-                title,
-                review_text,
-                rating,
+            const review = reviewModel.create({
+                title: title,
+                review_text: review_text,
+                rating: rating,
+                user_id: user_id,
+                album_id: album_id,
                 upvotes: 0,
-                downvotes: 0,
-                reply_text: "",
-            });
-
-            const createdReview = await review.save();
-            res.status(201).json(createdReview);
+                downvotes: 0
+            })
+            res.status(201).json(review);
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: "Server error" });

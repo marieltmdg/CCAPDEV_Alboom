@@ -43,13 +43,17 @@ function CreateReview() {
         setTimeout(async () => {
             const data = new FormData();
             data.append("title", formData.title);
-            data.append("review", formData.review);
-            data.append("file", formData.file);
+            data.append("review_text", formData.review);
             data.append("rating", String(rating)); // Convert to string
+            data.append("user_id", "67d44becf82f487eb21d9070")
+            data.append("album_id", album._id)
+        
+            console.log(data.get("title")); // Logs the value of "title"
+            console.log(data.get("review_text")); // Logs the value of "review_text"
+            console.log(data.get("rating")); // Logs the value of "rating"
+            console.log(data.get("user_id")); // Logs the value of "user_id"
+            console.log(data.get("album_id")); // Logs the value of "album_id"
 
-            for (let pair of data.entries()) {
-                console.log(`${pair[0]}: ${pair[1]}`);
-            }
 
             try {
                 const response = await axios.post("http://localhost:3000/api/reviews/", data, {
