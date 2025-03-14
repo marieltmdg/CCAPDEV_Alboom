@@ -87,7 +87,7 @@ module.exports = {
     delete: asyncHandler(async (req, res) => {
         const { id } = req.params
 
-        await Review.findOneAndDelete({ _id: id })
+        await Review.findByIdAndDelete(id);
 
         res.json({})
     }),
