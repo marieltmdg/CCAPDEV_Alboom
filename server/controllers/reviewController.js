@@ -41,7 +41,7 @@ module.exports = {
     }),
 
     read: asyncHandler(async (req, res) => {
-        const reviews = await reviewModel.find({})
+        const reviews = await Review.find({})
             .populate("user_id")
             .populate("review_id")
 
@@ -49,7 +49,7 @@ module.exports = {
     }),
 
     readUserID: asyncHandler(async (req, res) => {
-        const reviews = await reviewModel.find({ user_id: req.params.id })
+        const reviews = await Review.find({ user_id: req.params.id })
             .populate("user_id")
             .populate("album_id")
 
@@ -57,7 +57,7 @@ module.exports = {
     }),
 
     readAlbumID: asyncHandler(async (req, res) => {
-        const reviews = await reviewModel.find({ album_id: req.params.id })
+        const reviews = await Review.find({ album_id: req.params.id })
             .populate("user_id")
             .populate("album_id")
 
@@ -71,14 +71,14 @@ module.exports = {
     }),
 
     upvote: asyncHandler(async (req, res) => {
-        const review = await reviewModel.findById(req.params.reviewID)
+        const review = await Review.findById(req.params.reviewID)
         review.upvotes += 1
         await review.save()
         res.json(review)
     }),
 
     downvote: asyncHandler(async (req, res) => {
-        const review = await reviewModel.findById(req.params.reviewID)
+        const review = await Review.findById(req.params.reviewID)
         review.downvotes += 1
         await review.save()
         res.json(review)
@@ -87,7 +87,7 @@ module.exports = {
     delete: asyncHandler(async (req, res) => {
         const { userID, albumID } = req.params
 
-        await reviewModel.findOneAndDelete({ user_id: userID, album_id: albumID })
+        await Review.findOneAndDelete({ user_id: userID, album_id: albumID })
 
         res.json({})
     }),
