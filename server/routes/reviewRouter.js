@@ -5,6 +5,7 @@ const reviewController = require("../controllers/reviewController")
 reviewRouter.post("/", reviewController.create)
 
 reviewRouter.get("/", reviewController.read)
+reviewRouter.get("/:id", reviewController.readID)
 reviewRouter.get("/user/:id", reviewController.readUserID)
 reviewRouter.get("/album/:id", reviewController.readAlbumID)
 

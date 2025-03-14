@@ -48,6 +48,15 @@ module.exports = {
         res.json(reviews)
     }),
 
+    readID: asyncHandler(async (req, res) => {
+        const review = await Review.find(req.params.id)
+            .populate("user_id")
+            .populate("review_id")
+
+        res.json(review)
+    }),
+        
+
     readUserID: asyncHandler(async (req, res) => {
         const reviews = await Review.find({ user_id: req.params.id })
             .populate("user_id")
