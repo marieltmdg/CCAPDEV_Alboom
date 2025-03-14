@@ -40,7 +40,6 @@ function Album() {
         await axios.delete("http://localhost:3000/api/reviews/" + reviewID)
         setReviews(reviews.filter(review => review._id !== reviewID))
         setOriginalReviews(originalReviews.filter(review => review._id !== reviewID))
-        setRating()
     }
 
     const handleSearch = (event) => {
