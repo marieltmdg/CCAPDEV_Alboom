@@ -49,6 +49,11 @@ module.exports = {
         }
     }),
 
+    read: asyncHandler(async (req, res) => {
+        const user = await User.findById(req.params.id);
+        res.json(user);
+    }),
+
     readID: asyncHandler(async (req, res) => {
         try {
             const user = await User.findOne({ username: req.params.username });

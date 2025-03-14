@@ -74,7 +74,7 @@ module.exports = {
     }),
 
     update: asyncHandler(async (req, res) => {
-        const review = await Review.find(req.params.id)
+        const review = await Review.findById(req.params.id)
             .populate("user_id")
             .populate("album_id")
         

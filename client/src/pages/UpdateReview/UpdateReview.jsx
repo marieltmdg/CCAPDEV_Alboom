@@ -38,7 +38,7 @@ function UpdateReview() {
             .then(albumResponse => setAlbum(albumResponse.data))
             .catch(err => console.error("Error fetching album:", err));
 
-            axios.get(`http://localhost:3000/api/user/${review.user_id._id}`)
+            axios.get(`http://localhost:3000/api/user/read/${review.user_id._id}`)
             .then(userResponse => setUserData(userResponse.data))
             .catch(err => console.error("Error fetching user:", err));
             setFormData({
@@ -76,7 +76,7 @@ function UpdateReview() {
 
 
             try {
-                const response = await axios.put("http://localhost:3000/api/reviews/", data, {
+                const response = await axios.put("http://localhost:3000/api/reviews/" + id, data, {
                     headers: { "Content-Type": "multipart/form-data" },
                 });
                 console.log("Review submitted:", response.data);

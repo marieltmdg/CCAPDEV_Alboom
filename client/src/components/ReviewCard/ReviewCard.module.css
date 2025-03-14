@@ -201,6 +201,10 @@
     height: auto;
 }
 
+.buttonText {
+    color: var(--secondary-color);
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
