@@ -180,6 +180,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                                 review_text: "I absolutely LOVE this album! Every track is a masterpiece, and I can't get enough of it. The production, the lyrics, the vibe—it all comes together so perfectly. I've had it on repeat, and it just keeps getting better with every listen!",
                                 title: "A Timeless Classic",
                                 rating: 5,
+                                picture: null,
                                 upvotes: 0,
                                 downvotes: 0,
                                 reply_text: "Bro, it's just music. Chill. But also… keep going. Damn, you sure you ain't off some psychedelics? Hope your neurons are doin’ alright tho. But nah, I appreciate it. That’s the kinda review that makes me wanna go back in the studio and get even weirder. Respect.",
@@ -191,6 +192,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                                 review_text: "I LOVE THIS ALBUM (2)",
                                 title: "An Underrated Gem",
                                 rating: 3,
+                                picture: null,
                                 upvotes: 0,
                                 downvotes: 0,
                                 date: new Date("2023-12-20T15:45:00Z")
@@ -201,6 +203,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                                 review_text: "Banger album!",
                                 title: "Non-Stop Hits",
                                 rating: 5,
+                                picture: null,
                                 upvotes: 0,
                                 downvotes: 0,
                                 date: new Date("2024-01-05T08:20:00Z")
@@ -211,6 +214,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                                 review_text: "Incredible production!",
                                 title: "A Sonic Masterpiece",
                                 rating: 5,
+                                picture: null,
                                 upvotes: 0,
                                 downvotes: 0,
                                 date: new Date("2023-11-10T18:10:00Z")
@@ -221,6 +225,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                                 review_text: "This changed my life.",
                                 title: "Music That Speaks to the Soul",
                                 rating: 5,
+                                picture: null,
                                 upvotes: 0,
                                 downvotes: 0,
                                 date: new Date("2024-02-01T13:55:00Z")
@@ -231,6 +236,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                                 review_text: "Masterpiece of our generation.",
                                 title: "A Generation-Defining Album",
                                 rating: 5,
+                                picture: null,
                                 upvotes: 0,
                                 downvotes: 0,
                                 date: new Date("2023-09-25T09:40:00Z")
