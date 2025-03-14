@@ -48,7 +48,7 @@ function ReviewCard({Album, Review, IsEdited, IsReviewEditable, Delete, Upvote, 
                         <h6>DELETE</h6>
                         </div>
                         <div className={styles.actionsContainer}>
-                        <h6>EDIT</h6>
+                        <h6><Link to={`/album/` + Review._id + "/update"}>EDIT</Link></h6>
                         </div>
                         </>
                     )}

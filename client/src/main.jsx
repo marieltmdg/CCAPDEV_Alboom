@@ -10,6 +10,7 @@ import User from './pages/User/User.jsx'
 import Login from './pages/Login/Login.jsx'
 import Register from './pages/Register/Register.jsx'
 import CreateReview from './pages/CreateReview/CreateReview.jsx'
+import UpdateReview from './pages/UpdateReview/UpdateReview.jsx'
 import Artist from './pages/Artist/Artist.jsx'
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
     {
         path: "/album/:id/create",
         element: <CreateReview />
+    },
+    {
+        path: "/album/:id/update",
+        element: <UpdateReview />
     },
     {
         path: "/user/:username",
