@@ -73,6 +73,12 @@ module.exports = {
         res.json(reviews)    
     }),
 
+    readUserAlbumID: asyncHandler(async (req, res) => {
+        const { userId, albumId } = req.params;
+        const reviews = await Review.find({ user_id: userId, album_id: albumId });
+        res.status(200).json(reviews);
+    }),
+
     update: asyncHandler(async (req, res) => {
         const review = await Review.findById(req.params.id)
             .populate("user_id")

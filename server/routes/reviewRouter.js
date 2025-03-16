@@ -8,6 +8,7 @@ reviewRouter.get("/", reviewController.read)
 reviewRouter.get("/:id", reviewController.readID)
 reviewRouter.get("/user/:id", reviewController.readUserID)
 reviewRouter.get("/album/:id", reviewController.readAlbumID)
+reviewRouter.get("/user/:userId/album/:albumId", reviewController.readUserAlbumID);
 
 reviewRouter.put("/:id", reviewController.update)
 reviewRouter.put("/updateReply/:id", reviewController.updateReply)
