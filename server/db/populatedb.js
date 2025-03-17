@@ -4,6 +4,7 @@ const User = require("../models/userModel");
 const Artist = require("../models/artistModel");
 const Album = require("../models/albumModel");
 const Review = require("../models/reviewModel");
+const VoteTransaction = require("../models/voteTransactionModel");
 const path = require("path");
 
 const sampleUsers = [
