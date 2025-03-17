@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 
 function AlbumReview({Album, Rating}) {
     return(
-        <div className={styles.mainContainer}>
+        <>
+         <div className={styles.mainContainer}>
 
             <div className={styles.left}>
                 <h1 className={styles.albumTitle}>{Album.title}</h1>
@@ -19,7 +20,8 @@ function AlbumReview({Album, Rating}) {
                 </p>
                 <Link to={"/album/" + Album._id + "/create"}className={styles.albumReviewButton}>Review</Link>
             </div>
-    </div>
+        </div>
+        </>
     )
 }
 
