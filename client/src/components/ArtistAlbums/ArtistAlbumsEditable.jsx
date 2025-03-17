@@ -51,7 +51,6 @@ function ArtistAlbumsEditable({ Albums }) {
             }
 
             setEditingAlbumId(null);
-            window.location.reload();
         } catch (error) {
             console.error("Error updating album:", error);
         }
