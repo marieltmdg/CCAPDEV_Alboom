@@ -33,40 +33,60 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Upvote,
 
     return (
         <>
-            <div className={styles.mainContainer}>
-                <div className={styles.left}>
-                    <div className={styles.leftTop}>
-                        <Link to={`/user/` + Review.user_id.username}>
-                            <img className={styles.userPhoto} src={"http://localhost:3000/" + Review.user_id.picture} alt="User" />
-                        </Link>
+            <div className = {styles.mainContainer}>
+
+                {/*TOP*/}
+
+                <div className = {styles.top}>
+                    <div className = {styles.topLeft}>
+                        <div className = {styles.topLeft1}>
+                            <Link to={`/user/` + Review.user_id.username}>
+                                <img className = {styles.userPhoto} src={"http://localhost:3000/" + Review.user_id.picture} alt="User" />
+                            </Link>
+                        </div>
+
+                        <div className = {styles.topLeft2}>
+                            <h3 className={styles.userReviewHeading}>{Review.title}</h3>
+                            {IsEdited && <p className={styles.isEdited}>Edited</p>}
+                        </div>
                     </div>
-                    <div className={styles.leftBottom}>
-                        <div onClick={() => Upvote(Review._id)} className={styles.voteBox}>
-                            <img className={styles.votes} src={upvote} alt="Upvote" />
-                        </div>
-                        <p className={styles.voteCount}>{Review.upvotes}</p>
-                        <div onClick={() => Downvote(Review._id)} className={styles.voteBox}>
-                            <img className={styles.votes} src={downvote} alt="Downvote" />
-                        </div>
-                        <p className={styles.voteCount}>{Review.downvotes}</p>
+                    
+                    <div className = {styles.topRight}>
+                        <BoomMeter className={styles.boomMeter} Rating={Review.rating} />
                     </div>
                 </div>
 
-                <div className={styles.right}>
-                    <div className={styles.rightTop}>
-                        <BoomMeter className={styles.boomMeter} Rating={Review.rating} />
-                    </div>
-                    <div className={styles.rightMiddle}>
-                        <h3 className={styles.userReviewHeading}>{Review.title}</h3>
-                        {IsEdited && <p className={styles.isEdited}>Edited</p>}
-                        <p className={styles.userReviewText}>
-                            {Review.review_text}
-                        </p>
+                {/*MIDDLE*/}
+
+                <div className = {styles.middle}>
+                    <div className = {styles.middleMain}>
                         {Review.picture && (
                             <img src={"http://localhost:3000/" + Review.picture} className={styles.reviewImage} alt="Review" />
                         )}
+                        <p className={styles.userReviewText}>
+                            {Review.review_text}
+                        </p>
                     </div>
-                    <div className={styles.rightBottom}>
+                </div>
+
+                {/*BOTTOM*/}
+
+                <div className = {styles.bottom}>
+                    <div className = {styles.bottomLeft}>
+                        <div className = {styles.bottomLeftMain}>
+                            <div onClick={() => Upvote(Review._id)} className={styles.voteBox}>
+                                <img className={styles.votes} src={upvote} alt="Upvote" />
+                            </div>
+                            <p className={styles.voteCount}>{Review.upvotes}</p>
+                            <div onClick={() => Downvote(Review._id)} className={styles.voteBox}>
+                                <img className={styles.votes} src={downvote} alt="Downvote" />
+                            </div>
+                            <p className={styles.voteCount}>{Review.downvotes}</p>
+                        </div>
+                        <div className = {styles.filler80}></div>
+                    </div>
+
+                    <div className = {styles.bottomRight}>
                         {IsReviewEditable && (
                             <>
                                 <div className={styles.actionsContainer} onClick={() => Delete(Review._id)}>
@@ -84,8 +104,8 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Upvote,
                     </div>
                 </div>
 
-                {/* Reply Form */}
-                {showReplyForm && (
+                      {/* Reply Form */}
+                      {showReplyForm && (
                     <div className={styles.replyFormContainer}>
                         <form onSubmit={handleReplySubmit}>
                             <textarea
@@ -96,7 +116,7 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Upvote,
                                 required
                             />
                             <button type="submit" className={styles.submitButton}>
-                                Submit Reply
+                                <h6>SUBMIT</h6>
                             </button>
                         </form>
                     </div>
@@ -104,26 +124,40 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Upvote,
 
                 {Review.reply_text && (
                     <div className={styles.artistReplyContainer}>
-                        <div className={styles.left}>
-                            <div className={styles.leftTop}>
-                                <Link to={"/artist/" + Album.artist_id.artistname}>
-                                    <img className={styles.userPhoto} src={"http://localhost:3000/" + Album.artist_id.picture} alt="Artist" />
-                                </Link>
-                            </div>
-                            <div className={styles.leftBottom}></div>
-                        </div>
 
-                        <div className={styles.right}>
-                            <div className={styles.rightTop}>
+                        <div className = {styles.top}>
+                            <div className = {styles.topLeft}>
+                                <div className = {styles.topLeft1}>
+                                    <Link to={"/artist/" + Album.artist_id.artistname}>
+                                        <img className={styles.userPhoto} src={"http://localhost:3000/" + Album.artist_id.picture} alt="Artist" />
+                                    </Link>
+                                </div>
+                                <div className = {styles.topLeft2}>
+                                    <h3 className={styles.userReviewHeading}>Reply by {Album.artist_id.artistname}</h3>
+                                </div>
+                            </div>
+
+                            <div className = {styles.topRight}>
                                 <h5>ARTIST</h5>
                             </div>
-                            <div className={styles.rightMiddle}>
-                                <h3 className={styles.userReviewHeading}>Reply by {Album.artist_id.artistname}</h3>
-                                <p className={styles.userReviewText}>
-                                    {Review.reply_text}
-                                </p>
+                        </div>
+
+                        <div className = {styles.middle}>
+                                <div className = {styles.middleMain}>
+                                    <p className={styles.userReviewText}>
+                                        {Review.reply_text}
+                                    </p>
+                                </div>
+                        </div>
+
+                        <div className = {styles.bottom}>
+                            <div className = {styles.bottomLeft}>
+                                <div className = {styles.bottomLeftMain}>
+                                </div>
+                                <div className = {styles.filler80}></div>
                             </div>
-                            <div className={styles.rightBottom}>
+
+                            <div className = {styles.bottomRight}>
                             </div>
                         </div>
                     </div>
