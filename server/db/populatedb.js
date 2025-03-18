@@ -242,22 +242,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                             .then(() => Review.insertMany(sampleReviews))
                             .then(reviews => {
                                 console.log("Reviews inserted:", reviews.length);
-                                const reviewIds = reviews.map(review => review._id);
-
-                                const sampleVoteTransactions = [
-                                    { review_id: reviewIds[0], user_id: userIds[1], voteType: "upvote" },
-                                    { review_id: reviewIds[1], user_id: userIds[2], voteType: "downvote" },
-                                    { review_id: reviewIds[2], user_id: userIds[3], voteType: "upvote" },
-                                    { review_id: reviewIds[3], user_id: userIds[4], voteType: "downvote" },
-                                    { review_id: reviewIds[4], user_id: userIds[0], voteType: "upvote" },
-                                    { review_id: reviewIds[5], user_id: userIds[1], voteType: "downvote" }
-                                ];
-
+                                
                                 return VoteTransaction.deleteMany({})
-                                    .then(() => VoteTransaction.insertMany(sampleVoteTransactions))
-                                    .then(voteTransactions => {
-                                        console.log("Vote transactions inserted:", voteTransactions.length);
-                                    });
                             });
                     });
             });

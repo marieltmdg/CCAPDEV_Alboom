@@ -16,6 +16,8 @@ reviewRouter.put("/updateReply/:id", reviewController.updateReply)
 reviewRouter.patch("/upvote/:reviewID", reviewController.upvote)
 reviewRouter.patch("/downvote/:reviewID", reviewController.downvote)
 
+reviewRouter.get("/voteStatus/:reviewID/:userID", reviewController.checkVoteStatus)
+
 reviewRouter.delete("/:id", reviewController.delete)
 
 module.exports = reviewRouter

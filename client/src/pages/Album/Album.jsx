@@ -20,6 +20,9 @@ function Album() {
     const [originalReviews, setOriginalReviews] = useState(null)
     const [rating, setRating] = useState(0)
     const [refresh, setRefresh] = useState(false)
+    const [userData, setUserData] = useState(null)
+
+
 
     useEffect(() => {
         axios.get("http://localhost:3000/api/albums/" + id)
@@ -35,6 +38,12 @@ function Album() {
                 setRating(averageRating)
             })
             .catch(err => console.error("Error fetching reviews:", err))
+
+        axios.get(`http://localhost:3000/api/user/carlegendelosreyes`)
+        .then(userResponse => {
+            setUserData(userResponse.data);
+            return axios.get(`http://localhost:3000/api/reviews/user/${userResponse.data._id}/album/${id}`);
+        })
     }, [id, refresh])
 
     const refreshReviews = () => {
@@ -111,6 +120,7 @@ function Album() {
                             IsEdited={true} 
                             IsReviewEditable={true}
                             Refresh={refreshReviews}
+                            userID={userData?._id}
                         />
                     ))
                 }
