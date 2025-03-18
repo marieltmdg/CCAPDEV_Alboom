@@ -122,43 +122,72 @@ mongoose.connect("mongodb://127.0.0.1:27017/alboom")
                         cover: path.join("uploads", "Flower-Boy", "1741173920904-flowerboy.jpg"), 
                         artist_id: artistIds[2],
                         release_date: "July 21, 2017",
-                        description: "temp",
+                        description: "Flower Boy (alternatively titled Scum Fuck Flower Boy) is the fifth studio album by the American rapper and producer Tyler, the Creator, released on July 21, 2017, by Columbia Records. Produced entirely by Tyler, the album features guest vocals from a range of artists, including Frank Ocean, ASAP Rocky, Anna of the North, Lil Wayne, Kali Uchis, Steve Lacy, Estelle, Jaden Smith and Rex Orange County.",
                     },
                     { 
                         title: "IGOR", 
                         cover: path.join("uploads", "IGOR", "1741173920904-igor.jpg"),
                         artist_id: artistIds[2],
                         release_date: "May 17, 2019",
-                        description: "temp",
+                        description: "Igor is the sixth studio album by American rapper and producer Tyler, the Creator, released on May 17, 2019, through Columbia Records.",
                     },
                     { 
                         title: "Chromakopia", 
                         cover: path.join("uploads", "Chromakopia", "1741173920904-chromakopia.jpg"),
                         artist_id: artistIds[2],
                         release_date: "October 28, 2024",
-                        description: "temp",
+                        description: "Chromakopia is the eighth studio album by American rapper Tyler, the Creator. It was released through Columbia Records on October 28, 2024, serving as the follow-up to Call Me If You Get Lost (2021).",
                     },
                     { 
                         title: "Alligator Bites Never Heal", 
                         cover: path.join("uploads", "Alligator-Bites-Never-Heal", "1741173920904-alligatorbitesneverheal.jpg"),
                         artist_id: artistIds[1], 
                         release_date: "August 30, 2024",
-                        description: "temp",
+                        description: "rawr",
                     },
                     { 
                         title: "To Pimp A Butterfly", 
                         cover: path.join("uploads", "To-Pimp-A-Butterfly", "1741173920904-topimpabutterfly.jpg"),
                         artist_id: artistIds[0],
                         release_date: "March 15, 2015",
-                        description: "temp",
+                        description: "To Pimp a Butterfly is the third studio album by American rapper Kendrick Lamar.",
                     },
                     {
                         title: "Channel Orange",
                         cover: path.join("uploads", "Channel-Orange", "1741173920904-channelorange.jpg"),
                         artist_id: artistIds[3],
                         release_date: "July 10, 2012",
-                        description: "temp",
+                        description: "STREAM CHANNEL ORANGE!",
                     },
+                    {
+                        title: "When We All Fall Asleep, Where Do We Go?",
+                        cover: path.join("uploads", "When-We-Fall-Asleep", "1741173920904-whenweallfallasleepwheredowego.png"),
+                        artist_id: artistIds[4],
+                        release_date: "March 29, 2019",
+                        description: "So where do we go?",
+                    },
+                    {
+                        title: "Damn",
+                        cover: path.join("uploads", "Damn", "1741173920904-damn.png"),
+                        artist_id: artistIds[0],
+                        release_date: "April 14, 2017",
+                        description: "BE HUMBLE!",
+                    },
+                    {
+                        title: "Hit Me Hard And Soft",
+                        cover: path.join("uploads", "Hit-Me-Hard-And-Soft", "1741173920904-hitmehardandsoft.png"),
+                        artist_id: artistIds[4],
+                        release_date: "May 17, 2024",
+                        description: "Hit Me Hard and Soft is the third studio album by American singer-songwriter Billie Eilish, released on May 17, 2024, through Darkroom and Interscope Records.",
+                    },
+                    {
+                        title: "Oh The Places You'll Go",
+                        cover: path.join("uploads", "Oh-The-Places-Youll-Go", "1741173920904-ohtheplacesyoullgo.jpg"),
+                        artist_id: artistIds[1],
+                        release_date: "November 27, 2020",
+                        description: "Yucky Blucky Fruitcake!",
+                    }
+
                 ];
 
                 return Album.deleteMany({})
