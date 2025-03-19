@@ -14,7 +14,7 @@ function Header({ isAuth }) {
 
             </div>
             <div className={styles.end}>
-                { isAuth ? <Link to="/user/johndoe"><img src={avatar} className={styles.avatar} /></Link> : <Link to="/login" className={styles.login}>Login</Link> }
+                { isAuth ? <Link to="/user/carlegendelosreyes"><img src={avatar} className={styles.avatar} /></Link> : <Link to="/login" className={styles.login}>Login</Link> }
             </div>
     </header>
 }
