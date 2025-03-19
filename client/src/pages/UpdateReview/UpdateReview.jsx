@@ -97,7 +97,7 @@ function UpdateReview() {
                     <div className={styles.spacer}></div>
                     <div className={styles.bodyContainer}>
                         <form onSubmit={handleSubmit} className={styles.reviewSection} style={{ width: "100%" }}>
-                            <h2 className={styles.titleText}>Create a Review</h2>
+                            <h2 className={styles.titleText}>Updating a Review</h2>
                             <div className={styles.splitContainer}>
                                 <AlbumInfo Album={album} />
                                 <div className={styles.reviewSection}>
