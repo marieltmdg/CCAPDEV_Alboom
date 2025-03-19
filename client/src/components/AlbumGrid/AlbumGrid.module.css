@@ -1,19 +1,48 @@
 .container {
     padding: 16px;
+    display: -webkit-grid; 
     display: grid;
     gap: 16px;
-    grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
     overflow: hidden;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 300px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 600px) {
+    .container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
 
 .item {
-    aspect-ratio: 1 / 1;
-    height: 100%;
+    position: relative;
+    width: 100%;
+    padding-top: 100%; 
     opacity: 0;
     animation: fadeIn 0.6s ease-out forwards;
 }
 
 .cover {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     transition: 0.25s;
