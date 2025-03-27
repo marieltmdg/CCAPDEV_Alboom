@@ -1,28 +1,29 @@
-import Header from "../../components/Header/Header.jsx"
-import Main from "../../components/Main"
-import AlbumGrid from "../../components/AlbumGrid/AlbumGrid.jsx"
+import Header from "../../components/Header/Header.jsx";
+import Main from "../../components/Main";
+import AlbumGrid from "../../components/AlbumGrid/AlbumGrid.jsx";
 
-import alboom from '../../assets/alboom.png'
+import alboom from '../../assets/alboom.png';
 
-import styles from './Home.module.css'
-import Search from '../../components/Search/Search.jsx'
+import styles from './Home.module.css';
+import Search from '../../components/Search/Search.jsx';
 
-import axios from "axios"
-import { useEffect, useState } from "react"
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function Home() {
+    const [albums, setAlbums] = useState([]);
+    const [filteredAlbums, setFilteredAlbums] = useState([]);
 
-    const [albums, setAlbums] = useState([])
-    const [filteredAlbums, setFilteredAlbums] = useState([])
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/albums")
+        axios.get(`${apiBaseUrl}/albums`)
             .then(res => {
-                setAlbums(res.data); // Set the albums state
-                setFilteredAlbums(res.data); // Set the filteredAlbums state with the same data
+                setAlbums(res.data);
+                setFilteredAlbums(res.data); 
             })
             .catch(err => console.error("Error fetching albums:", err));
-    }, []);
+    }, [apiBaseUrl]);
 
     const handleSearch = (event) => {
         const searchTerm = event.target.value.toLowerCase();
@@ -36,18 +37,18 @@ function Home() {
         <>
             <Header isAuth={false} />
             <Main>
-                <img src={alboom} alt="album" className={styles.alboom}/>
+                <img src={alboom} alt="album" className={styles.alboom} />
 
                 <div className={styles.row}>
-                    <Search onSearch={handleSearch}/>
+                    <Search onSearch={handleSearch} />
                 </div>
 
                 <hr></hr>
                 
-                <AlbumGrid albums={filteredAlbums}/>
+                <AlbumGrid albums={filteredAlbums} />
             </Main>
         </>
-    )    
+    );
 }
 
-export default Home
+export default Home;

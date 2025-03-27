@@ -18,6 +18,9 @@ function ArtistDetailsEditable({ artistData }) {
         link: artistData?.link || ""
     });
 
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+    const staticBaseUrl = apiBaseUrl.replace('/api', ''); 
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -48,20 +51,18 @@ function ArtistDetailsEditable({ artistData }) {
                 formDataToSend.append("picture", photo);
             }
 
-            const response = await fetch(`http://localhost:3000/api/artist/${artistname}`, {
+            const response = await fetch(`${apiBaseUrl}/artist/${artistname}`, {
                 method: "PUT",
                 body: formDataToSend, 
             });
     
             if (!response.ok) {
-                throw new Error("Failed to update user");
+                throw new Error("Failed to update artist");
             }
 
             const updatedUser = await response.json();
             setUser(updatedUser);
             setIsEditing(false);
-            
-            window.location.reload();
         } catch (error) {
             console.error("Error updating artist:", error);
         }
@@ -78,7 +79,7 @@ function ArtistDetailsEditable({ artistData }) {
                         <label htmlFor="avatar" className={styles.avatar}>
                             <img 
                                 id="preview"
-                                src={formData.picturePreview || (artistData.picture ? `http://localhost:3000/${artistData.picture}` : avatar)} 
+                                src={formData.picturePreview || (artistData.picture ? `${staticBaseUrl}/${artistData.picture}` : avatar)} 
                                 className={styles.profilePictureImage} 
                                 alt="Avatar" 
                             />
@@ -122,7 +123,7 @@ function ArtistDetailsEditable({ artistData }) {
             ) : (
                 <div className={styles.details}>
                     <div className={styles.profilePictureContainer}>
-                        <img src={artistData.picture ? `http://localhost:3000/${artistData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
+                        <img src={artistData.picture ? `${staticBaseUrl}/${artistData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
                     </div>
                     <div className={styles.profileNameContainer}>
                         <span className={styles.profileName}>{user.artistname}</span>

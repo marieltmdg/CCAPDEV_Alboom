@@ -11,10 +11,13 @@ function UserReviews({ userData }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+    const staticBaseUrl = apiBaseUrl.replace('/api', '');
+
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const apiUrl = `/api/reviews/user/${userData._id}`;
+                const apiUrl = `${apiBaseUrl}/reviews/user/${userData._id}`;
                 console.log("Fetching user review data from:", apiUrl);
                 
                 const response = await axios.get(apiUrl);
@@ -37,7 +40,7 @@ function UserReviews({ userData }) {
         };
 
         fetchReviews();
-    }, [userData._id]);
+    }, [userData._id, apiBaseUrl]);
 
     useEffect(() => {
         const fetchAlbums = async () => {
@@ -50,7 +53,7 @@ function UserReviews({ userData }) {
                 for (const albumId of albumIds) {
                     if (!albumId || uniqueAlbums[albumId]) continue; 
     
-                    const response = await axios.get(`/api/albums/${albumId}`);
+                    const response = await axios.get(`${apiBaseUrl}/albums/${albumId}`);
                     uniqueAlbums[albumId] = response.data;
                 }
     
@@ -64,7 +67,7 @@ function UserReviews({ userData }) {
         if (userReviews.length > 0) {
             fetchAlbums();
         }
-    }, [userReviews]);
+    }, [userReviews, apiBaseUrl]);
     
 
     if (loading) {
@@ -89,7 +92,7 @@ function UserReviews({ userData }) {
                         <div className={styles.reviewItem}>
                             <div className={styles.albumCover}>
                                 <img 
-                                    src={album.cover ? `http://localhost:3000/${album.cover}` : avatar} 
+                                    src={album.cover ? `${staticBaseUrl}/${album.cover}` : avatar} 
                                     alt={`${album.title || "Album"} Cover`} 
                                     className={styles.albumCover} 
                                 />

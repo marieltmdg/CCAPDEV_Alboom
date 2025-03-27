@@ -13,23 +13,24 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
     const [hasVoted, setHasVoted] = useState(false);
     const [voteType, setVoteType] = useState(null);
 
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
+    // Ensure the staticBaseUrl removes '/api' for static files
+    const staticBaseUrl = apiBaseUrl.replace('/api', '');
+
     useEffect(() => {
         const checkUserVote = async () => {
             try {
-                console.log("Checking vote status for review:", Review._id);
-                console.log("User ID:", userID);
-                const response = await axios.get(`http://localhost:3000/api/reviews/voteStatus/${Review._id}/${userID}`);
+                const response = await axios.get(`${apiBaseUrl}/reviews/voteStatus/${Review._id}/${userID}`);
                 setHasVoted(response.data.hasVoted);
                 setVoteType(response.data.voteType);
-
-                console.log("Vote status:", response.data);
             } catch (error) {
                 console.error("Error checking vote status:", error);
             }
         };
 
         checkUserVote();
-    }, [Review._id, userID]);
+    }, [Review._id, userID, apiBaseUrl]);
 
     const handleReplyClick = () => {
         setShowReplyForm(!showReplyForm);
@@ -38,8 +39,7 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
     const handleReplySubmit = (event) => {
         event.preventDefault();
         setTimeout(async () => {
-            console.log("Reply submitted:", replyText);
-            await axios.put(`http://localhost:3000/api/reviews/updateReply/${Review._id}`, { replyText: replyText }, {
+            await axios.put(`${apiBaseUrl}/reviews/updateReply/${Review._id}`, { replyText: replyText }, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
             setReplyText('');
@@ -50,7 +50,7 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
 
     const handleUpvote = async () => {
         try {
-            const response = await axios.patch(`http://localhost:3000/api/reviews/upvote/${Review._id}`, { userID });
+            await axios.patch(`${apiBaseUrl}/reviews/upvote/${Review._id}`, { userID });
             Refresh();
             setHasVoted(true);
             setVoteType("upvote");
@@ -62,7 +62,7 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
 
     const handleDownvote = async () => {
         try {
-            const response = await axios.patch(`http://localhost:3000/api/reviews/downvote/${Review._id}`, { userID });
+            await axios.patch(`${apiBaseUrl}/reviews/downvote/${Review._id}`, { userID });
             Refresh();
             setHasVoted(true);
             setVoteType("downvote");
@@ -76,13 +76,16 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
         <>
             <div className={styles.mainContainer}>
 
-                {/*TOP*/}
-
+                {/* TOP */}
                 <div className={styles.top}>
                     <div className={styles.topLeft}>
                         <div className={styles.topLeft1}>
                             <Link to={`/user/` + Review.user_id.username}>
-                                <img className={styles.userPhoto} src={"http://localhost:3000/" + Review.user_id.picture} alt="User" />
+                                <img
+                                    className={styles.userPhoto}
+                                    src={Review.user_id.picture ? `${staticBaseUrl}/${Review.user_id.picture}` : defaultUserPhoto}
+                                    alt="User"
+                                />
                             </Link>
                         </div>
 
@@ -97,12 +100,15 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
                     </div>
                 </div>
 
-                {/*MIDDLE*/}
-
+                {/* MIDDLE */}
                 <div className={styles.middle}>
                     <div className={styles.middleMain}>
                         {Review.picture && (
-                            <img src={"http://localhost:3000/" + Review.picture} className={styles.reviewImage} alt="Review" />
+                            <img
+                                src={`${staticBaseUrl}/${Review.picture}`}
+                                className={styles.reviewImage}
+                                alt="Review"
+                            />
                         )}
                         <p className={styles.userReviewText}>
                             {Review.review_text}
@@ -110,16 +116,21 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
                     </div>
                 </div>
 
-                {/*BOTTOM*/}
-
+                {/* BOTTOM */}
                 <div className={styles.bottom}>
                     <div className={styles.bottomLeft}>
                         <div className={styles.bottomLeftMain}>
-                            <div onClick={voteType !== "upvote" ? handleUpvote : null} className={`${styles.voteBox} ${voteType === "upvote" ? styles.disabled : ''}`}>
+                            <div
+                                onClick={voteType !== "upvote" ? handleUpvote : null}
+                                className={`${styles.voteBox} ${voteType === "upvote" ? styles.disabled : ''}`}
+                            >
                                 <img className={styles.votes} src={upvote} alt="Upvote" />
                             </div>
                             <p className={styles.voteCount}>{Review.upvotes}</p>
-                            <div onClick={voteType !== "downvote" ? handleDownvote : null} className={`${styles.voteBox} ${voteType === "downvote" ? styles.disabled : ''}`}>
+                            <div
+                                onClick={voteType !== "downvote" ? handleDownvote : null}
+                                className={`${styles.voteBox} ${voteType === "downvote" ? styles.disabled : ''}`}
+                            >
                                 <img className={styles.votes} src={downvote} alt="Downvote" />
                             </div>
                             <p className={styles.voteCount}>{Review.downvotes}</p>
@@ -127,16 +138,17 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
                         <div className={styles.filler80}></div>
                     </div>
 
-
                     <div className={styles.bottomRight}>
                         {IsReviewEditable && (
                             <>
                                 <div className={styles.actionsContainer} onClick={() => Delete(Review._id)}>
                                     <h6>DELETE</h6>
                                 </div>
-                                <Link to={`/album/` + Review._id + "/update"}><div className={styles.actionsContainer}>
-                                    <h6 className={styles.buttonText}>EDIT</h6>
-                                </div></Link>
+                                <Link to={`/album/` + Review._id + "/update"}>
+                                    <div className={styles.actionsContainer}>
+                                        <h6 className={styles.buttonText}>EDIT</h6>
+                                    </div>
+                                </Link>
                             </>
                         )}
                         {/* Reply Button */}
@@ -166,12 +178,15 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
 
                 {Review.reply_text && (
                     <div className={styles.artistReplyContainer}>
-
                         <div className={styles.top}>
                             <div className={styles.topLeft}>
                                 <div className={styles.topLeft1}>
                                     <Link to={"/artist/" + Album.artist_id.artistname}>
-                                        <img className={styles.userPhoto} src={"http://localhost:3000/" + Album.artist_id.picture} alt="Artist" />
+                                        <img
+                                            className={styles.userPhoto}
+                                            src={`${staticBaseUrl}/${Album.artist_id.picture}`}
+                                            alt="Artist"
+                                        />
                                     </Link>
                                 </div>
                                 <div className={styles.topLeft2}>
@@ -189,17 +204,6 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
                                 <p className={styles.userReviewText}>
                                     {Review.reply_text}
                                 </p>
-                            </div>
-                        </div>
-
-                        <div className={styles.bottom}>
-                            <div className={styles.bottomLeft}>
-                                <div className={styles.bottomLeftMain}>
-                                </div>
-                                <div className={styles.filler80}></div>
-                            </div>
-
-                            <div className={styles.bottomRight}>
                             </div>
                         </div>
                     </div>

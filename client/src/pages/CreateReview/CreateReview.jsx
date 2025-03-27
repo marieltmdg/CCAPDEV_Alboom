@@ -24,16 +24,17 @@ function CreateReview() {
     const [hasReviewed, setHasReviewed] = useState(false);
 
     const { id } = useParams();
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/albums/${id}`)
+        axios.get(`${apiBaseUrl}/albums/${id}`)
             .then(albumResponse => setAlbum(albumResponse.data))
             .catch(err => console.error("Error fetching album:", err));
 
-        axios.get(`http://localhost:3000/api/user/carlegendelosreyes`)
+        axios.get(`${apiBaseUrl}/user/carlegendelosreyes`)
             .then(userResponse => {
                 setUserData(userResponse.data);
-                return axios.get(`http://localhost:3000/api/reviews/user/${userResponse.data._id}/album/${id}`);
+                return axios.get(`${apiBaseUrl}/reviews/user/${userResponse.data._id}/album/${id}`);
             })
             .then(reviewResponse => {
                 if (reviewResponse.data.length > 0) {
@@ -41,7 +42,7 @@ function CreateReview() {
                 }
             })
             .catch(err => console.error("Error fetching user or reviews:", err));
-    }, [id]);
+    }, [id, apiBaseUrl]);
 
     const handleChange = (event) => {
         const { name, value, files } = event.target;
@@ -65,17 +66,9 @@ function CreateReview() {
             if (formData.picture) {
                 data.append("picture", formData.picture);
             }
-        
-            console.log(data.get("title")); // Logs the value of "title"
-            console.log(data.get("review_text")); // Logs the value of "review_text"
-            console.log(data.get("rating")); // Logs the value of "rating"
-            console.log(data.get("user_id")); // Logs the value of "user_id"
-            console.log(data.get("album_id")); // Logs the value of "album_id"
-            console.log(data.get("picture")); // Logs the value of "photo"
-
 
             try {
-                const response = await axios.post("http://localhost:3000/api/reviews/", data, {
+                const response = await axios.post(`${apiBaseUrl}/reviews/`, data, {
                     headers: { "Content-Type": "multipart/form-data" },
                 });
                 console.log("Review submitted:", response.data);
