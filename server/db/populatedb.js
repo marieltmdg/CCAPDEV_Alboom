@@ -6,6 +6,8 @@ const Album = require("../models/albumModel");
 const Review = require("../models/reviewModel");
 const VoteTransaction = require("../models/voteTransactionModel");
 const path = require("path");
+const dotenv = require("dotenv");
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 const sampleUsers = [
     { 
@@ -103,7 +105,9 @@ const sampleArtists = [
     },
 ];
 
-mongoose.connect("mongodb://127.0.0.1:27017/alboom")
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log("MongoDB connected"))
+    .catch(err => console.error("MongoDB connection error:", err))
     .then(() => User.deleteMany({}))
     .then(() => User.insertMany(sampleUsers))
     .then(users => {
