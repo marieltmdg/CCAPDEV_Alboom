@@ -12,7 +12,7 @@ const app = express();
 
 connectDB();
 
-const allowedOrigins = ["http://localhost:5173", "https://ccapdev-alboom.onrender.com"];
+const allowedOrigins = ["http://localhost:5173", "https://alboom.onrender.com"];
 app.use(cors({
     origin: (origin, callback) => {
         if (!origin || allowedOrigins.includes(origin)) {
