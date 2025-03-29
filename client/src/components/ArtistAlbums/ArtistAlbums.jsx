@@ -7,7 +7,7 @@ function ArtistAlbums({ Albums }) {
     const [albumRatings, setAlbumRatings] = useState({});
 
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-    const staticBaseUrl = apiBaseUrl.replace('api', ''); 
+    const staticBaseUrl = apiBaseUrl.replace('/api', ''); 
 
     useEffect(() => {
         const fetchRatings = async () => {

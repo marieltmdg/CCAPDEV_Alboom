@@ -16,7 +16,7 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
     // Ensure the staticBaseUrl removes '/api' for static files
-    const staticBaseUrl = apiBaseUrl.replace('api', '');
+    const staticBaseUrl = apiBaseUrl.replace('/api', '');
 
     useEffect(() => {
         const checkUserVote = async () => {

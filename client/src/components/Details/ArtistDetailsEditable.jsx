@@ -19,7 +19,7 @@ function ArtistDetailsEditable({ artistData }) {
     });
 
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-    const staticBaseUrl = apiBaseUrl.replace('api', ''); 
+    const staticBaseUrl = apiBaseUrl.replace('/api', ''); 
 
     const handleChange = (e) => {
         const { name, value } = e.target;

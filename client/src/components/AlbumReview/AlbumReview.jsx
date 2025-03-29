@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function AlbumReview({ Album, Rating }) {
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-    const staticBaseUrl = apiBaseUrl.replace('api', ''); // Remove '/api' for static files
+    const staticBaseUrl = apiBaseUrl.replace('/api', ''); // Remove '/api' for static files
 
     return (
         <>

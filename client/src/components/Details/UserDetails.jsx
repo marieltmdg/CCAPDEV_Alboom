@@ -6,7 +6,7 @@ import linkIcon from "../../assets/link.png";
 
 function UserDetails({ userData }) {
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-    const staticBaseUrl = apiBaseUrl.replace('api', ''); // Remove '/api' for static files
+    const staticBaseUrl = apiBaseUrl.replace('/api', ''); // Remove '/api' for static files
 
     if (!userData) {
         return <div>Loading...</div>;

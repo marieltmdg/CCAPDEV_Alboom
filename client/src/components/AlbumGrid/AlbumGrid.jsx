@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function AlbumGrid({ albums }) {
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-    const staticBaseUrl = apiBaseUrl.replace('api', '');
+    const staticBaseUrl = apiBaseUrl.replace('/api', '');
     
     return (
         <div className={styles.container}>
