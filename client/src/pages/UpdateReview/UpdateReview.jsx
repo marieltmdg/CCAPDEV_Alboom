@@ -21,26 +21,29 @@ function UpdateReview() {
         picture: null,
     });
     const [userData, setUserData] = useState(null);
-    const [review, setReview] = useState(null)
+    const [review, setReview] = useState(null);
 
     const { id } = useParams();
 
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/reviews/${id}`)
+        const apiUrl = `${apiBaseUrl}/reviews/${id}`;
+        axios.get(apiUrl)
             .then(reviewResponse => setReview(reviewResponse.data))
-            .then(console.log(review))
             .catch(err => console.error("Error fetching review:", err));
-    }, [id]);
+    }, [id, apiBaseUrl]);
 
     useEffect(() => {
         if (review) {
-            axios.get(`http://localhost:3000/api/albums/${review.album_id._id}`)
-            .then(albumResponse => setAlbum(albumResponse.data))
-            .catch(err => console.error("Error fetching album:", err));
+            axios.get(`${apiBaseUrl}/albums/${review.album_id._id}`)
+                .then(albumResponse => setAlbum(albumResponse.data))
+                .catch(err => console.error("Error fetching album:", err));
 
-            axios.get(`http://localhost:3000/api/user/read/${review.user_id._id}`)
-            .then(userResponse => setUserData(userResponse.data))
-            .catch(err => console.error("Error fetching user:", err));
+            axios.get(`${apiBaseUrl}/user/read/${review.user_id._id}`)
+                .then(userResponse => setUserData(userResponse.data))
+                .catch(err => console.error("Error fetching user:", err));
+
             setFormData({
                 title: review.title,
                 review: review.review_text,
@@ -48,7 +51,7 @@ function UpdateReview() {
             });
             setRating(review.rating);
         }
-    }, [review]);
+    }, [review, apiBaseUrl]);
 
     const handleChange = (event) => {
         const { name, value, files } = event.target;
@@ -60,7 +63,6 @@ function UpdateReview() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
 
         setTimeout(async () => {
             const data = new FormData();
@@ -74,9 +76,8 @@ function UpdateReview() {
                 data.append("picture", formData.picture);
             }
 
-
             try {
-                const response = await axios.put("http://localhost:3000/api/reviews/" + id, data, {
+                const response = await axios.put(`${apiBaseUrl}/reviews/${id}`, data, {
                     headers: { "Content-Type": "multipart/form-data" },
                 });
                 console.log("Review submitted:", response.data);

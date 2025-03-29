@@ -13,46 +13,48 @@ import ArtistAlbums from "../../components/ArtistAlbums/ArtistAlbums.jsx";
 import ArtistAlbumsEditable from "../../components/ArtistAlbums/ArtistAlbumsEditable.jsx";
 
 function Artist() {
-    const { artistname } = useParams()
-    const [artistData, setArtistData] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
-    const [album, setAlbum] = useState(null)
-    
+    const { artistname } = useParams();
+    const [artistData, setArtistData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [album, setAlbum] = useState(null);
+
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
     useEffect(() => {
         const fetchArtistData = async () => {
             try {
-                const apiUrl = `/api/artist/${artistname}`
-                const artistResponse = await axios.get(apiUrl)
-                setArtistData(artistResponse.data)
+                const apiUrl = `${apiBaseUrl}/artist/${artistname}`;
+                const artistResponse = await axios.get(apiUrl);
+                setArtistData(artistResponse.data);
 
-                const albumResponse = await axios.get("http://localhost:3000/api/albums")
+                const albumResponse = await axios.get(`${apiBaseUrl}/albums`);
 
                 const filteredAlbums = albumResponse.data.filter(album => 
                     album.artist_id === artistResponse.data._id
-                )
-                setAlbum(filteredAlbums)
+                );
+                setAlbum(filteredAlbums);
             } catch (err) {
-                console.error("Error fetching artist:", err.response ? err.response.data : err.message)
-                setError(err.message)
+                console.error("Error fetching artist:", err.response ? err.response.data : err.message);
+                setError(err.message);
             } finally {
-                setLoading(false)
+                setLoading(false);
             }
         };
 
-        fetchArtistData()
-    }, [artistname])
+        fetchArtistData();
+    }, [artistname, apiBaseUrl]);
 
     useEffect(() => {
-        console.log("Updated artistData state:", artistData)
-    }, [artistData])
+        console.log("Updated artistData state:", artistData);
+    }, [artistData]);
 
     if (loading) {
-        return <div>Loading...</div>
+        return <div>Loading...</div>;
     }
 
     if (error) {
-        return <div>Error: {error}</div>
+        return <div>Error: {error}</div>;
     }
 
     return (
@@ -72,7 +74,7 @@ function Artist() {
                 </div>
             </Main>
         </>
-    )
+    );
 }
 
-export default Artist
+export default Artist;
