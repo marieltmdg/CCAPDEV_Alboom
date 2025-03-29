@@ -6,7 +6,7 @@ import linkIcon from "../../assets/link.png";
 
 function ArtistDetails({ artistData }) {
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-    const staticBaseUrl = apiBaseUrl.replace('/api', '');
+    const staticBaseUrl = apiBaseUrl.replace('api', '');
 
     if (!artistData) {
         return <div>Loading...</div>;

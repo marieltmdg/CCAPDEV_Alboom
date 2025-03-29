@@ -15,7 +15,7 @@ function UserLatestReview({ userData }) {
     const [error, setError] = useState(null);
 
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-    const staticBaseUrl = apiBaseUrl.replace('/api', '');
+    const staticBaseUrl = apiBaseUrl.replace('api', '');
 
     useEffect(() => {
         const fetchReviews = async () => {
