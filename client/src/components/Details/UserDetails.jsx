@@ -4,7 +4,9 @@ import avatar from "../../assets/avatar.png";
 import pin from "../../assets/pin.png";
 import linkIcon from "../../assets/link.png";
 
-function UserDetails({  userData }) {
+function UserDetails({ userData }) {
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
     if (!userData) {
         return <div>Loading...</div>;
     }
@@ -12,7 +14,7 @@ function UserDetails({  userData }) {
     return (
         <div className={styles.userProfileContainer}>
             <div className={styles.profilePictureContainer}>
-                <img src={userData.picture ? `http://localhost:3000/${userData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
+                <img src={userData.picture ? `${apiBaseUrl}${userData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
             </div>
 
             <div className={styles.profileNameContainer}>

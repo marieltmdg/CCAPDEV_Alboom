@@ -12,25 +12,26 @@ function UserLatestReview({ userData }) {
     const [album, setAlbum] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    
+
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const apiUrl = `/api/reviews/user/${userData._id}`;
+                const apiUrl = `${apiBaseUrl}/reviews/user/${userData._id}`;
                 console.log("Fetching user review data from:", apiUrl);
-                
+
                 const response = await axios.get(apiUrl);
                 const reviews = response.data;
-    
+
                 console.log("Review data:", reviews);
-    
+
                 if (reviews.length > 0) {
                     const sortedRev = reviews.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
                     setUserReview(sortedRev);
                 } else {
                     setUserReview(null);
                 }
-    
             } catch (err) {
                 console.error("Error fetching user:", err.response ? err.response.data : err.message);
                 setError(err.message);
@@ -38,45 +39,43 @@ function UserLatestReview({ userData }) {
                 setLoading(false);
             }
         };
-    
+
         fetchReviews();
-    }, [userData._id]);  
+    }, [userData._id, apiBaseUrl]);
 
     useEffect(() => {
         console.log("Updated userReview:", userReview);
     }, [userReview]);
-    
-    
+
     useEffect(() => {
         const fetchAlbum = async () => {
-            if (!userReview || !userReview.album_id) return; 
-    
+            if (!userReview || !userReview.album_id) return;
+
             try {
                 const albumId = userReview.album_id?._id || userReview.album_id;
                 console.log("Extracted albumId:", albumId);
-                
-                const apiUrl2 = `/api/albums/${albumId}`;
+
+                const apiUrl2 = `${apiBaseUrl}/albums/${albumId}`;
                 console.log("Fetching album data from:", apiUrl2);
-                
+
                 const response = await axios.get(apiUrl2);
-    
+
                 if (!response.data) {
                     setAlbum(null);
                 } else {
                     setAlbum(response.data);
                 }
-    
             } catch (err) {
                 console.error("Error fetching album:", err.response ? err.response.data : err.message);
                 setError(err.message);
             }
         };
-    
+
         if (userReview) {
             fetchAlbum();
         }
-    }, [userReview]); 
-    
+    }, [userReview, apiBaseUrl]);
+
     console.log("User review:", userReview);
     console.log("Album:", album);
 
@@ -95,7 +94,7 @@ function UserLatestReview({ userData }) {
 
             <div className={styles.albumCover}>
                 <Link to={"/album/" + album._id} key={album.title}>
-                    <img src={album.cover ? `http://localhost:3000/${album.cover}` : avatar} alt={album.title} className={styles.albumCover} />
+                    <img src={album.cover ? `${apiBaseUrl}${album.cover}` : avatar} alt={album.title} className={styles.albumCover} />
                 </Link>
             </div>
 
@@ -120,13 +119,10 @@ function UserLatestReview({ userData }) {
                 )}
             </div>
 
-            
             <div className={styles.boomContainer}>
                 <BoomMeter Rating={userReview.rating} />
             </div>
-
         </div>
-        
     );
 }
 

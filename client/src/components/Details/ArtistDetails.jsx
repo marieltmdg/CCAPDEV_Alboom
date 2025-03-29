@@ -5,6 +5,8 @@ import pin from "../../assets/pin.png";
 import linkIcon from "../../assets/link.png";
 
 function ArtistDetails({ artistData }) {
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
     if (!artistData) {
         return <div>Loading...</div>;
     }
@@ -12,7 +14,7 @@ function ArtistDetails({ artistData }) {
     return (
         <div className={styles.userProfileContainer}>
             <div className={styles.profilePictureContainer}>
-                <img src={artistData.picture ? `http://localhost:3000/${artistData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
+                <img src={artistData.picture ? `${apiBaseUrl}${artistData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
             </div>
 
             <div className={styles.profileNameContainer}>

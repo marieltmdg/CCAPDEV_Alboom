@@ -7,8 +7,8 @@ import { useParams } from "react-router-dom";
 
 import upload from '../../assets/upload.svg';
 
-function UserDetailsEditable({ userData}) {
-    const {username} = useParams();
+function UserDetailsEditable({ userData }) {
+    const { username } = useParams();
     const [user, setUser] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [photo, setPhoto] = useState(null);
@@ -17,6 +17,8 @@ function UserDetailsEditable({ userData}) {
         country: userData?.country || "",
         link: userData?.link || ""
     });
+
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -48,7 +50,7 @@ function UserDetailsEditable({ userData}) {
                 formDataToSend.append("picture", photo);
             }
     
-            const response = await fetch(`http://localhost:3000/api/user/${username}`, {
+            const response = await fetch(`${apiBaseUrl}/user/${username}`, {
                 method: "PUT",
                 body: formDataToSend, 
             });
@@ -78,7 +80,7 @@ function UserDetailsEditable({ userData}) {
                         <label htmlFor="avatar" className={styles.avatar}>
                             <img 
                                 id="preview"
-                                src={formData.picturePreview || (userData.picture ? `http://localhost:3000/${userData.picture}` : avatar)} 
+                                src={formData.picturePreview || (userData.picture ? `${apiBaseUrl}${userData.picture}` : avatar)} 
                                 className={styles.profilePictureImage} 
                                 alt="Avatar" 
                             />
@@ -123,7 +125,7 @@ function UserDetailsEditable({ userData}) {
             ) : (
                 <div className={styles.userProfileContainer}>
                     <div className={styles.profilePictureContainer}>
-                        <img src={userData.picture ? `http://localhost:3000/${userData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
+                        <img src={userData.picture ? `${apiBaseUrl}${userData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
                     </div>
         
                     <div className={styles.profileNameContainer}>
