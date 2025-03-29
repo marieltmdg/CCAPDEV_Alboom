@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 
 function AlbumGrid({ albums }) {
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-
+    const staticBaseUrl = apiBaseUrl.replace('/api', '');
+    
     return (
         <div className={styles.container}>
             {albums.map(album => (
                 <Link to={"/album/" + album._id} key={album._id} className={styles.item}>
-                    <img src={`${apiBaseUrl}${album.cover}`} alt="" className={styles.cover} />
+                    <img src={`${staticBaseUrl}${album.cover}`} alt="" className={styles.cover} />
                 </Link>
             ))}
         </div>

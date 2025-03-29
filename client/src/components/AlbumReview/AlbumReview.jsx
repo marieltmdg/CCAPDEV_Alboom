@@ -3,14 +3,21 @@ import { Link } from 'react-router-dom';
 
 function AlbumReview({ Album, Rating }) {
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+    const staticBaseUrl = apiBaseUrl.replace('/api', ''); // Remove '/api' for static files
 
     return (
         <>
             <div className={styles.mainContainer}>
                 <div className={styles.left}>
                     <h1 className={styles.albumTitle}>{Album.title}</h1>
-                    <img src={`${apiBaseUrl}${Album.cover}`} className={styles.albumCover} alt={Album.title}></img>
-                    <h1 className={styles.albumRating}>{Rating.toFixed(2)} BOOMS</h1>
+                    <img 
+                        src={`${staticBaseUrl}/${Album.cover}`} 
+                        className={styles.albumCover} 
+                        alt={Album.title}
+                    />
+                    <h1 className={styles.albumRating}>
+                        {Rating === -1 ? "No reviews" : `${Rating.toFixed(2)} BOOMS`}
+                    </h1>
                 </div>
 
                 <div className={styles.right}>

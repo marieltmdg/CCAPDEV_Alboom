@@ -9,6 +9,7 @@ function ArtistAlbumsEditable({ Albums }) {
     const [description, setDescription] = useState("");
 
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+    const staticBaseUrl = apiBaseUrl.replace('/api', ''); 
 
     useEffect(() => {
         const fetchRatings = async () => {
@@ -18,11 +19,7 @@ function ArtistAlbumsEditable({ Albums }) {
                     const response = await axios.get(`${apiBaseUrl}/reviews/album/${album._id}`);
                     const reviews = response.data;
                     const averageRating = reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length;
-                    if (isNaN(averageRating)) {
-                        ratings[album._id] = "-1";
-                        continue;
-                    }
-                    ratings[album._id] = averageRating.toFixed(2);
+                    ratings[album._id] = isNaN(averageRating) ? "-1" : averageRating.toFixed(2);
                 } catch (error) {
                     console.error("Error fetching reviews:", error);
                 }
@@ -65,7 +62,11 @@ function ArtistAlbumsEditable({ Albums }) {
                     <div className={styles.reviewItem}>
                         <Link to={`/album/${album._id}`} className={styles.albumLink}>
                             <div className={styles.albumCover}>
-                                <img src={`${apiBaseUrl}${album.cover}`} alt={`${album.title} Cover`} className={styles.albumCover} />
+                                <img
+                                    src={`${staticBaseUrl}/${album.cover}`}
+                                    alt={`${album.title} Cover`}
+                                    className={styles.albumCover}
+                                />
                             </div>
                         </Link>
                         <div className={styles.ratingContainer}>
@@ -76,21 +77,23 @@ function ArtistAlbumsEditable({ Albums }) {
 
                         {editingAlbumId === album._id ? (
                             <div className={styles.editForm}>
-                                <textarea className={styles.descriptionEdit}
+                                <textarea
+                                    className={styles.descriptionEdit}
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
                                 
                                 <div className={styles.buttonContainerEdit}>
-                                    <button onClick={(event) => { 
-                                                setEditingAlbumId(null); 
-                                            }} 
-                                            className={styles.buttonCancel}
-                                        >
-                                            Cancel
+                                    <button
+                                        onClick={(event) => {
+                                            setEditingAlbumId(null);
+                                        }}
+                                        className={styles.buttonCancel}
+                                    >
+                                        Cancel
                                     </button>
-                                    <button 
-                                        onClick={(event) => handleSaveClick(album._id, event)} 
+                                    <button
+                                        onClick={(event) => handleSaveClick(album._id, event)}
                                         className={styles.buttonEditing}
                                     >
                                         Save
@@ -99,11 +102,11 @@ function ArtistAlbumsEditable({ Albums }) {
                             </div>
                         ) : (
                             <div className={styles.buttonContainer}>
-                                <button 
-                                    onClick={(event) => { 
-                                        event.stopPropagation(); 
-                                        handleEditClick(album, event); 
-                                    }} 
+                                <button
+                                    onClick={(event) => {
+                                        event.stopPropagation();
+                                        handleEditClick(album, event);
+                                    }}
                                     className={styles.button}
                                 >
                                     Edit

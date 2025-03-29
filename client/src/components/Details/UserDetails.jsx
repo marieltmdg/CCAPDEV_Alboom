@@ -6,6 +6,7 @@ import linkIcon from "../../assets/link.png";
 
 function UserDetails({ userData }) {
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+    const staticBaseUrl = apiBaseUrl.replace('/api', ''); // Remove '/api' for static files
 
     if (!userData) {
         return <div>Loading...</div>;
@@ -14,7 +15,11 @@ function UserDetails({ userData }) {
     return (
         <div className={styles.userProfileContainer}>
             <div className={styles.profilePictureContainer}>
-                <img src={userData.picture ? `${apiBaseUrl}${userData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
+                <img
+                    src={userData.picture ? `${staticBaseUrl}/${userData.picture}` : avatar}
+                    className={styles.profilePictureImage}
+                    alt="Profile Picture"
+                />
             </div>
 
             <div className={styles.profileNameContainer}>

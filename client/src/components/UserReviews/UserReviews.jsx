@@ -12,6 +12,7 @@ function UserReviews({ userData }) {
     const [error, setError] = useState(null);
 
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+    const staticBaseUrl = apiBaseUrl.replace('/api', '');
 
     useEffect(() => {
         const fetchReviews = async () => {
@@ -91,7 +92,7 @@ function UserReviews({ userData }) {
                         <div className={styles.reviewItem}>
                             <div className={styles.albumCover}>
                                 <img 
-                                    src={album.cover ? `${apiBaseUrl}${album.cover}` : avatar} 
+                                    src={album.cover ? `${staticBaseUrl}/${album.cover}` : avatar} 
                                     alt={`${album.title || "Album"} Cover`} 
                                     className={styles.albumCover} 
                                 />

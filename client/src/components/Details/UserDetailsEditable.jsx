@@ -19,6 +19,7 @@ function UserDetailsEditable({ userData }) {
     });
 
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+    const staticBaseUrl = apiBaseUrl.replace('/api', ''); // Remove '/api' for static files
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -80,7 +81,7 @@ function UserDetailsEditable({ userData }) {
                         <label htmlFor="avatar" className={styles.avatar}>
                             <img 
                                 id="preview"
-                                src={formData.picturePreview || (userData.picture ? `${apiBaseUrl}${userData.picture}` : avatar)} 
+                                src={formData.picturePreview || (userData.picture ? `${staticBaseUrl}/${userData.picture}` : avatar)} 
                                 className={styles.profilePictureImage} 
                                 alt="Avatar" 
                             />
@@ -125,7 +126,7 @@ function UserDetailsEditable({ userData }) {
             ) : (
                 <div className={styles.userProfileContainer}>
                     <div className={styles.profilePictureContainer}>
-                        <img src={userData.picture ? `${apiBaseUrl}${userData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
+                        <img src={userData.picture ? `${staticBaseUrl}/${userData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
                     </div>
         
                     <div className={styles.profileNameContainer}>

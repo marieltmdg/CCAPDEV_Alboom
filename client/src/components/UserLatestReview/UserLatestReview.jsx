@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./UserLatestReview.module.css";
 import BoomMeter from "../BoomMeter/BoomMeter";
+import avatar from "../../assets/avatar.png";
 
 function UserLatestReview({ userData }) {
     const { username } = useParams();
@@ -14,6 +15,7 @@ function UserLatestReview({ userData }) {
     const [error, setError] = useState(null);
 
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+    const staticBaseUrl = apiBaseUrl.replace('/api', '');
 
     useEffect(() => {
         const fetchReviews = async () => {
@@ -42,10 +44,6 @@ function UserLatestReview({ userData }) {
 
         fetchReviews();
     }, [userData._id, apiBaseUrl]);
-
-    useEffect(() => {
-        console.log("Updated userReview:", userReview);
-    }, [userReview]);
 
     useEffect(() => {
         const fetchAlbum = async () => {
@@ -93,8 +91,12 @@ function UserLatestReview({ userData }) {
             <div className={styles.latestReviewText}>Latest Review</div>
 
             <div className={styles.albumCover}>
-                <Link to={"/album/" + album._id} key={album.title}>
-                    <img src={album.cover ? `${apiBaseUrl}${album.cover}` : avatar} alt={album.title} className={styles.albumCover} />
+                <Link to={`/album/${album._id}`} key={album.title}>
+                    <img
+                        src={album.cover ? `${staticBaseUrl}/${album.cover}` : avatar}
+                        alt={album.title}
+                        className={styles.albumCover}
+                    />
                 </Link>
             </div>
 
