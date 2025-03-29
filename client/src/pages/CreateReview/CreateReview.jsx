@@ -25,6 +25,7 @@ function CreateReview() {
 
     const { id } = useParams();
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+    const staticBaseUrl = apiBaseUrl.replace('/api', ''); // Remove '/api' for static files
 
     useEffect(() => {
         axios.get(`${apiBaseUrl}/albums/${id}`)
@@ -99,7 +100,11 @@ function CreateReview() {
                             <form onSubmit={handleSubmit} className={styles.reviewSection} style={{ width: "100%" }}>
                                 <h2 className={styles.titleText}>Create a Review</h2>
                                 <div className={styles.splitContainer}>
-                                    <AlbumInfo Album={album} />
+                                    {album && (
+                                        <AlbumInfo 
+                                            Album={{...album,cover: `${staticBaseUrl}/${album.cover}`, }} 
+                                        />
+                                    )}
                                     <div className={styles.reviewSection}>
                                         <input
                                             type="text"
