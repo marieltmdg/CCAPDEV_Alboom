@@ -45,7 +45,7 @@ function ArtistAlbums({ Albums }) {
                             </div>
                             <div className={styles.ratingContainer}>
                                 <span className={styles.boomText}>
-                                    {albumRatings[album._id] === "-1" ? "No ratings" : `${albumRatings[album._id]} BOOMS`}
+                                    {albumRatings[album._id] === "-1" ? "No reviews" : `${albumRatings[album._id]} BOOMS`}
                                 </span>
                             </div>
                         </div>

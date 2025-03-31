@@ -71,7 +71,7 @@ function ArtistAlbumsEditable({ Albums }) {
                         </Link>
                         <div className={styles.ratingContainer}>
                             <span className={styles.boomText}>
-                                {albumRatings[album._id] === "-1" ? "No ratings" : `${albumRatings[album._id]} BOOMS`}
+                                {albumRatings[album._id] === "-1" ? "No reviews" : `${albumRatings[album._id]} BOOMS`}
                             </span>
                         </div>
 
@@ -109,7 +109,7 @@ function ArtistAlbumsEditable({ Albums }) {
                                     }}
                                     className={styles.button}
                                 >
-                                    Edit
+                                    Edit Description
                                 </button>
                             </div>
                         )}
