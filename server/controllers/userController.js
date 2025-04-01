@@ -131,4 +131,18 @@ module.exports = {
             });
         })(req, res, next);
     },
+
+    logout: (req, res) => {
+        req.logout();
+        return res.json({ success: true });
+    },
+
+    status: (req, res) => {
+        if (req.isAuthenticated()) {
+            return res.json({ authenticated: true, user: req.user });
+        }
+        else {
+            return res.status(401).json({ authenticated: false, message: "Not logged in" });
+        }
+    }
 };
