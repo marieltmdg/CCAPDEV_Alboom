@@ -50,7 +50,14 @@ function Artist() {
     }, [artistData]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div>
+                <Header isAuth={true} />
+                <Main>
+                    <h1>Loading artist...</h1>
+                </Main>
+            </div>
+        );
     }
 
     if (error) {

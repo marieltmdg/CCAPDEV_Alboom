@@ -18,14 +18,14 @@ function User() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; // Get the base URL from the environment variable
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
 
     console.log("Current user:", username);
     
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const apiUrl = `${apiBaseUrl}/user/${username}`; // Use the full API URL
+                const apiUrl = `${apiBaseUrl}/user/${username}`;
                 console.log("Fetching user data from:", apiUrl);
                 
                 const response = await axios.get(apiUrl);
@@ -46,7 +46,14 @@ function User() {
     }, [userData]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div>
+                <Header isAuth={true} />
+                <Main>
+                    <h1>Loading user...</h1>
+                </Main>
+            </div>
+        );
     }
 
     if (error) {
