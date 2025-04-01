@@ -14,16 +14,16 @@ const verifyCallback = async (username, password, done) => {
         if (!user) {
             return done(null, false);
         }
-        
-        const isValid = validatePassword(password, user.hash, user.salt);
+    }
 
-        if (isValid) {
-            user.type = user instanceof User ? "user" : "artist";
-            return done(null, user);
-        }
-        else {
-            return done(null, false);
-        }
+    const isValid = validatePassword(password, user.hash, user.salt);
+
+    if (isValid) {
+        user.type = user instanceof User ? "user" : "artist";
+        return done(null, user);
+    }
+    else {
+        return done(null, false);
     }
 };
 

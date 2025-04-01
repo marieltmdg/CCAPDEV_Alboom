@@ -13,47 +13,52 @@ const sampleUsers = [
     { 
         username: "carlegendelosreyes", 
         email: "martin_carlos_r_delosreyes@dlsu.edu.ph", 
-        password: "iLoveAldrin",
         picture: path.join("uploads", "martin_carlos_r_delosreyes@dlsu.edu.ph", "1741164454701-carlosdelosreyes.jpg"), 
         bio: "i love aldrin!" ,
         country: "Philippines",
-        link: "https://example.com/carlos"
+        link: "https://example.com/carlos",
+        hash: "0d592f9d72ca387fd54d102ef259848c94690a12b73c4b7c2a91d389409e977f283657ae264e1f2a17d39d8a19c572de6505ef22ad0b567cce45583e06e819f8",
+        salt: "a5713a649361ddbcf258d81e449d30f8528adc373589b473d3f2a8f82de16384",
     },
     { 
         username: "paolocruzado", 
         email: "jose_paolo_cruzado@dlsu.edu.ph", 
-        password: "iamJapanese", 
         picture: path.join("uploads", "jose_paolo_cruzado@dlsu.edu.ph", "1741173888519-paolocruzado.jpg"),
         bio: "i love golf!" ,
         country: "Philippines",
-        link: "https://example.com/paolo"
+        link: "https://example.com/paolo",
+        hash: "02860218002133d40601e07d67e05ab6dde34a5d78f8d72b2d5b1bf5c53a21f9c914e959825c2b1d6b14b136de0b9ebad874fd27edc8eefb44bcf876b74d5e22",
+        salt: "9606bcdc8dec5fd651be8eceb194c606f4e7684f3a439fa6ee1322a577fe9ead",
     },
     { 
         username: "notlorenzo", 
         email: "lorenzo_alfred_b_nery@dlsu.edu.ph", 
-        password: "Zaragoza", 
         picture: path.join("uploads", "lorenzo_alfred_b_nery@dlsu.edu.ph", "1741173920904-lorenzonery.jpg"), 
         bio: "i love football!",
         country: "Singapore",
-        link: "https://example.com/no" 
+        link: "https://example.com/no",
+        hash: "4f3b881dde296b5f3cfb849b58672f472b6ae124d648c41b3e27bc6985bec4da10542221622936a5e753ae4e5731e81e85f1d4e49b39338ddc65cc5c73439e9c",
+        salt: "f91ac3bce40f97172b0b7b257bc25595a76efac81b716714ca2e1f3c70ae63a9",
     },
     { 
         username: "ronalddaws", 
         email: "Dawson_catignas@dlsu.edu.ph", 
-        password: "ark_dawn", 
         picture: path.join("uploads", "Dawson_catignas@dlsu.edu.ph", "1741173920904-dawsoncatignas.jpg"),
         bio: "i love carlos!" ,
         country: "USA",
-        link: "https://example.com/daws"
+        link: "https://example.com/daws",
+        hash: "412184afb8f4d0ed9b7c97d0705596e79c489598f5dfaffcb923e54660c9b71b98e7cb56c37e0c638de9e5222c48a864970755ab19042b1da9ab2dd1f448a8f1",
+        salt: "9d078809488a39fc9441f3188a9b4a4652c23e4259f59f97ecdbd532a1621d85",
     },
     { 
         username: "marieltamondong", 
         email: "mariel_tamondong_a@dlsu.edu.ph", 
-        password: "iloveIzac", 
         picture: path.join("uploads", "mariel_tamondong_a@dlsu.edu.ph", "1741173920904-marieltamondong.jpg"),
         bio: "RAH" ,
         country: "Philippines",
-        link: "https://example.com/mariel"
+        link: "https://example.com/mariel",
+        hash: "9520cf08987315a260ab0d22798f873de5a96dc040eb8bc9133454d4e6a5345bb58af13242213ef263296715cc8b5a4c858232763d26371ee990fb65b86cbf4b",
+        salt: "a2cf5fe857226676011ec9d75f17f5c2a50c975d011b62576942fcbcf31b49f7",
     },
 ];
 
@@ -65,7 +70,8 @@ const sampleArtists = [
         country: "USA", 
         link: "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg",
         email: "kendrick.lamar@musicworld.com",
-        password: "HUMBLE_2024!"
+        hash: "46fb20d6e8951331b9b3ee498f663c28936aa0cf022709a1aa7f2fe9d6666c112332d9be5985f630948046e1c464b9e9a0cbea951c169309fc86b772c8b79ed0",
+        salt: "c5b3ce35b36c8500e468114cf5be60f1512f680f86f10d34fdcd537597f7531f",
     },
     { 
         username: "doechii", 
@@ -74,7 +80,8 @@ const sampleArtists = [
         country: "USA", 
         link: "https://open.spotify.com/artist/4E2rKHVDssGJm2SCDOMMJB",
         email: "doechii@gmail.com",
-        password: "SWAMPQUEEN#99"
+        hash: "2107f72b580e8cbd6ddc39c7cc18a1792b2bf5dc54bffc8a90a709999bf26b208e4dcd9ec1cafc59b61dd1da318e756c473f9863ad8f9655b67093c1696e3131",
+        salt: "0c55a389d148c2a237336dcad34e0abbacf1c3f7722bf0f1e67b9e13e2444dd8",
     },
     { 
         username: "tyler,_the_creator", 
@@ -83,7 +90,8 @@ const sampleArtists = [
         country: "USA", 
         link: "https://open.spotify.com/artist/4V8LLVI7PbaPR0K2TGSxFF",
         email: "tyler.creator@gmail.com",
-        password: "IGOR_wolfGang42"
+        hash: "40ddcec905a176c5f42ab9b89dff5df85307ba7337fc3711c7f74317e43368efafeeb3bae7f21a04183161a79bc4cb47bbefa6691c94610f8b2dca7296a58c6d",
+        salt: "5a4da463bdc91b5cdf372cca60964a6616ddbf9585cfbb6730c86b793a9e111c",
     },
     { 
         username: "frank_ocean", 
@@ -92,7 +100,8 @@ const sampleArtists = [
         country: "USA", 
         link: "https://open.spotify.com/artist/2h93pZq0e7k5yf4dywlkpM",
         email: "frank.ocean@gmail.com",
-        password: "NostalgiaUltra_88"
+        hash: "85e08ab8a24327329e4f7a956a7f1e89cec30c38aba713325493ff5b0e2adbe9cc0ba35980e41216abb9ded6e72062559278a26490c0dcafecdc5fd587dc698c",
+        salt: "44bcb76a62b7d60b4578dcdf1321d0bdc3251316f0a4b4ba96589aac374f9f55",
     },
     { 
         username: "billie_eilish", 
@@ -101,7 +110,8 @@ const sampleArtists = [
         country: "USA", 
         link: "https://open.spotify.com/artist/6qqNVTkY8uBg9cP3Jd7DAH",
         email: "billie.eilish@yahoo.com",
-        password: "BadGuy$2025!"
+        hash: "5483df63820e7d33aa277b2394bae5335c9558ac886e42bfb8ccc54934a73f941ac1b65a17c9d2f26eea0b405eb47eaca6930b8bed22b05453edafb35b046ee0",
+        salt: "cea3652d0bfde4d0e80425f8428fba3343713005a4fc4f21b168f0c69e850ddd",
     },
 ];
 

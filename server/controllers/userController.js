@@ -34,7 +34,7 @@ module.exports = {
                 return res.status(400).json({ message: "User already exists" });
             }
 
-            const saltHash = generatePassword(req.body.password);
+            const saltHash = generatePassword(password);
 
             const salt = saltHash.salt;
             const hash = saltHash.hash;
@@ -42,7 +42,6 @@ module.exports = {
             const user = new User({
                 username,
                 email,
-                password,
                 picture,
                 bio,
                 country: "Unknown",
