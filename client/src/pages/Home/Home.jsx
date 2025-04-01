@@ -1,6 +1,7 @@
 import Header from "../../components/Header/Header.jsx";
 import Main from "../../components/Main";
 import AlbumGrid from "../../components/AlbumGrid/AlbumGrid.jsx";
+import Footer from "../../components/Footer/Footer.jsx";
 
 import alboom from '../../assets/alboom.png';
 
@@ -47,6 +48,7 @@ function Home() {
                 
                 <AlbumGrid albums={filteredAlbums} />
             </Main>
+            <Footer />
         </>
     );
 }

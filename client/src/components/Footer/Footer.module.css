@@ -1,0 +1,37 @@
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.start {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+}
+
+.center {
+    text-align: center;
+    font-size: 14px;
+}
+
+.end {
+    display: flex;
+    gap: 15px;
+}
+
+.link {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link:hover {
+    color: var(--accent-color);
+}
