@@ -139,7 +139,7 @@ function CreateReview() {
                                             src={hover >= boom || rating >= boom ? logo : logoDark}
                                             alt={`${boom} Boom`}
                                             className={styles.boom}
-                                            onClick={() => setRating(boom)}
+                                            onClick={() => setRating(rating === boom ? 0 : boom)} 
                                             onMouseEnter={() => setHover(boom)}
                                             onMouseLeave={() => setHover(0)}
                                         />
