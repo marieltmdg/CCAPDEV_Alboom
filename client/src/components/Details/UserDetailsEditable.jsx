@@ -63,8 +63,6 @@ function UserDetailsEditable({ userData }) {
             const updatedUser = await response.json();
             setUser(updatedUser);
             setIsEditing(false);
-            
-            window.location.reload();
         } catch (error) {
             console.error("Error updating user:", error);
         }
