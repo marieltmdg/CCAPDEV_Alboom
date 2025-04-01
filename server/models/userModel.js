@@ -8,6 +8,8 @@ const userSchema = new mongoose.Schema({
     bio: { type: String },
     country: { type: String, default: "Unknown" },
     link: { type: String, default: "Unknown" },
+    hash: { type: String },
+    salt: { type: String },
 });
 
 module.exports = mongoose.model('User', userSchema);

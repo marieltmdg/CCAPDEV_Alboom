@@ -3,6 +3,9 @@ const User = require("../models/userModel");
 const path = require("path");
 const fs = require("fs");
 
+const passport = require("passport");
+const generatePassword = require("../lib/passportUtils").generatePassword;
+
 module.exports = {
     create: asyncHandler(async (req, res) => {
         const { username, email, password, bio } = req.body;
@@ -31,6 +34,11 @@ module.exports = {
                 return res.status(400).json({ message: "User already exists" });
             }
 
+            const saltHash = generatePassword(req.body.password);
+
+            const salt = saltHash.salt;
+            const hash = saltHash.hash;
+
             const user = new User({
                 username,
                 email,
@@ -38,7 +46,9 @@ module.exports = {
                 picture,
                 bio,
                 country: "Unknown",
-                link: "Unknown"
+                link: "Unknown",
+                hash,
+                salt,
             });
 
             const createdUser = await user.save();
@@ -106,7 +116,19 @@ module.exports = {
             res.status(500).json({ message: "Server error" });
         }
     }),
-    
-    
 
+    login: (req, res, next) => {
+        passport.authenticate("local", (err, user, info) => {
+            if (err) return next(err);
+
+            if (!user) {
+                return res.status(401).json({ message: "Invalid credentials" });
+            }
+
+            req.logIn(user, (err) => {
+                if (err) return next(err);
+                return res.json({ success: true, user });
+            });
+        })(req, res, next);
+    },
 };
