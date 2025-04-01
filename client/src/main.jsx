@@ -12,6 +12,7 @@ import Register from './pages/Register/Register.jsx'
 import CreateReview from './pages/CreateReview/CreateReview.jsx'
 import UpdateReview from './pages/UpdateReview/UpdateReview.jsx'
 import Artist from './pages/Artist/Artist.jsx'
+import About from './pages/About/About.jsx'
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
     {
         path: "/register",
         element: <Register />
+    },
+    {
+        path: "/about",
+        element: <About />
     },
 ])
 
