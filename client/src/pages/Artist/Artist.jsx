@@ -13,7 +13,7 @@ import ArtistAlbums from "../../components/ArtistAlbums/ArtistAlbums.jsx";
 import ArtistAlbumsEditable from "../../components/ArtistAlbums/ArtistAlbumsEditable.jsx";
 
 function Artist() {
-    const { artistname } = useParams();
+    const { username } = useParams();
     const [artistData, setArtistData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -24,7 +24,7 @@ function Artist() {
     useEffect(() => {
         const fetchArtistData = async () => {
             try {
-                const apiUrl = `${apiBaseUrl}/artist/${artistname}`;
+                const apiUrl = `${apiBaseUrl}/artist/${username}`;
                 const artistResponse = await axios.get(apiUrl);
                 setArtistData(artistResponse.data);
 
@@ -43,7 +43,7 @@ function Artist() {
         };
 
         fetchArtistData();
-    }, [artistname, apiBaseUrl]);
+    }, [username, apiBaseUrl]);
 
     useEffect(() => {
         console.log("Updated artistData state:", artistData);

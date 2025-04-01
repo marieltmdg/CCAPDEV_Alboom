@@ -104,7 +104,7 @@ function UserLatestReview({ userData }) {
                 <div className={styles.albumInfoContainer}>
                     <div className={styles.albumTitle}>{album.title}</div>
                     <div className={styles.artist}>
-                        By <Link to={`/artist/${album.artist_id?.artistname}`} className={styles.artist}>{album.artist_id?.artistname}</Link>
+                        By <Link to={`/artist/${album.artist_id?.username}`} className={styles.artist}>{album.artist_id?.username}</Link>
                     </div>
                 </div>
 
