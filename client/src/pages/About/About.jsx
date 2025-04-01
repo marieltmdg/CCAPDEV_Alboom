@@ -9,59 +9,59 @@ function About() {
             <Header isAuth={true} />
             <Main>
                 <div className={styles.mainContainer}>
-                    <h1>About This Project</h1>
-                    <p>
-                        This website is built using <strong>React</strong> for the frontend and <strong>Express.js</strong> for the backend.
-                        It follows a full-stack JavaScript architecture, integrating a MongoDB database using <strong>Mongoose</strong>.
-                        Authentication is managed via <strong>Passport.js</strong>, while <strong>Axios</strong> handles API communication between the frontend and backend.
+                    <h1 className={`${styles.header} ${styles.one}`}>About This Project</h1>
+                    <p className={styles.paragraph}>
+                        This website is built using <strong className={styles.bold}>React</strong> for the frontend and <strong className={styles.bold}>Express.js</strong> for the backend.
+                        It follows a full-stack JavaScript architecture, integrating a MongoDB database using <strong className={styles.bold}>Mongoose</strong>.
+                        Authentication is managed via <strong className={styles.bold}>Passport.js</strong>, while <strong className={styles.bold}>Axios</strong> handles API communication between the frontend and backend.
                     </p>
                     
-                    <h2>Technologies Used</h2>
+                    <h2 className={`${styles.header} ${styles.two}`}>Technologies Used</h2>
                     
                     <section>
-                        <h3>Core Dependencies</h3>
-                        <ul>
-                            <li><strong>Express</strong> - Web framework for Node.js</li>
-                            <li><strong>React</strong> - Frontend UI library</li>
-                            <li><strong>React Router</strong> - Client-side routing</li>
-                            <li><strong>Mongoose</strong> - ODM for MongoDB</li>
+                        <h3 className={`${styles.header} ${styles.three}`}>Core Dependencies</h3>
+                        <ul className={styles.list}>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>Express</strong> - Web framework for Node.js</li>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>React</strong> - Frontend UI library</li>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>React Router</strong> - Client-side routing</li>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>Mongoose</strong> - ODM for MongoDB</li>
                         </ul>
                     </section>
                     
                     <section>
-                        <h3>Backend & Database</h3>
-                        <ul>
-                            <li><strong>connect-mongo</strong> - MongoDB session store</li>
-                            <li><strong>cors</strong> - Enables Cross-Origin Resource Sharing</li>
-                            <li><strong>crypto</strong> - Provides cryptographic functions</li>
-                            <li><strong>dotenv</strong> - Manages environment variables</li>
-                            <li><strong>express-async-handler</strong> - Simplifies error handling</li>
-                            <li><strong>express-fileupload</strong> - Handles file uploads</li>
-                            <li><strong>express-session</strong> - Manages user sessions</li>
-                            <li><strong>Passport</strong> - User authentication</li>
-                            <li><strong>passport-local</strong> - Local authentication strategy</li>
+                        <h3 className={`${styles.header} ${styles.three}`}>Backend & Database</h3>
+                        <ul className={styles.list}>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>connect-mongo</strong> - MongoDB session store</li>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>cors</strong> - Enables Cross-Origin Resource Sharing</li>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>crypto</strong> - Provides cryptographic functions</li>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>dotenv</strong> - Manages environment variables</li>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>express-async-handler</strong> - Simplifies error handling</li>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>express-fileupload</strong> - Handles file uploads</li>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>express-session</strong> - Manages user sessions</li>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>Passport</strong> - User authentication</li>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>passport-local</strong> - Local authentication strategy</li>
                         </ul>
                     </section>
                     
                     <section>
-                        <h3>Frontend & API Communication</h3>
-                        <ul>
-                            <li><strong>Axios</strong> - Handles HTTP requests</li>
+                        <h3 className={`${styles.header} ${styles.three}`}>Frontend & API Communication</h3>
+                        <ul className={styles.list}>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>Axios</strong> - Handles HTTP requests</li>
                         </ul>
                     </section>
                     
                     <section>
-                        <h3>Development Tools</h3>
-                        <ul>
-                            <li><strong>Vite</strong> - Fast frontend build tool</li>
-                            <li><strong>Nodemon</strong> - Auto-restarts backend during development</li>
-                            <li><strong>ESLint</strong> - Enforces code quality</li>
+                        <h3 className={`${styles.header} ${styles.three}`}>Development Tools</h3>
+                        <ul className={styles.list}>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>Vite</strong> - Fast frontend build tool</li>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>Nodemon</strong> - Auto-restarts backend during development</li>
+                            <li className={styles.orderedlist}><strong className={styles.bold}>ESLint</strong> - Enforces code quality</li>
                         </ul>
                     </section>
                     
-                    <p>
-                        This project uses <strong>Vite</strong> for efficient frontend development, <strong>ESLint</strong> for maintaining clean code,
-                        and <strong>Nodemon</strong> to streamline backend development. The combination of these tools ensures a robust and maintainable codebase.
+                    <p className={styles.paragraph}>
+                        This project uses <strong className={styles.bold}>Vite</strong> for efficient frontend development, <strong className={styles.bold}>ESLint</strong> for maintaining clean code,
+                        and <strong className={styles.bold}>Nodemon</strong> to streamline backend development. The combination of these tools ensures a robust and maintainable codebase.
                     </p>
                 </div>
             </Main>

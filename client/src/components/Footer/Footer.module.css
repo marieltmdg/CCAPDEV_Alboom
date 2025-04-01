@@ -5,25 +5,23 @@ footer {
     padding: 10px 20px;
     background-color: var(--primary-color);
     color: var(--secondary-color);
+    font-size: 15px;
 }
 
 .start {
     display: flex;
     align-items: center;
-}
-
-.logo {
-    height: 40px;
-}
-
-.center {
-    text-align: center;
-    font-size: 14px;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
 }
 
 .end {
     display: flex;
     gap: 15px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .link {
