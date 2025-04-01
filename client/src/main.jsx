@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         element: <Login />
     },
     {
-        path: "/artist/:artistname",
+        path: "/artist/:username",
         element: <Artist />
     },
     {

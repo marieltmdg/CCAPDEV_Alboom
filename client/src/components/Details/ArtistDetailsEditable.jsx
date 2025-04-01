@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import upload from '../../assets/upload.svg';
 
 function ArtistDetailsEditable({ artistData }) {
-    const { artistname } = useParams();
+    const { username } = useParams();
     const [user, setUser] = useState(artistData || {});
     const [isEditing, setIsEditing] = useState(false);
     const [photo, setPhoto] = useState(null);
@@ -51,7 +51,7 @@ function ArtistDetailsEditable({ artistData }) {
                 formDataToSend.append("picture", photo);
             }
 
-            const response = await fetch(`${apiBaseUrl}/artist/${artistname}`, {
+            const response = await fetch(`${apiBaseUrl}/artist/${username}`, {
                 method: "PUT",
                 body: formDataToSend, 
             });
@@ -89,7 +89,7 @@ function ArtistDetailsEditable({ artistData }) {
                     </div>
 
                     <div className={styles.profileNameContainerEditing}>
-                        <span className={styles.profileName}>{artistData.artistname}</span>
+                        <span className={styles.profileName}>{artistData.username}</span>
                     </div>
                     <textarea
                         name="bio"
@@ -126,7 +126,7 @@ function ArtistDetailsEditable({ artistData }) {
                         <img src={artistData.picture ? `${staticBaseUrl}/${artistData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
                     </div>
                     <div className={styles.profileNameContainer}>
-                        <span className={styles.profileName}>{user.artistname}</span>
+                        <span className={styles.profileName}>{user.username}</span>
                         <div className={styles.artistText}>Artist</div>
                     </div>
                     <div className={styles.profileBioContainer}>

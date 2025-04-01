@@ -7,7 +7,7 @@ module.exports = {
 
     readID: asyncHandler(async (req, res) => {
         try {
-            const artist = await Artist.findOne({ artistname: new RegExp(`^${req.params.artistname}$`, "i") });
+            const artist = await Artist.findOne({ username: new RegExp(`^${req.params.username}$`, "i") });
             
             if (artist) {
                 res.json(artist);
@@ -24,7 +24,7 @@ module.exports = {
         const { bio, picture, country, link } = req.body;
 
         try {
-            const artist = await Artist.findOne({ artistname: req.params.artistname });
+            const artist = await Artist.findOne({ username: req.params.username });
 
             if (artist) {
                 artist.bio = bio || artist.bio;

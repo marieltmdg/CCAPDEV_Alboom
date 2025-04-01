@@ -1,28 +1,30 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("../models/userModel");
+const Artist = require("../models/artistModel");
 
 const validatePassword = require("../lib/passportUtils").validatePassword;
 
-const verifyCallback = (username, password, done) => {
-    User.findOne({ username: username })
-        .then(user => {
-            if (!user) {
-                return done(null, false);
-            }
+const verifyCallback = async (username, password, done) => {
+    let user = await User.findOne({ username: username });
 
-            const isValid = validatePassword(password, user.hash, user.salt);
+    if (!user) {
+        user = await Artist.findOne({ username: username });
 
-            if (isValid) {
-                return done(null, user);
-            }
-            else {
-                return done(null, false);
-            }
-        })
-        .catch(err => {
-            done(err);
-        })
+        if (!user) {
+            return done(null, false);
+        }
+        
+        const isValid = validatePassword(password, user.hash, user.salt);
+
+        if (isValid) {
+            user.type = user instanceof User ? "user" : "artist";
+            return done(null, user);
+        }
+        else {
+            return done(null, false);
+        }
+    }
 };
 
 const strategy = new LocalStrategy(verifyCallback);
@@ -30,13 +32,23 @@ const strategy = new LocalStrategy(verifyCallback);
 passport.use(strategy);
 
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, { id: user.id, type: user.type });
 })
 
-passport.deserializeUser((userId, done) => {
-    User.findById(userId)
-        .then(user => {
-            done(null, user);
-        })
-        .catch(err => done(err));
+passport.deserializeUser(async (user, done) => {
+    try {
+        let temp;
+
+        if (user.type === "user") {
+            temp = await User.findById(user.id);
+        }
+        else if (user.type === "artist") {
+            temp = await Artist.findById(user.id);
+        }
+
+        done(null, user);
+    }
+    catch (err) {
+        done(err);
+    }
 })

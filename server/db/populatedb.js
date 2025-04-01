@@ -59,7 +59,7 @@ const sampleUsers = [
 
 const sampleArtists = [
     { 
-        artistname: "kendrick_lamar", 
+        username: "kendrick_lamar", 
         picture: path.join("uploads", "Kendrick-Lamar", "1741173920904-kendricklamar.jpg"),
         bio: "Visionary rapper and lyricist redefining hip-hop with poetic storytelling and social consciousness.",
         country: "USA", 
@@ -68,7 +68,7 @@ const sampleArtists = [
         password: "HUMBLE_2024!"
     },
     { 
-        artistname: "doechii", 
+        username: "doechii", 
         picture: path.join("uploads", "Doechii", "1741173920904-doechii.jpg"),
         bio: "Genre-blending artist bringing fierce energy, innovative flows, and a bold artistic vision.",
         country: "USA", 
@@ -77,7 +77,7 @@ const sampleArtists = [
         password: "SWAMPQUEEN#99"
     },
     { 
-        artistname: "tyler,_the_creator", 
+        username: "tyler,_the_creator", 
         picture: path.join("uploads", "Tyler,-The-Creator", "1741173920904-tylerthecreator.jpg"),
         bio: "Creative mastermind fusing rap, jazz, and alternative sounds into a world of colorful chaos.",
         country: "USA", 
@@ -86,7 +86,7 @@ const sampleArtists = [
         password: "IGOR_wolfGang42"
     },
     { 
-        artistname: "frank_ocean", 
+        username: "frank_ocean", 
         picture: path.join("uploads", "Frank-Ocean", "1741173920904-frankocean.png"),
         bio: "Soulful storyteller crafting deep emotional ballads with dreamlike melodies and raw lyricism.",
         country: "USA", 
@@ -95,7 +95,7 @@ const sampleArtists = [
         password: "NostalgiaUltra_88"
     },
     { 
-        artistname: "billie_eilish", 
+        username: "billie_eilish", 
         picture: path.join("uploads", "Billie-Eilish", "1741173920904-billieeilish.png"),
         bio: "Whispery vocals, haunting beats, and boundary-pushing pop artistry define her unique sound.",
         country: "USA", 

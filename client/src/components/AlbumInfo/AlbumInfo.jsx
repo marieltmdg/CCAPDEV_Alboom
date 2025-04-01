@@ -13,7 +13,7 @@ function AlbumInfo({ Album }) {
             />
             <div className={styles.textOverlay}>
                 <h1>{Album.title}</h1>
-                <h2>{Album.artist_id.artistname}</h2>
+                <h2>{Album.artist_id.username}</h2>
             </div>
         </div>
     );

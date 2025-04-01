@@ -21,8 +21,8 @@ function AlbumReview({ Album, Rating }) {
                 </div>
 
                 <div className={styles.right}>
-                    <Link to={`/artist/${Album.artist_id.artistname}`}>
-                        <h3 className={styles.artistName}>{Album.artist_id.artistname}</h3>
+                    <Link to={`/artist/${Album.artist_id.username}`}>
+                        <h3 className={styles.artistName}>{Album.artist_id.username}</h3>
                     </Link>
                     <h3>{Album.release_date}</h3>
                     <p className={styles.albumDescription}>

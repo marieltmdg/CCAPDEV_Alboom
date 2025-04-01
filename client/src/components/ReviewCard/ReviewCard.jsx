@@ -181,7 +181,7 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
                         <div className={styles.top}>
                             <div className={styles.topLeft}>
                                 <div className={styles.topLeft1}>
-                                    <Link to={"/artist/" + Album.artist_id.artistname}>
+                                    <Link to={"/artist/" + Album.artist_id.username}>
                                         <img
                                             className={styles.userPhoto}
                                             src={`${staticBaseUrl}/${Album.artist_id.picture}`}
@@ -190,7 +190,7 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
                                     </Link>
                                 </div>
                                 <div className={styles.topLeft2}>
-                                    <h3 className={styles.userReviewHeading}>Reply by {Album.artist_id.artistname}</h3>
+                                    <h3 className={styles.userReviewHeading}>Reply by {Album.artist_id.username}</h3>
                                 </div>
                             </div>
 
