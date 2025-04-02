@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import styles from "./User.module.css";
-
+import Loading from "../../components/Loading/Loading.jsx";
 import Header from "../../components/Header/Header.jsx";
 import Main from "../../components/Main";
 
@@ -49,9 +49,7 @@ function User() {
         return (
             <div>
                 <Header isAuth={true} />
-                <Main>
-                    <h1>Loading user...</h1>
-                </Main>
+                <Loading />
             </div>
         );
     }

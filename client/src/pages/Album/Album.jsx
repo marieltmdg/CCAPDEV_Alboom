@@ -6,6 +6,8 @@ import AlbumReview from "../../components/AlbumReview/AlbumReview.jsx";
 import ReviewCard from "../../components/ReviewCard/ReviewCard.jsx";
 import search from '../../assets/search.png';
 import axios from "axios";
+import Loading from "../../components/Loading/Loading.jsx";
+
 import { useEffect, useState } from "react";
 
 function Album() {
@@ -115,9 +117,7 @@ function Album() {
         return (
             <div>
                 <Header isAuth={true} />
-                <Main>
-                    <h1>Loading album...</h1>
-                </Main>
+                <Loading />
             </div>
         );
     }

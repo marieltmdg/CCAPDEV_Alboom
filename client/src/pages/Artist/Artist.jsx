@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import styles from "./Artist.module.css";
-
+import Loading from "../../components/Loading/Loading.jsx";
 import Header from "../../components/Header/Header.jsx";
 import Main from "../../components/Main";
 
@@ -53,9 +53,7 @@ function Artist() {
         return (
             <div>
                 <Header isAuth={true} />
-                <Main>
-                    <h1>Loading artist...</h1>
-                </Main>
+                <Loading />
             </div>
         );
     }
