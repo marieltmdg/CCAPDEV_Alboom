@@ -31,9 +31,10 @@ app.use(cors({
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
-app.use(express.static("public")); 
-app.use(express.static("build"));
 app.use(fileUpload());
+
+app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static("public")); 
 
 const sessionStore = MongoStore.create({
     mongoUrl: process.env.MONGO_URI,
@@ -64,6 +65,10 @@ app.use((req, res, next) => {
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api", apiRouter);
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+  });
 
 app.use((err, req, res, next) => {
     res.status(500).json({ message: err.message });
