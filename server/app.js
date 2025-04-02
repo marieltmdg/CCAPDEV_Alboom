@@ -44,11 +44,8 @@ const sessionStore = MongoStore.create({
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: sessionStore,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24
-    },
 }));
 
 require("./config/passport");
@@ -56,11 +53,12 @@ require("./config/passport");
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use((req, res, next) => {
-    console.log(req.session);
-    console.log(req.user);
-    next();
-});
+// app.use((req, res, next) => {
+//     console.log("SESSION AND USER DETAILS");
+//     console.log(req.session);
+//     console.log(req.user);
+//     next();
+// });
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 

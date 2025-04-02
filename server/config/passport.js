@@ -32,7 +32,7 @@ const strategy = new LocalStrategy(verifyCallback);
 passport.use(strategy);
 
 passport.serializeUser((user, done) => {
-    done(null, { id: user.id, type: user.type });
+    done(null, { id: user.id, type: user.type});
 })
 
 passport.deserializeUser(async (user, done) => {
@@ -41,12 +41,15 @@ passport.deserializeUser(async (user, done) => {
 
         if (user.type === "user") {
             temp = await User.findById(user.id);
+            temp.type = "user";
         }
         else if (user.type === "artist") {
             temp = await Artist.findById(user.id);
+            temp.type = "artist";
         }
 
-        done(null, user);
+        if (!temp) return done(null, false);
+        done(null, temp);
     }
     catch (err) {
         done(err);

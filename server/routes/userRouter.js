@@ -9,6 +9,6 @@ userRouter.put("/:username", userController.update);
 
 userRouter.post("/login", userController.login);
 userRouter.post("/logout", userController.logout);
-userRouter.get("/status", userController.status);
+userRouter.post("/status", userController.status);
 
 module.exports = userRouter;

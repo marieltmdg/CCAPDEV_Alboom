@@ -14,6 +14,10 @@ import UpdateReview from './pages/UpdateReview/UpdateReview.jsx'
 import Artist from './pages/Artist/Artist.jsx'
 import About from './pages/About/About.jsx'
 
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
+
 const router = createBrowserRouter([
     {
         path: "/",

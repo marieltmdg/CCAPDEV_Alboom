@@ -131,14 +131,26 @@ module.exports = {
         })(req, res, next);
     },
 
-    logout: (req, res) => {
-        req.logout();
-        return res.json({ success: true });
+    logout: (req, res, next) => {
+        req.logout((err) => {
+            if (err) {
+                return next(err);
+            }
+            
+            req.session.destroy((err) => {
+                if (err) {
+                    return res.status(500).json({ message: "Failed to destroy session" });
+                }
+                
+                res.clearCookie("connect.sid", { path: "/" });
+                return res.json({ success: true });
+            });
+        });
     },
 
     status: (req, res) => {
         if (req.isAuthenticated()) {
-            return res.json({ authenticated: true, user: req.user });
+            return res.json({ authenticated: true, user: req.user, type: req.user.type });
         }
         else {
             return res.status(401).json({ authenticated: false, message: "Not logged in" });
