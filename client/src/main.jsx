@@ -18,6 +18,9 @@ import UpdateReview from './pages/UpdateReview/UpdateReview.jsx'
 import Artist from './pages/Artist/Artist.jsx'
 import About from './pages/About/About.jsx'
 
+import ProtectedRoute from './ProtectedRoute.jsx'
+import PublicRoute from './PublicRoute.jsx'
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -29,11 +32,11 @@ const router = createBrowserRouter([
     },
     {
         path: "/album/:id/create",
-        element: <CreateReview />
+        element: <ProtectedRoute element={<CreateReview />} />
     },
     {
         path: "/album/:id/update",
-        element: <UpdateReview />
+        element: <ProtectedRoute element={<UpdateReview />} />
     },
     {
         path: "/user/:username",
@@ -41,7 +44,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/login",
-        element: <Login />
+        element: <PublicRoute element={<Login />} />
     },
     {
         path: "/artist/:username",
@@ -49,7 +52,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/register",
-        element: <Register />
+        element: <PublicRoute element={<Register />} />
     },
     {
         path: "/about",
