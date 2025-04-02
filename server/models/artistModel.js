@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const artistSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
+    stagename: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     picture: { type: String },
     bio: { type: String },

@@ -22,7 +22,7 @@
 .left {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     width: 40%;
@@ -33,11 +33,10 @@
 }
 
 .albumCover {
-    height: 80%;
     width: 80%;
+    aspect-ratio: 1/1;
     
     border-radius: 5%;
-
     margin-bottom: 3%;
     margin-top: 3%;
     transition: .25s;

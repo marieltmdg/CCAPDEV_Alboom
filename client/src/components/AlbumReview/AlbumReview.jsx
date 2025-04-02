@@ -1,15 +1,14 @@
+import Spotify from "../../components/Spotify/spotify.jsx";
 import styles from './AlbumReview.module.css';
 import { Link } from 'react-router-dom';
 
 function AlbumReview({ Album, Rating }) {
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-    const staticBaseUrl = apiBaseUrl.replace('/api', ''); // Remove '/api' for static files
-
+    const staticBaseUrl = apiBaseUrl.replace('/api', ''); 
     return (
         <>
             <div className={styles.mainContainer}>
                 <div className={styles.left}>
-                    <h1 className={styles.albumTitle}>{Album.title}</h1>
                     <img 
                         src={`${staticBaseUrl}/${Album.cover}`} 
                         className={styles.albumCover} 
@@ -21,13 +20,16 @@ function AlbumReview({ Album, Rating }) {
                 </div>
 
                 <div className={styles.right}>
+                    <h1 className={styles.albumTitle}>{Album.title}</h1>
                     <Link to={`/artist/${Album.artist_id.username}`}>
-                        <h3 className={styles.artistName}>{Album.artist_id.username}</h3>
+                        <h2 className={styles.artistName}>{Album.artist_id.stagename}</h2>
                     </Link>
-                    <h3>{Album.release_date}</h3>
+                    <h3 style={{ fontWeight: "normal" }}>Release Date: {Album.release_date}</h3>
                     <p className={styles.albumDescription}>
-                        {Album.description}
+                        {Album.description}<br></br>
                     </p>
+                    <Spotify artist={Album.artist_id.stagename} album={Album.title} />
+                    <br></br>
                     <Link to={`/album/${Album._id}/create`} className={styles.albumReviewButton}>
                         Review
                     </Link>

@@ -65,6 +65,7 @@ const sampleUsers = [
 const sampleArtists = [
     { 
         username: "kendrick_lamar", 
+        stagename: "Kendrick Lamar",
         picture: path.join("uploads", "Kendrick-Lamar", "1741173920904-kendricklamar.jpg"),
         bio: "Visionary rapper and lyricist redefining hip-hop with poetic storytelling and social consciousness.",
         country: "USA", 
@@ -75,6 +76,7 @@ const sampleArtists = [
     },
     { 
         username: "doechii", 
+        stagename: "Doechii",
         picture: path.join("uploads", "Doechii", "1741173920904-doechii.jpg"),
         bio: "Genre-blending artist bringing fierce energy, innovative flows, and a bold artistic vision.",
         country: "USA", 
@@ -85,6 +87,7 @@ const sampleArtists = [
     },
     { 
         username: "tyler,_the_creator", 
+        stagename: "Tyler, The Creator",
         picture: path.join("uploads", "Tyler,-The-Creator", "1741173920904-tylerthecreator.jpg"),
         bio: "Creative mastermind fusing rap, jazz, and alternative sounds into a world of colorful chaos.",
         country: "USA", 
@@ -95,6 +98,7 @@ const sampleArtists = [
     },
     { 
         username: "frank_ocean", 
+        stagename: "Frank Ocean",  
         picture: path.join("uploads", "Frank-Ocean", "1741173920904-frankocean.png"),
         bio: "Soulful storyteller crafting deep emotional ballads with dreamlike melodies and raw lyricism.",
         country: "USA", 
@@ -105,6 +109,7 @@ const sampleArtists = [
     },
     { 
         username: "billie_eilish", 
+        stagename: "Billie Eilish",
         picture: path.join("uploads", "Billie-Eilish", "1741173920904-billieeilish.png"),
         bio: "Whispery vocals, haunting beats, and boundary-pushing pop artistry define her unique sound.",
         country: "USA", 
