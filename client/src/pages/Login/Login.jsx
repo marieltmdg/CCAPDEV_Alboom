@@ -7,14 +7,17 @@ import Main from "../../components/Main"
 import alboom from '../../assets/alboom.png'
 import close from '../../assets/close.svg'
 
+import { useAuth } from '../../authContext';
+
 import api from "../../api/axios"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const { authState, setAuthState, checkAuthStatus } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,8 +31,12 @@ function Login() {
             });
     
             console.log("Login successful!", response.data);
-    
-            navigate("/");
+
+            const authStatus = await checkAuthStatus();
+
+            if (authStatus.authenticated) {
+                navigate("/");   
+            }         
         } catch (err) {
             console.error("Login failed", err.response?.data?.message || err.message);
         }

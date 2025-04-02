@@ -153,7 +153,7 @@ module.exports = {
             return res.json({ authenticated: true, user: req.user, type: req.user.type });
         }
         else {
-            return res.status(401).json({ authenticated: false, message: "Not logged in" });
+            return res.status(401).json({ authenticated: false, user: null, message: "Not logged in" });
         }
     }
 };

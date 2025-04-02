@@ -1,6 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { AuthProvider } from './authContext.jsx'
+
+import axios from "axios"
+axios.defaults.withCredentials = true;
 
 import './main.css'
 
@@ -13,10 +17,6 @@ import CreateReview from './pages/CreateReview/CreateReview.jsx'
 import UpdateReview from './pages/UpdateReview/UpdateReview.jsx'
 import Artist from './pages/Artist/Artist.jsx'
 import About from './pages/About/About.jsx'
-
-import axios from "axios";
-
-axios.defaults.withCredentials = true;
 
 const router = createBrowserRouter([
     {
@@ -59,6 +59,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <RouterProvider router={router} />
+        <AuthProvider>
+            <RouterProvider router={router} />
+        </AuthProvider>
     </StrictMode>
 )
