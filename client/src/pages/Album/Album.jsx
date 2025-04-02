@@ -130,12 +130,14 @@ function Album() {
                     Album={album}
                     Rating={rating}
                 />
-                <h1>Reviews</h1>
-                <div className={styles.searchContainer}>
-                    <input onChange={(event) => handleSearch(event)} className={styles.search} type="search" size="1" placeholder="Search Reviews..." />
-                    <button className={styles.button}>
-                        <img src={search} className={styles.icon} alt="Search" />
-                    </button>
+                <div className={styles.reviewHeader}>
+                    <h2>Reviews</h2>
+                    <div className={styles.searchContainer}>
+                        <input onChange={(event) => handleSearch(event)} className={styles.search} type="search" size="1" placeholder="Search Reviews..." />
+                        <button className={styles.button}>
+                            <img src={search} className={styles.icon} alt="Search" />
+                        </button>
+                    </div>
                 </div>
                 {
                     reviews && reviews.map(review => (
