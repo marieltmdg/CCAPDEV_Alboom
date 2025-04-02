@@ -146,7 +146,7 @@ function Album() {
                             Delete={handleDelete}
                             Upvote={handleUpvote}
                             Downvote={handleDownvote}
-                            IsEdited={true} 
+                            IsEdited={review.isEdited} 
                             IsReviewEditable={true}
                             Refresh={refreshReviews}
                             userID={userData?._id}

@@ -103,6 +103,7 @@ module.exports = {
         review.review_text = review_text
         review.rating = rating
         review.picture = picture
+        review.isEdited = true
         
         review.save();
         res.json(review);

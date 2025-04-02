@@ -10,7 +10,8 @@ const reviewSchema = new mongoose.Schema({
     upvotes: { type: Number, required: true},
     downvotes: { type: Number, required: true},
     reply_text: { type: String},
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
+    isEdited: {type: Boolean, default: false},
 },);
   
 module.exports = mongoose.model('Review', reviewSchema)
