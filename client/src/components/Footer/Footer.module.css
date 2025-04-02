@@ -6,6 +6,10 @@ footer {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     font-size: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .start {
