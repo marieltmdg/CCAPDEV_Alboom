@@ -41,6 +41,7 @@ function Home() {
                 <img src={alboom} alt="album" className={styles.alboom} />
 
                 <div className={styles.row}>
+                    <h2>Search Albums</h2>
                     <Search onSearch={handleSearch} />
                 </div>
 
