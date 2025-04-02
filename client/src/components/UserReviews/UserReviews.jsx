@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./UserReviews.module.css";
-import avatar from "../../assets/avatar.png"; // Default album cover
+import avatar from "../../assets/avatar.png"; 
+import Loading from "../../components/Loading/Loading.jsx";
+
 
 function UserReviews({ userData }) {
     const { username } = useParams();
@@ -71,7 +73,7 @@ function UserReviews({ userData }) {
     
 
     if (loading) {
-        return <div>Loading reviews...</div>;
+        return <Loading />;
     }
 
     if (error) {
