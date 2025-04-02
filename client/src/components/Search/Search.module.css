@@ -29,6 +29,10 @@
     align-items: center; 
 }
 
+.button:hover {
+    cursor: pointer;
+}
+
 .icon {
     width: 16px;
     height: 16px;
