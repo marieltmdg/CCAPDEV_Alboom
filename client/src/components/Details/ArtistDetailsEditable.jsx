@@ -3,6 +3,7 @@ import styles from "./Details.module.css";
 import linkIcon from "../../assets/link.png";
 import pin from "../../assets/pin.png";
 import avatar from "../../assets/users/default.jpg";
+import Loading from "../../components/Loading/Loading.jsx";
 import { useParams } from "react-router-dom";
 
 import upload from '../../assets/upload.svg';
@@ -68,7 +69,7 @@ function ArtistDetailsEditable({ artistData }) {
         }
     };
 
-    if (!user) return <div>Loading...</div>;
+    if (!user) return <Loading />;
 
     return (
         <div className={styles.userProfileContainer}>

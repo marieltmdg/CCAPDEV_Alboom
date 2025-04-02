@@ -1,5 +1,5 @@
 .loader {
-    width: 100vw;
+    width: 100%;
     aspect-ratio: 10/1;
     display: flex;
     justify-content: center;

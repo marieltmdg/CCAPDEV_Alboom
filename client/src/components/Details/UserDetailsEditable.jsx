@@ -4,6 +4,8 @@ import linkIcon from "../../assets/link.png";
 import pin from "../../assets/pin.png";
 import avatar from "../../assets/avatar.png";
 import { useParams } from "react-router-dom";
+import Loading from "../../components/Loading/Loading.jsx";
+
 
 import upload from '../../assets/upload.svg';
 
@@ -68,7 +70,7 @@ function UserDetailsEditable({ userData }) {
         }
     };
 
-    if (!userData) return <div>Loading...</div>;
+    if (!userData) return <Loading />;
 
     return (
         <div className={styles.userProfileContainer}>

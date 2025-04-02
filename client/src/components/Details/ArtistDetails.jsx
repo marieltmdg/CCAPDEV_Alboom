@@ -3,13 +3,15 @@ import styles from "./Details.module.css";
 import avatar from "../../assets/avatar.png";
 import pin from "../../assets/pin.png";
 import linkIcon from "../../assets/link.png";
+import Loading from "../../components/Loading/Loading.jsx";
+
 
 function ArtistDetails({ artistData }) {
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
     const staticBaseUrl = apiBaseUrl.replace('/api', '');
 
     if (!artistData) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
                 
     return (
