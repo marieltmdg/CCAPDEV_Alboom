@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const Artist = require("../models/artistModel");
 const path = require("path");
 const fs = require("fs");
 
@@ -25,6 +26,7 @@ module.exports = {
         try {
             const emailExists = await User.findOne({ email });
             const userExists = await User.findOne({ username });
+            const artistExists = await Artist.findOne({ username });
 
             if (emailExists) {
                 return res.status(400).json({ message: "Email already has an account" });
@@ -32,6 +34,10 @@ module.exports = {
 
             if (userExists) {
                 return res.status(400).json({ message: "User already exists" });
+            }
+
+            if (artistExists) {
+                return res.status(400).json({ message: "Artist already exists" });
             }
 
             const saltHash = generatePassword(password);
@@ -153,7 +159,7 @@ module.exports = {
             return res.json({ authenticated: true, user: req.user, type: req.user.type });
         }
         else {
-            return res.status(401).json({ authenticated: false, message: "Not logged in" });
+            return res.status(401).json({ authenticated: false, user: null, message: "Not logged in" });
         }
     }
 };

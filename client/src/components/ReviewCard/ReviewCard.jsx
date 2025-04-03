@@ -6,12 +6,14 @@ import upvote from '../../assets/helpful.svg';
 import downvote from '../../assets/unhelpful.svg';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from '../../authContext';
 
 function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh, userID }) {
     const [showReplyForm, setShowReplyForm] = useState(false);
     const [replyText, setReplyText] = useState('');
     const [hasVoted, setHasVoted] = useState(false);
     const [voteType, setVoteType] = useState(null);
+    const { authState } = useAuth();
 
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -139,7 +141,7 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
                     </div>
 
                     <div className={styles.bottomRight}>
-                        {IsReviewEditable && (
+                        {authState.authenticated && authState.user?._id === Review?.user_id._id && (
                             <>
                                 <div className={styles.actionsContainer} onClick={() => Delete(Review._id)}>
                                     <h6>DELETE</h6>
@@ -152,9 +154,11 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
                             </>
                         )}
                         {/* Reply Button */}
-                        <div className={styles.actionsContainer} onClick={handleReplyClick}>
-                            <h6>REPLY</h6>
-                        </div>
+                        {authState.authenticated && authState.user?._id === Album?.artist_id._id && (
+                            <div className={styles.actionsContainer} onClick={handleReplyClick}>
+                                <h6>REPLY</h6>
+                            </div>
+                        )}
                     </div>
                 </div>
 
