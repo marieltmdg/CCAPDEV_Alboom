@@ -140,20 +140,24 @@ function Album() {
                     </div>
                 </div>
                 {
-                    reviews && reviews.map(review => (
-                        <ReviewCard 
-                            key={review._id}
-                            Album={album}
-                            Review={review}
-                            Delete={handleDelete}
-                            Upvote={handleUpvote}
-                            Downvote={handleDownvote}
-                            IsEdited={review.isEdited} 
-                            IsReviewEditable={true}
-                            Refresh={refreshReviews}
-                            userID={userData?._id}
-                        />
-                    ))
+                    reviews && reviews.length > 0 ? (
+                        reviews.map(review => (
+                            <ReviewCard 
+                                key={review._id}
+                                Album={album}
+                                Review={review}
+                                Delete={handleDelete}
+                                Upvote={handleUpvote}
+                                Downvote={handleDownvote}
+                                IsEdited={review.isEdited} 
+                                IsReviewEditable={true}
+                                Refresh={refreshReviews}
+                                userID={userData?._id}
+                            />
+                        ))
+                    ) : (
+                        <p className={styles.noReviews}>No reviews available. Be the first to write one!</p>
+                    )
                 }
             </Main>
         </>
