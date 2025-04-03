@@ -34,7 +34,7 @@
 
 .latestReviewContainer {
     box-sizing: border-box;
-    width: 100%;
+    width: calc(100% + 8rem);
     height: 350px;
     align-items: center;
     border-radius: 20px;
