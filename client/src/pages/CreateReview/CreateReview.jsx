@@ -8,11 +8,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import AlbumInfo from "../../components/AlbumInfo/AlbumInfo.jsx";
 import styles from "./CreateReview.module.css";
 import axios from "axios";
+import { useAuth } from "../../authContext.jsx";
 
 function CreateReview() {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
     const navigate = useNavigate();
+    const { authState } = useAuth();
     
     const [album, setAlbum] = useState(null);
     const [formData, setFormData] = useState({
@@ -31,7 +33,7 @@ function CreateReview() {
             .then(albumResponse => setAlbum(albumResponse.data))
             .catch(err => console.error("Error fetching album:", err));
 
-        axios.get(`${apiBaseUrl}/user/carlegendelosreyes`)
+        axios.get(`${apiBaseUrl}/user/${authState.user.username}`)
             .then(userResponse => {
                 setUserData(userResponse.data);
                 return axios.get(`${apiBaseUrl}/reviews/user/${userResponse.data._id}/album/${id}`);
