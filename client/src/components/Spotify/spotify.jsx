@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Loading from "../../components/Loading/Loading.jsx";
 
 const SpotifyEmbed = ({ artist, album }) => {
   const [albumId, setAlbumId] = useState(null);
@@ -60,7 +61,7 @@ const SpotifyEmbed = ({ artist, album }) => {
           loading="lazy"
         ></iframe>
       ) : (
-        <p>Loading...</p>
+        <Loading />
       )}
     </div>
   );
