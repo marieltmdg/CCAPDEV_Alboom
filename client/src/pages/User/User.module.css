@@ -1,46 +1,47 @@
 .mainContainer {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     box-sizing: border-box;
     max-width: 100%;
+    padding: 0 1rem;
+    gap: 2rem;
 }
 
 .reviewsContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1300px;
+    flex: 1;
+    max-width: calc(100% - 355px);
     margin-top: 3rem;
-    margin-left: 16rem;
+    margin-left: 375px;
+    padding: 0 1rem;
 }
 
 .userProfileContainer {
     position: fixed;
+    width: 355px;
+    height: calc(100vh - 74px);
+    left: 1rem;
     top: 74px;
-    max-width: 355px;
-    height: auto;
-    left: 25px;
-    top: 74px;
-    bottom: 0;
-    background: #1E1E1E;
+    background: #1e1e1e;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     box-sizing: border-box;
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .latestReviewContainer {
     box-sizing: border-box;
-    width: 1300px;
+    width: 100%;
     height: 350px;
     align-items: center;
     border-radius: 20px;
-    margin-bottom: 20px; 
-
+    margin-bottom: 20px;
     background-color: var(--primary-color);
     opacity: 0.9;
-    box-shadow: 0px 6px 12px 2px rgba(0, 0, 0, 0.85);
+    box-shadow: 0 6px 12px 2px rgba(0, 0, 0, 0.85);
 }
 
 .userReviewContainer {
@@ -48,5 +49,60 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center; 
-    width: 1300px;
+    gap: 1rem;
+    width: 100%;
+}
+
+/* view queries */
+@media (max-width: 1200px) {
+    .reviewsContainer {
+        max-width: calc(100% - 375px);
+    }
+}
+
+@media (max-width: 992px) {
+    .mainContainer {
+        flex-direction: column;
+    }
+
+    .userProfileContainer {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        left: 0;
+        top: 0;
+        margin-bottom: 2rem;
+    }
+
+    .reviewsContainer{
+        margin-left: 0;
+        max-width: 100%;
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .latestReviewContainer {
+        height: auto;
+        min-height: 350px;
+    }
+
+    .mainContainer {
+        padding: 0 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px 8px;
+    }
+
+    .userProfileContainer {
+        padding: 15px;
+    }
+
+    .reviewsContainer {
+        margin-top: 2rem;
+    }
 }

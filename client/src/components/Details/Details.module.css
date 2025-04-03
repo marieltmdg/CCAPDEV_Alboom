@@ -1,7 +1,7 @@
 .userProfileContainer {
     position: fixed;
     width: 355px;
-    height: auto;
+    height: calc(100vh - 74px);
     left: 25px;
     top: 74px;
     bottom: 0;
@@ -9,7 +9,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     box-sizing: border-box;
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .profilePictureContainer {
