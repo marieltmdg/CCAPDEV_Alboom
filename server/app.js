@@ -48,22 +48,14 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: sessionStore,
-}));
-
-require("./config/passport");
-
-app.use(passport.initialize());
-app.use(session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: false,
-    store: sessionStore,
     cookie: {
         secure: process.env.NODE_ENV === "production", 
-        httpOnly: true,
+        httpOnly: true, 
         maxAge: 1000 * 60 * 60 * 24, 
     },
 }));
+
+require("./config/passport");
 
 // app.use((req, res, next) => {
 //     console.log("SESSION AND USER DETAILS");
