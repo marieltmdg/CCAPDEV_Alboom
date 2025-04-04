@@ -41,6 +41,8 @@ const sessionStore = MongoStore.create({
     collection: "sessions",
 });
 
+app.set("trust proxy", 1);
+
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
@@ -51,7 +53,17 @@ app.use(session({
 require("./config/passport");
 
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+    cookie: {
+        secure: process.env.NODE_ENV === "production", 
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24, 
+    },
+}));
 
 // app.use((req, res, next) => {
 //     console.log("SESSION AND USER DETAILS");

@@ -29,6 +29,10 @@ export const AuthProvider = ({ children }) => {
       const response = await axios.post(`${apiBaseUrl}/user/status`, {
         withCredentials: true
       });
+      const api = axios.create({
+        baseURL: apiBaseUrl,
+        withCredentials: true,
+      });
       setAuthState({
         authenticated: response.data.authenticated,
         user: response.data.user,
