@@ -41,19 +41,26 @@ const sessionStore = MongoStore.create({
     collection: "sessions",
 });
 
-app.set("trust proxy", 1);
-
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     store: sessionStore,
+<<<<<<< HEAD
     cookie: {
         secure: process.env.NODE_ENV === "production", 
         httpOnly: true, 
         maxAge: 1000 * 60 * 60 * 24, 
     },
 }));
+=======
+}));
+
+require("./config/passport");
+
+app.use(passport.initialize());
+app.use(passport.session());
+>>>>>>> parent of 6e618b1 (fix: test sessions in deployment)
 
 require("./config/passport");
 
