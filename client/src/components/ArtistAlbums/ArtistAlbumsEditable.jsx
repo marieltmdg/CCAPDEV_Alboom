@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./ArtistAlbums.module.css";
+import { useAuth } from "../../authContext.jsx";
 
 function ArtistAlbumsEditable({ Albums }) {
     const [albumRatings, setAlbumRatings] = useState({});
     const [editingAlbumId, setEditingAlbumId] = useState(null);
     const [description, setDescription] = useState("");
+    const { authState } = useAuth(); // Get setAuthState from context
 
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
     const staticBaseUrl = apiBaseUrl.replace('/api', ''); 
@@ -102,15 +104,17 @@ function ArtistAlbumsEditable({ Albums }) {
                             </div>
                         ) : (
                             <div className={styles.buttonContainer}>
-                                <button
-                                    onClick={(event) => {
-                                        event.stopPropagation();
-                                        handleEditClick(album, event);
-                                    }}
-                                    className={styles.button}
-                                >
-                                    Edit Description
-                                </button>
+                               {authState.authenticated && authState.user?._id === album?.artist_id && (
+                                    <button
+                                        onClick={(event) => {
+                                            event.stopPropagation();
+                                            handleEditClick(album, event);
+                                        }}
+                                        className={styles.button}
+                                    >
+                                        Edit Description
+                                    </button>
+                                )}
                             </div>
                         )}
                     </div>

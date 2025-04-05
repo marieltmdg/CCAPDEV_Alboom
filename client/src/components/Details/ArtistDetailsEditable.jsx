@@ -5,6 +5,7 @@ import pin from "../../assets/pin.png";
 import avatar from "../../assets/users/default.jpg";
 import Loading from "../../components/Loading/Loading.jsx";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../../authContext.jsx";
 
 import upload from '../../assets/upload.svg';
 
@@ -13,6 +14,7 @@ function ArtistDetailsEditable({ artistData }) {
     const [user, setUser] = useState(artistData || {});
     const [isEditing, setIsEditing] = useState(false);
     const [photo, setPhoto] = useState(null);
+    const { authState } = useAuth(); // Get setAuthState from context
     const [formData, setFormData] = useState({
         bio: artistData?.bio || "",
         country: artistData?.country || "",
@@ -140,7 +142,14 @@ function ArtistDetailsEditable({ artistData }) {
                     <div className={styles.linkContainer}>
                         <p><img src={linkIcon} alt="Link" className={styles.linkImage} /> <a href={user.link} target="_blank" rel="noopener noreferrer" className={styles.link}>{user.link}</a></p>
                     </div>
-                    <button onClick={() => setIsEditing(true)} className={styles.editButton}>Edit</button>
+                    {authState.authenticated && authState.user?._id === artistData?._id && (
+                        <button 
+                            onClick={() => setIsEditing(true)} 
+                            className={styles.editButton}
+                        >
+                            Edit
+                        </button>
+                    )}
                 </div>
             )}
         </div>
