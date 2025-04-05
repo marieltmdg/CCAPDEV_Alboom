@@ -63,6 +63,9 @@ require("./config/passport");
 //     console.log(req.user);
 //     next();
 // });
+ 
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
