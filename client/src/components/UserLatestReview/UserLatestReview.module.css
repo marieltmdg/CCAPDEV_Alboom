@@ -15,8 +15,8 @@
     flex-direction: column;
     align-items: left;   
     margin-left: 2.5rem;
-
     max-width: 64rem;
+    width: 100%;
 }
 
 .latestReviewText {
@@ -64,6 +64,7 @@
     flex-direction: column; 
     align-items: flex-start; 
     margin-top: 2rem;
+    width: 100%;
 }
 
 .albumTitle {  
@@ -94,30 +95,31 @@
 .reviewInfoContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    max-width: 925px;
-    min-width: 925px;
-    margin-top: 1.6rem; 
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    margin-top: 1.6rem;
     position: relative;
+    padding: 0 1rem;
 }
 
 .reviewTitle {
     font-family: 'Montserrat';
-    text-align: left;
+    text-align: center;
     font-size: 24px;
     line-height: 120%;
     letter-spacing: -0.02em;
     font-weight: 700;
     color: #FF8000;
     margin-bottom: 2px;
+    width: 100%;
 }
 
 .reviewText {
   font-family: 'Montserrat';
   text-align: center;
   font-weight: 400;
-  font-size: 22px;
+  font-size: clamp(16px, 1.8vw, 22px);
   line-height: 120%;
   letter-spacing: -0.02em;
   flex-grow: 1;
@@ -133,43 +135,97 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 27px;
-    align-items: center;
-    text-align: center;
-    max-width: 925px;
-    min-width: 925px;
+    padding: 1.5rem;
+    max-width: 100%;
+    min-width: auto;
+    box-sizing: border-box;
 }
 
 .topCommentText {
     font-family: 'Raleway';
     font-weight: 700;
-    font-size: 20px;
+    font-size: clamp(16px, 1.5vw, 20px);
     line-height: 120%;
     letter-spacing: -0.02em;
+    width:100%;
 }
 
 .topComment {
     font-family: 'Montserrat';
     font-weight: 400;
-    font-size: 15px;
+    font-size: clamp(14px, 1.2vw, 15px);
     line-height: 120%;
     letter-spacing: -0.02em;
-    color: #CDCDCD;
+    color: #cdcdcd;
 
     margin-top: 0.1rem;
-    margin-left: 0.5rem;
     
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     width: 100%;
-    max-width: 100%;
 }
 
   
 .boomContainer {
   position: absolute;
   margin-top: 2rem;
-  margin-left: 59rem;
+  right: 2rem;
   z-index: 20;
 }
+
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    .detailsContainer {
+        margin-left: 0;
+        padding: 1rem;
+        align-items: center;
+    }
+
+    .albumInfoContainer {
+        align-items: center;
+    }
+
+    .reviewInfoContainer{
+        padding: 0 1rem;
+    }
+
+    .boomContainer{
+        position: relative;
+        margin-top: 1rem;
+        right: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .albumCover {
+        width: 200px;
+        height: 200px;
+    }
+
+    .reviewTitle,
+    .reviewText {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .albumCover {
+        width: 150px;
+        height: 150px;
+    }
+
+    .reviewTitle,
+    .reviewText {
+        font-size: 16px;
+    }
+}
+

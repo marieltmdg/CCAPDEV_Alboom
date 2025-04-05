@@ -17,7 +17,7 @@ function AlbumReview({ Album, Rating }) {
                         alt={Album.title}
                     />
                     <h1 className={styles.albumRating}>
-                        {Rating === -1 ? "No reviews" : `${Rating.toFixed(2)} BOOMS`}
+                        {Rating === -1 ? "No reviews" : `${Rating.toFixed(1)} BOOMS`}
                     </h1>
                 </div>
 

@@ -49,3 +49,19 @@
     width: 100%; 
     margin-bottom: 0px;
 }
+
+.noReviews {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 400px;
+    height: 70px;
+    background-color: var(--primary-color);
+    border-color: var(--accent-color);
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 20px;
+    margin: 0 auto; 
+    margin-top: 20px;
+}

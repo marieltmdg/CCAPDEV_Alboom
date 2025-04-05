@@ -43,11 +43,15 @@ function Header({ isAuth }) {
                 Logout
             </Link>
             <Link to={`/user/${authState.user.username}`}>
-                <img 
-                src={`${staticBaseUrl}${authState.user.picture}`} 
-                className={styles.avatar} 
-                alt="User avatar" 
-                />
+                {authState.user.picture ? (
+                    <img 
+                    src={`${staticBaseUrl}${authState.user.picture}`} 
+                    className={styles.avatar} 
+                    alt="User avatar" 
+                    />
+                ) : (
+                    <img src={avatar} className={styles.avatar} alt="Default avatar" />      
+                )}
             </Link>
             </>
         ) : authState.type === "artist" ? (

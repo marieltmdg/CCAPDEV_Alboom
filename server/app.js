@@ -49,13 +49,13 @@ app.use(session({
     cookie: {
         sameSite: 'none',
         secure: true,
+        // secure: process.env.NODE_ENV === "production", 
+        // httpOnly: true, 
+        // maxAge: 1000 * 60 * 60 * 24, 
     },
 }));
 
 require("./config/passport");
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 // app.use((req, res, next) => {
 //     console.log("SESSION AND USER DETAILS");

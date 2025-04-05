@@ -180,9 +180,8 @@
 }
 
 .reviewImage {
-    max-height: 90%;
-    max-width: 90%;
-    scale: 80%;
+    max-height:20vw;
+    max-width: 20vw;
 }
 
 .isEdited {
