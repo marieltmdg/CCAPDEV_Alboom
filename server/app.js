@@ -14,11 +14,12 @@ const apiRouter = require("./routes/apiRouter");
 
 dotenv.config(); 
 const app = express();
+app.set("trust proxy", 1);
 
 connectDB();
 
 const allowedOrigins = ["http://localhost:5173", "https://alboom.onrender.com"];
-app.use(cors({
+const corsOptions = {
     origin: (origin, callback) => {
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
@@ -27,7 +28,10 @@ app.use(cors({
         }
     },
     credentials: true
-}));
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
@@ -50,7 +54,7 @@ app.use(session({
         sameSite: 'none',
         secure: true,
         // secure: process.env.NODE_ENV === "production", 
-        // httpOnly: true, 
+        httpOnly: true, 
         // maxAge: 1000 * 60 * 60 * 24, 
     },
 }));
