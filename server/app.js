@@ -46,6 +46,10 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: sessionStore,
+    cookie: {
+        sameSite: 'none',
+        secure: true,
+    },
 }));
 
 require("./config/passport");
