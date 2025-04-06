@@ -1,27 +1,34 @@
 import styles from './Login.module.css';
 
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
-import Main from "../../components/Main"
+import Main from "../../components/Main";
 
-import alboom from '../../assets/alboom.png'
-import close from '../../assets/close.svg'
+import alboom from '../../assets/alboom.png';
+import close from '../../assets/close.svg';
 
 import { useAuth } from '../../authContext';
 
-import api from "../../api/axios"
-import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import api from "../../api/axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(""); 
     const navigate = useNavigate();
-    const { authState, setAuthState, checkAuthStatus } = useAuth();
+    const { checkAuthStatus } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+        setError(""); 
+
+        if (!username || !password) {
+            setError("Both username and password are required");
+            return;
+        }
+
         try {
             const response = await api.post("/user/login", {
                 username,
@@ -29,7 +36,7 @@ function Login() {
             }, {
                 withCredentials: true,
             });
-    
+
             console.log("Login successful!", response.data);
 
             const authStatus = await checkAuthStatus();
@@ -39,6 +46,13 @@ function Login() {
             }         
         } catch (err) {
             console.error("Login failed", err.response?.data?.message || err.message);
+            if (err.response?.status === 401) {
+                setError("Invalid username or password");
+            } else if (err.response?.status === 500) {
+                setError("Server error. Please try again later.");
+            } else {
+                setError("An unexpected error occurred. Please try again.");
+            }
         }
     };
     
@@ -58,16 +72,29 @@ function Login() {
                             <div className={styles.inputs}>
                                 <div className={styles.row}>
                                     <label htmlFor="username" className={styles.label}>Username</label>
-                                    <input type="text" id="username" placeholder="Enter your username" className={styles.input} onChange={(e) => setUsername(e.target.value)} />
+                                    <input 
+                                        type="text" 
+                                        id="username" 
+                                        placeholder="Enter your username" 
+                                        className={styles.input} 
+                                        onChange={(e) => setUsername(e.target.value)} 
+                                    />
                                 </div>
                                 <div className={styles.row}>
                                     <label htmlFor="password">Password</label>
-                                    <input type="password" id="password" placeholder="Enter your password" className={styles.input} onChange={(e) => setPassword(e.target.value)} />
+                                    <input 
+                                        type="password" 
+                                        id="password" 
+                                        placeholder="Enter your password" 
+                                        className={styles.input} 
+                                        onChange={(e) => setPassword(e.target.value)} 
+                                    />
                                 </div>
                                 <div className={styles.remember}>
                                     <input type="checkbox" id="remember" />
                                     <label htmlFor="remember">Remember me</label>
                                 </div>
+                                {error && <div className={styles.error}>{error}</div>} 
                             </div>
                             <button type="submit" className={styles.button}>Login</button>
                         </form>
@@ -81,4 +108,4 @@ function Login() {
     );
 }
 
-export default Login
+export default Login;

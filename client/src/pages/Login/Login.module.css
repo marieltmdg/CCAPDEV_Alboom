@@ -124,6 +124,11 @@
     filter: invert(65%) sepia(58%) saturate(4987%) hue-rotate(360deg) brightness(102%) contrast(102%);
 }
 
+.error {
+    margin-top: 5px;
+    text-align: center;
+}
+
 @media (max-width: 768px) {
     .modal {
         grid-template-columns: 1fr;
