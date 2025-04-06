@@ -19,6 +19,9 @@ function Album() {
     const [rating, setRating] = useState(-1);
     const [refresh, setRefresh] = useState(false);
     const [userData, setUserData] = useState(null);
+    const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false); 
+    const [isFadingOut, setIsFadingOut] = useState(false);
+    const [filterByNumber, setFilterByNumber] = useState(""); 
 
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -122,6 +125,44 @@ function Album() {
         );
     }
 
+    const sortByHighestRating = () => {
+        const sorted = [...reviews].sort((a, b) => {
+            return b.rating - a.rating;  
+        });
+        setReviews(sorted);
+    };
+    
+    const sortByLowestRating = () => {
+        const sorted = [...reviews].sort((a, b) => {
+            return a.rating - b.rating;  
+        });
+        setReviews(sorted);
+    };
+    
+    const handleFilterByNumber = () => {
+        const filtered = originalReviews.filter((review) => {
+            return review.rating === parseInt(filterByNumber, 10);  
+        });
+        setReviews(filtered);
+    };
+    
+    const resetFilter = () => {
+        setFilterByNumber('');  
+        setReviews(originalReviews);  
+    };
+
+    const toggleFilterMenu = () => {
+        if (isFilterMenuOpen) {
+            setIsFadingOut(true);
+            setTimeout(() => {
+                setIsFadingOut(false);
+                setIsFilterMenuOpen(false); 
+            }, 200); 
+        } else {
+            setIsFilterMenuOpen(true); 
+        }
+    };
+
     return (
         <>
             <Header isAuth={true} />
@@ -137,8 +178,43 @@ function Album() {
                         <button className={styles.button}>
                             <img src={search} className={styles.icon} alt="Search" />
                         </button>
+                        <div className={styles.filter} onClick={toggleFilterMenu}>
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 5L10 5M10 5C10 6.10457 10.8954 7 12 7C13.1046 7 14 6.10457 14 5M10 5C10 3.89543 10.8954 3 12 3C13.1046 3 14 3.89543 14 5M14 5L20 5M4 12H16M16 12C16 13.1046 16.8954 14 18 14C19.1046 14 20 13.1046 20 12C20 10.8954 19.1046 10 18 10C16.8954 10 16 10.8954 16 12ZM8 19H20M8 19C8 17.8954 7.10457 17 6 17C4.89543 17 4 17.8954 4 19C4 20.1046 4.89543 21 6 21C7.10457 21 8 20.1046 8 19Z" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round"></path>
+                            </svg>
+                        </div>
                     </div>
                 </div>
+                {(isFilterMenuOpen || isFadingOut) && (
+                    <div
+                        className={`${styles.filterMenu} ${
+                            isFadingOut ? styles.fadeOut : styles.fadeIn
+                        }`}
+                    >
+                        <div className={styles.close} onClick={toggleFilterMenu}>
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" fill="#ffffff"></path> </g></svg>
+                        </div>
+                        <h1>Sort</h1>
+                        <div className={styles.buttonFilter} onClick={sortByHighestRating}>Highest to Lowest Booms</div>
+                        <div className={styles.buttonFilter} onClick={sortByLowestRating}>Lowest to Highest Booms</div>
+                        <h1>Filter</h1>
+                        <input
+                            type="number"
+                            id="filterByNumber"
+                            className={styles.booms}
+                            placeholder="Input Number of Booms"
+                            value={filterByNumber}
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                if (value >= 0 && value <= 5) {
+                                    setFilterByNumber(value); 
+                                }
+                            }} 
+                        />
+                        <div className={styles.buttonFilter} onClick={handleFilterByNumber}> Number of Booms </div>
+                        <div className={styles.buttonAlt} onClick={resetFilter}> Reset Filter </div>
+                    </div>
+                )}
                 {
                     reviews && reviews.length > 0 ? (
                         reviews.map(review => (
