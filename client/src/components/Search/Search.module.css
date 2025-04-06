@@ -8,11 +8,11 @@
     flex: 1;
     padding: 0px 0px 0px 10px; 
     border-radius: 16px 0px 0px 16px;
-    height: 100%;
     border: none;
     font-size: 14px; 
     font-family: var(--primary-font);
     text-align: left;
+    background-color: var(--secondary-color);
 }
 
 .search:focus {
