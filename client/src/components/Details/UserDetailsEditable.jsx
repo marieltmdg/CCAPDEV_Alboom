@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Details.module.css";
 import linkIcon from "../../assets/link.png";
 import pin from "../../assets/pin.png";
@@ -6,24 +6,21 @@ import avatar from "../../assets/avatar.png";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading.jsx";
 import { useAuth } from "../../authContext.jsx";
-
-
 import upload from '../../assets/upload.svg';
 
-function UserDetailsEditable({ userData }) {
+function UserDetailsEditable() {
     const { username } = useParams();
-    const [user, setUser] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [photo, setPhoto] = useState(null);
-    const { authState } = useAuth(); // Get setAuthState from context
+    const { authState, setAuthState } = useAuth();
     const [formData, setFormData] = useState({
-        bio: userData?.bio || "",
-        country: userData?.country || "",
-        link: userData?.link || ""
+        bio: authState.user?.bio || "",
+        country: authState.user?.country || "",
+        link: authState.user?.link || ""
     });
 
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-    const staticBaseUrl = apiBaseUrl.replace('/api', ''); // Remove '/api' for static files
+    const staticBaseUrl = apiBaseUrl.replace('/api', '');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -54,36 +51,38 @@ function UserDetailsEditable({ userData }) {
             if (photo) {
                 formDataToSend.append("picture", photo);
             }
-    
+
             const response = await fetch(`${apiBaseUrl}/user/${username}`, {
                 method: "PUT",
-                body: formDataToSend, 
+                body: formDataToSend,
             });
-    
+
             if (!response.ok) {
                 throw new Error("Failed to update user");
             }
-    
+
             const updatedUser = await response.json();
-            setUser(updatedUser);
+            setAuthState(prev => ({
+                ...prev,
+                user: updatedUser
+            }));
             setIsEditing(false);
         } catch (error) {
             console.error("Error updating user:", error);
         }
     };
 
-    if (!userData) return <Loading />;
+    if (!authState.user) return <Loading />;
 
     return (
         <div className={styles.userProfileContainer}>
-            
             {isEditing ? (
                 <div className={styles.editForm}>
                     <div className={styles.profilePictureContainer}>
                         <label htmlFor="avatar" className={styles.avatar}>
                             <img 
                                 id="preview"
-                                src={formData.picturePreview || (userData.picture ? `${staticBaseUrl}/${userData.picture}` : avatar)} 
+                                src={formData.picturePreview || (authState.user.picture ? `${staticBaseUrl}/${authState.user.picture}` : avatar)} 
                                 className={styles.profilePictureImage} 
                                 alt="Avatar" 
                             />
@@ -93,7 +92,7 @@ function UserDetailsEditable({ userData }) {
                     </div>
 
                     <div className={styles.profileNameContainerEditing}>
-                        <span className={styles.profileName}>{userData.username}</span>
+                        <span className={styles.profileName}>{authState.user.username}</span>
                     </div>
                     <textarea
                         name="bio"
@@ -128,30 +127,30 @@ function UserDetailsEditable({ userData }) {
             ) : (
                 <div className={styles.userProfileContainer}>
                     <div className={styles.profilePictureContainer}>
-                        <img src={userData.picture ? `${staticBaseUrl}/${userData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
+                        <img src={authState.user.picture ? `${staticBaseUrl}/${authState.user.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
                     </div>
         
                     <div className={styles.profileNameContainer}>
-                        <span className={styles.profileName}>{userData.username}</span>
+                        <span className={styles.profileName}>{authState.user.username}</span>
                     </div>
         
                     <div className={styles.profileBioContainer}>
-                        <span className={styles.profileBio}>{userData.bio}</span>
+                        <span className={styles.profileBio}>{authState.user.bio}</span>
                     </div>
         
                     <div className={styles.countryContainer}>
                         <img src={pin} className={styles.countryImage} alt="Location" />
-                        <span className={styles.country}>{userData.country}</span>
+                        <span className={styles.country}>{authState.user.country}</span>
                     </div>
         
                     <div className={styles.linkContainer}>
                         <img src={linkIcon} className={styles.linkImage} alt="Link" />
-                        <a href={userData.link} className={styles.link} target="_blank" rel="noopener noreferrer">
-                            {userData.link}
+                        <a href={authState.user.link} className={styles.link} target="_blank" rel="noopener noreferrer">
+                            {authState.user.link}
                         </a>
                     </div>
 
-                    {authState.authenticated && authState.user?._id === userData?._id && (
+                    {authState.authenticated && authState.user?._id === authState.user?._id && (
                         <button 
                             onClick={() => setIsEditing(true)} 
                             className={styles.editButton}
@@ -159,9 +158,7 @@ function UserDetailsEditable({ userData }) {
                             Edit
                         </button>
                     )}
-                    
                 </div>
-                
             )}
         </div>
     );
