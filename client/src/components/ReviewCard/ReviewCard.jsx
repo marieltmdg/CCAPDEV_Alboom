@@ -125,15 +125,15 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
                     <div className={styles.bottomLeft}>
                         <div className={styles.bottomLeftMain}>
                             <div
-                                onClick={authState.authenticated && voteType !== "upvote" ? handleUpvote : null}
-                                className={`${styles.voteBox} ${voteType === "upvote" || !authState.authenticated ? styles.disabled : ''}`}
+                                onClick={authState.authenticated && authState.type === "user" && voteType !== "upvote" ? handleUpvote : null}
+                                className={`${styles.voteBox} ${voteType === "upvote" || !authState.authenticated ||  authState.type === "artist" ? styles.disabled : ''}`}
                             >
                                 <img className={styles.votes} src={upvote} alt="Upvote" />
                             </div>
                             <p className={styles.voteCount}>{Review.upvotes}</p>
                             <div
-                                onClick={authState.authenticated && voteType !== "downvote" ? handleDownvote : null}
-                                className={`${styles.voteBox} ${voteType === "downvote" || !authState.authenticated ? styles.disabled : ''}`}
+                                onClick={authState.authenticated && authState.type === "user" && voteType !== "downvote" ? handleDownvote : null}
+                                className={`${styles.voteBox} ${voteType === "downvote" || !authState.authenticated || authState.type === "artist"? styles.disabled : ''}`}
                             >
                                 <img className={styles.votes} src={downvote} alt="Downvote" />
                             </div>
