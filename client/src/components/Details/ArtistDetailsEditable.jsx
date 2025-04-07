@@ -25,6 +25,17 @@ function ArtistDetailsEditable({ artistData }) {
         picturePreview: artistData?.picture ? `${staticBaseUrl}/${artistData.picture}` : ""
     });
 
+    // Update local state when artistData prop changes.
+    useEffect(() => {
+        setUser(artistData || {});
+        setFormData({
+            bio: artistData?.bio || "",
+            country: artistData?.country || "",
+            link: artistData?.link || "",
+            picturePreview: artistData?.picture ? `${staticBaseUrl}/${artistData.picture}` : ""
+        });
+    }, [artistData, staticBaseUrl]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
