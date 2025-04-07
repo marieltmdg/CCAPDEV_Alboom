@@ -23,8 +23,8 @@
 }
 
 .profilePictureImage {
-    width: 75%;
-    height: auto; 
+    width: 300px;
+    height: 300px; 
     max-width: 300px; 
     border-radius: 50%;
     object-fit: cover; 
