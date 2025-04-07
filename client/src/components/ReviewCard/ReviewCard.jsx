@@ -31,7 +31,9 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
             }
         };
 
-        checkUserVote();
+        if (authState.authenticated) {
+            checkUserVote();
+        }
     }, [Review._id, userID, apiBaseUrl]);
 
     const handleReplyClick = () => {
@@ -123,15 +125,15 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
                     <div className={styles.bottomLeft}>
                         <div className={styles.bottomLeftMain}>
                             <div
-                                onClick={voteType !== "upvote" ? handleUpvote : null}
-                                className={`${styles.voteBox} ${voteType === "upvote" ? styles.disabled : ''}`}
+                                onClick={authState.authenticated && voteType !== "upvote" ? handleUpvote : null}
+                                className={`${styles.voteBox} ${voteType === "upvote" || !authState.authenticated ? styles.disabled : ''}`}
                             >
                                 <img className={styles.votes} src={upvote} alt="Upvote" />
                             </div>
                             <p className={styles.voteCount}>{Review.upvotes}</p>
                             <div
-                                onClick={voteType !== "downvote" ? handleDownvote : null}
-                                className={`${styles.voteBox} ${voteType === "downvote" ? styles.disabled : ''}`}
+                                onClick={authState.authenticated && voteType !== "downvote" ? handleDownvote : null}
+                                className={`${styles.voteBox} ${voteType === "downvote" || !authState.authenticated ? styles.disabled : ''}`}
                             >
                                 <img className={styles.votes} src={downvote} alt="Downvote" />
                             </div>

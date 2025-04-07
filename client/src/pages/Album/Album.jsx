@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useAuth } from "../../authContext.jsx";
 import styles from './Album.module.css';
 import Main from "../../components/Main.jsx";
 import Header from "../../components/Header/Header.jsx";
@@ -22,6 +23,7 @@ function Album() {
     const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false); 
     const [isFadingOut, setIsFadingOut] = useState(false);
     const [filterByNumber, setFilterByNumber] = useState(""); 
+    const { authState} = useAuth(); // Get setAuthState from context
 
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -55,8 +57,9 @@ function Album() {
 
         const fetchUserData = async () => {
             try {
-                const userResponse = await axios.get(`${apiBaseUrl}/user/carlegendelosreyes`);
+                const userResponse = await axios.get(`${apiBaseUrl}/user/${authState.user.username}`);
                 setUserData(userResponse.data);
+                console.log("User data:", userResponse.data);
             } catch (err) {
                 console.error("Error fetching user:", err);
             }
@@ -64,7 +67,10 @@ function Album() {
 
         fetchAlbumData();
         fetchReviewsData();
-        fetchUserData();
+
+        if (authState.authenticated && authState.user) {
+            fetchUserData();
+        }
     }, [id, refresh, apiBaseUrl]);
 
     const refreshReviews = () => {
