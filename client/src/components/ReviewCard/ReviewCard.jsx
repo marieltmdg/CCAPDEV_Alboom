@@ -210,7 +210,7 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
 
                         <div className={styles.middle}>
                             <div className={styles.middleMain}>
-                                <p className={styles.userReviewText}>
+                                <p className={styles.artistReviewText}>
                                     {Review.reply_text}
                                 </p>
                             </div>
