@@ -94,6 +94,9 @@ function ReviewCard({ Album, Review, IsEdited, IsReviewEditable, Delete, Refresh
                         </div>
 
                         <div className={styles.topLeft2}>
+                            <Link to={`/user/` + Review.user_id.username} className={styles.userLink}>
+                                <p className={styles.userReviewHeading}>{Review.user_id.username}</p>
+                            </Link>
                             <h3 className={styles.userReviewHeading}>{Review.title}</h3>
                             {IsEdited && <p className={styles.isEdited}>Edited</p>}
                         </div>

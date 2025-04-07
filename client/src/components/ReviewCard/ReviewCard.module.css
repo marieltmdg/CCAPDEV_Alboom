@@ -292,6 +292,17 @@
     transform: scale(1);
 }
 
+.userLink {
+    color: var(--secondary-color);
+}
+
+.userLink:hover {
+    color: var(--accent-color);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
