@@ -179,6 +179,13 @@
     overflow-wrap: break-word;
 }
 
+.artistReviewText {
+    text-align: justify;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    margin-bottom: 10px;
+}
+
 .reviewImage {
     max-height:20vw;
     max-width: 20vw;
