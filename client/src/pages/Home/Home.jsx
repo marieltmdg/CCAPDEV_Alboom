@@ -59,7 +59,7 @@ function Home() {
     const handleSearch = (event) => {
         const searchTerm = event.target.value.toLowerCase();
         const filtered = albums.filter((album) =>
-            album.title.toLowerCase().includes(searchTerm.toLowerCase())
+            album.title.toLowerCase().includes(searchTerm.toLowerCase()) || album.description.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredAlbums(filtered); 
     };
