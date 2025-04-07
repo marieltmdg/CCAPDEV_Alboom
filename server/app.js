@@ -45,17 +45,26 @@ const sessionStore = MongoStore.create({
     collection: "sessions",
 });
 
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+        res.setHeader('Access-Control-Allow-Credentials', 'true');
+    }
+    next();
+});
+
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     store: sessionStore,
+    rolling: true,
     cookie: {
+        maxAge: null,
         sameSite: 'none',
         secure: true,
-        // secure: process.env.NODE_ENV === "production", 
         httpOnly: true, 
-        // maxAge: 1000 * 60 * 60 * 24, 
     },
 }));
 

@@ -6,20 +6,20 @@ import avatar from "../../assets/avatar.png";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading.jsx";
 import { useAuth } from "../../authContext.jsx";
-
-
-import upload from '../../assets/upload.svg';
+import upload from "../../assets/upload.svg";
 
 function UserDetailsEditable({ userData }) {
     const { username } = useParams();
-    const [user, setUser] = useState(null);
+    // Initialize local user state with the provided userData
+    const [user, setUser] = useState(userData);
     const [isEditing, setIsEditing] = useState(false);
     const [photo, setPhoto] = useState(null);
-    const { authState } = useAuth(); // Get setAuthState from context
+    const { authState } = useAuth();
     const [formData, setFormData] = useState({
         bio: userData?.bio || "",
         country: userData?.country || "",
-        link: userData?.link || ""
+        link: userData?.link || "",
+        picturePreview: userData?.picture ? "" : "" // Optional: you may set an initial picture preview if desired
     });
 
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
@@ -66,24 +66,30 @@ function UserDetailsEditable({ userData }) {
     
             const updatedUser = await response.json();
             setUser(updatedUser);
+            // Update formData with the new data (optional)
+            setFormData({
+                bio: updatedUser.bio,
+                country: updatedUser.country,
+                link: updatedUser.link,
+                picturePreview: updatedUser.picture ? `${staticBaseUrl}/${updatedUser.picture}` : ""
+            });
             setIsEditing(false);
         } catch (error) {
             console.error("Error updating user:", error);
         }
     };
 
-    if (!userData) return <Loading />;
+    if (!user) return <Loading />;
 
     return (
         <div className={styles.userProfileContainer}>
-            
             {isEditing ? (
                 <div className={styles.editForm}>
                     <div className={styles.profilePictureContainer}>
                         <label htmlFor="avatar" className={styles.avatar}>
                             <img 
                                 id="preview"
-                                src={formData.picturePreview || (userData.picture ? `${staticBaseUrl}/${userData.picture}` : avatar)} 
+                                src={formData.picturePreview || (user.picture ? `${staticBaseUrl}/${user.picture}` : avatar)} 
                                 className={styles.profilePictureImage} 
                                 alt="Avatar" 
                             />
@@ -93,7 +99,7 @@ function UserDetailsEditable({ userData }) {
                     </div>
 
                     <div className={styles.profileNameContainerEditing}>
-                        <span className={styles.profileName}>{userData.username}</span>
+                        <span className={styles.profileName}>{user.username}</span>
                     </div>
                     <textarea
                         name="bio"
@@ -113,7 +119,6 @@ function UserDetailsEditable({ userData }) {
                     </div>
                     <div className={styles.linkContainer}>
                         <img src={linkIcon} alt="Link" className={styles.linkImage} />
-                    
                         <input
                             type="text"
                             name="link"
@@ -128,30 +133,34 @@ function UserDetailsEditable({ userData }) {
             ) : (
                 <div className={styles.userProfileContainer}>
                     <div className={styles.profilePictureContainer}>
-                        <img src={userData.picture ? `${staticBaseUrl}/${userData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
+                        <img 
+                            src={user.picture ? `${staticBaseUrl}/${user.picture}` : avatar} 
+                            className={styles.profilePictureImage} 
+                            alt="Profile Picture" 
+                        />
                     </div>
         
                     <div className={styles.profileNameContainer}>
-                        <span className={styles.profileName}>{userData.username}</span>
+                        <span className={styles.profileName}>{user.username}</span>
                     </div>
         
                     <div className={styles.profileBioContainer}>
-                        <span className={styles.profileBio}>{userData.bio}</span>
+                        <span className={styles.profileBio}>{user.bio}</span>
                     </div>
         
                     <div className={styles.countryContainer}>
                         <img src={pin} className={styles.countryImage} alt="Location" />
-                        <span className={styles.country}>{userData.country}</span>
+                        <span className={styles.country}>{user.country}</span>
                     </div>
         
                     <div className={styles.linkContainer}>
                         <img src={linkIcon} className={styles.linkImage} alt="Link" />
-                        <a href={userData.link} className={styles.link} target="_blank" rel="noopener noreferrer">
-                            {userData.link}
+                        <a href={user.link} className={styles.link} target="_blank" rel="noopener noreferrer">
+                            {user.link}
                         </a>
                     </div>
 
-                    {authState.authenticated && authState.user?._id === userData?._id && (
+                    {authState.authenticated && authState.user?._id === user?._id && (
                         <button 
                             onClick={() => setIsEditing(true)} 
                             className={styles.editButton}
@@ -159,9 +168,7 @@ function UserDetailsEditable({ userData }) {
                             Edit
                         </button>
                     )}
-                    
                 </div>
-                
             )}
         </div>
     );

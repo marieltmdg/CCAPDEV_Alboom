@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [rememberMe, setRememberMe] = useState(false);
     const [error, setError] = useState(""); 
     const navigate = useNavigate();
     const { checkAuthStatus } = useAuth();
@@ -33,6 +34,7 @@ function Login() {
             const response = await api.post("/user/login", {
                 username,
                 password,
+                rememberMe,
             }, {
                 withCredentials: true,
             });
@@ -91,7 +93,7 @@ function Login() {
                                     />
                                 </div>
                                 <div className={styles.remember}>
-                                    <input type="checkbox" id="remember" />
+                                    <input type="checkbox" id="remember" onChange={(e) => setRememberMe(e.target.value)} />
                                     <label htmlFor="remember">Remember me</label>
                                 </div>
                                 {error && <div className={styles.error}>{error}</div>} 
