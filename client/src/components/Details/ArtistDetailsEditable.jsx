@@ -6,23 +6,24 @@ import avatar from "../../assets/users/default.jpg";
 import Loading from "../../components/Loading/Loading.jsx";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../authContext.jsx";
-
 import upload from '../../assets/upload.svg';
 
 function ArtistDetailsEditable({ artistData }) {
     const { username } = useParams();
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+    const staticBaseUrl = apiBaseUrl.replace('/api', ''); 
+
+    // Initialize local state from artistData
     const [user, setUser] = useState(artistData || {});
     const [isEditing, setIsEditing] = useState(false);
     const [photo, setPhoto] = useState(null);
-    const { authState } = useAuth(); // Get setAuthState from context
+    const { authState } = useAuth();
     const [formData, setFormData] = useState({
         bio: artistData?.bio || "",
         country: artistData?.country || "",
-        link: artistData?.link || ""
+        link: artistData?.link || "",
+        picturePreview: artistData?.picture ? `${staticBaseUrl}/${artistData.picture}` : ""
     });
-
-    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-    const staticBaseUrl = apiBaseUrl.replace('/api', ''); 
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -65,6 +66,12 @@ function ArtistDetailsEditable({ artistData }) {
 
             const updatedUser = await response.json();
             setUser(updatedUser);
+            setFormData({
+                bio: updatedUser.bio,
+                country: updatedUser.country,
+                link: updatedUser.link,
+                picturePreview: updatedUser.picture ? `${staticBaseUrl}/${updatedUser.picture}` : ""
+            });
             setIsEditing(false);
         } catch (error) {
             console.error("Error updating artist:", error);
@@ -75,24 +82,30 @@ function ArtistDetailsEditable({ artistData }) {
 
     return (
         <div className={styles.userProfileContainer}>
-
             {isEditing ? (
                 <div className={styles.editForm}>
                     <div className={styles.profilePictureContainer}>
                         <label htmlFor="avatar" className={styles.avatar}>
                             <img 
                                 id="preview"
-                                src={formData.picturePreview || (artistData.picture ? `${staticBaseUrl}/${artistData.picture}` : avatar)} 
+                                src={formData.picturePreview || (user.picture ? `${staticBaseUrl}/${user.picture}` : avatar)} 
                                 className={styles.profilePictureImage} 
                                 alt="Avatar" 
                             />
-                            <input type="file" id="avatar" accept="image/*" className={styles.upload} onChange={handleFileChange} />
+                            <input 
+                                type="file" 
+                                id="avatar" 
+                                accept="image/*" 
+                                className={styles.upload} 
+                                onChange={handleFileChange} 
+                            />
                             <img src={upload} alt="Upload" className={styles.uploadIcon} />
                         </label>
                     </div>
 
                     <div className={styles.profileNameContainerEditing}>
-                        <span className={styles.profileName}>{artistData.username}</span>
+                        <span className={styles.profileName}>{user.username}</span>
+                        <div className={styles.artistText}>Artist</div>
                     </div>
                     <textarea
                         name="bio"
@@ -126,7 +139,11 @@ function ArtistDetailsEditable({ artistData }) {
             ) : (
                 <div className={styles.details}>
                     <div className={styles.profilePictureContainer}>
-                        <img src={artistData.picture ? `${staticBaseUrl}/${artistData.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
+                        <img 
+                            src={user.picture ? `${staticBaseUrl}/${user.picture}` : avatar} 
+                            className={styles.profilePictureImage} 
+                            alt="Profile Picture" 
+                        />
                     </div>
                     <div className={styles.profileNameContainer}>
                         <span className={styles.profileName}>{user.username}</span>
@@ -135,14 +152,26 @@ function ArtistDetailsEditable({ artistData }) {
                     <div className={styles.profileBioContainer}>
                         <p className={styles.profileBio}>{user.bio}</p>
                     </div>
-
                     <div className={styles.countryContainer}>
-                        <p><img src={pin} alt="Country" className={styles.countryImage} /> <span className={styles.country}>{user.country}</span></p>
+                        <p>
+                            <img src={pin} alt="Country" className={styles.countryImage} /> 
+                            <span className={styles.country}>{user.country}</span>
+                        </p>
                     </div>
                     <div className={styles.linkContainer}>
-                        <p><img src={linkIcon} alt="Link" className={styles.linkImage} /> <a href={user.link} target="_blank" rel="noopener noreferrer" className={styles.link}>{user.link}</a></p>
+                        <p>
+                            <img src={linkIcon} alt="Link" className={styles.linkImage} /> 
+                            <a 
+                                href={user.link} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className={styles.link}
+                            >
+                                {user.link}
+                            </a>
+                        </p>
                     </div>
-                    {authState.authenticated && authState.user?._id === artistData?._id && (
+                    {authState.authenticated && authState.user?._id === user?._id && (
                         <button 
                             onClick={() => setIsEditing(true)} 
                             className={styles.editButton}

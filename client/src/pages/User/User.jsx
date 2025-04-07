@@ -7,7 +7,6 @@ import Loading from "../../components/Loading/Loading.jsx";
 import Header from "../../components/Header/Header.jsx";
 import Main from "../../components/Main";
 
-import UserDetails from '../../components/Details/UserDetails.jsx';
 import UserDetailsEditable from '../../components/Details/UserDetailsEditable.jsx';
 import UserLatestReview from '../../components/UserLatestReview/UserLatestReview.jsx';
 import UserReviews from '../../components/UserReviews/UserReviews.jsx';

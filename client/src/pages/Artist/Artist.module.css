@@ -10,9 +10,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1400px;
-    margin-top: 3rem;
-    margin-left: 12.6rem;
+    margin-left: 13.1rem;
 }
 
 .userProfileContainer {
@@ -21,7 +19,6 @@
     max-width: 355px;
     height: auto;
     left: 25px;
-    top: 74px;
     bottom: 0;
     background: #1E1E1E;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

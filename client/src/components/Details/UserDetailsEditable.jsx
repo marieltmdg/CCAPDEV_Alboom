@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Details.module.css";
 import linkIcon from "../../assets/link.png";
 import pin from "../../assets/pin.png";
@@ -6,21 +6,24 @@ import avatar from "../../assets/avatar.png";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading.jsx";
 import { useAuth } from "../../authContext.jsx";
-import upload from '../../assets/upload.svg';
+import upload from "../../assets/upload.svg";
 
-function UserDetailsEditable() {
+function UserDetailsEditable({ userData }) {
     const { username } = useParams();
+    // Initialize local user state with the provided userData
+    const [user, setUser] = useState(userData);
     const [isEditing, setIsEditing] = useState(false);
     const [photo, setPhoto] = useState(null);
-    const { authState, setAuthState } = useAuth();
+    const { authState } = useAuth();
     const [formData, setFormData] = useState({
-        bio: authState.user?.bio || "",
-        country: authState.user?.country || "",
-        link: authState.user?.link || ""
+        bio: userData?.bio || "",
+        country: userData?.country || "",
+        link: userData?.link || "",
+        picturePreview: userData?.picture ? "" : "" // Optional: you may set an initial picture preview if desired
     });
 
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-    const staticBaseUrl = apiBaseUrl.replace('/api', '');
+    const staticBaseUrl = apiBaseUrl.replace('/api', ''); // Remove '/api' for static files
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -51,28 +54,32 @@ function UserDetailsEditable() {
             if (photo) {
                 formDataToSend.append("picture", photo);
             }
-
+    
             const response = await fetch(`${apiBaseUrl}/user/${username}`, {
                 method: "PUT",
-                body: formDataToSend,
+                body: formDataToSend, 
             });
-
+    
             if (!response.ok) {
                 throw new Error("Failed to update user");
             }
-
+    
             const updatedUser = await response.json();
-            setAuthState(prev => ({
-                ...prev,
-                user: updatedUser
-            }));
+            setUser(updatedUser);
+            // Update formData with the new data (optional)
+            setFormData({
+                bio: updatedUser.bio,
+                country: updatedUser.country,
+                link: updatedUser.link,
+                picturePreview: updatedUser.picture ? `${staticBaseUrl}/${updatedUser.picture}` : ""
+            });
             setIsEditing(false);
         } catch (error) {
             console.error("Error updating user:", error);
         }
     };
 
-    if (!authState.user) return <Loading />;
+    if (!user) return <Loading />;
 
     return (
         <div className={styles.userProfileContainer}>
@@ -82,7 +89,7 @@ function UserDetailsEditable() {
                         <label htmlFor="avatar" className={styles.avatar}>
                             <img 
                                 id="preview"
-                                src={formData.picturePreview || (authState.user.picture ? `${staticBaseUrl}/${authState.user.picture}` : avatar)} 
+                                src={formData.picturePreview || (user.picture ? `${staticBaseUrl}/${user.picture}` : avatar)} 
                                 className={styles.profilePictureImage} 
                                 alt="Avatar" 
                             />
@@ -92,7 +99,7 @@ function UserDetailsEditable() {
                     </div>
 
                     <div className={styles.profileNameContainerEditing}>
-                        <span className={styles.profileName}>{authState.user.username}</span>
+                        <span className={styles.profileName}>{user.username}</span>
                     </div>
                     <textarea
                         name="bio"
@@ -112,7 +119,6 @@ function UserDetailsEditable() {
                     </div>
                     <div className={styles.linkContainer}>
                         <img src={linkIcon} alt="Link" className={styles.linkImage} />
-                    
                         <input
                             type="text"
                             name="link"
@@ -127,30 +133,34 @@ function UserDetailsEditable() {
             ) : (
                 <div className={styles.userProfileContainer}>
                     <div className={styles.profilePictureContainer}>
-                        <img src={authState.user.picture ? `${staticBaseUrl}/${authState.user.picture}` : avatar} className={styles.profilePictureImage} alt="Profile Picture" />
+                        <img 
+                            src={user.picture ? `${staticBaseUrl}/${user.picture}` : avatar} 
+                            className={styles.profilePictureImage} 
+                            alt="Profile Picture" 
+                        />
                     </div>
         
                     <div className={styles.profileNameContainer}>
-                        <span className={styles.profileName}>{authState.user.username}</span>
+                        <span className={styles.profileName}>{user.username}</span>
                     </div>
         
                     <div className={styles.profileBioContainer}>
-                        <span className={styles.profileBio}>{authState.user.bio}</span>
+                        <span className={styles.profileBio}>{user.bio}</span>
                     </div>
         
                     <div className={styles.countryContainer}>
                         <img src={pin} className={styles.countryImage} alt="Location" />
-                        <span className={styles.country}>{authState.user.country}</span>
+                        <span className={styles.country}>{user.country}</span>
                     </div>
         
                     <div className={styles.linkContainer}>
                         <img src={linkIcon} className={styles.linkImage} alt="Link" />
-                        <a href={authState.user.link} className={styles.link} target="_blank" rel="noopener noreferrer">
-                            {authState.user.link}
+                        <a href={user.link} className={styles.link} target="_blank" rel="noopener noreferrer">
+                            {user.link}
                         </a>
                     </div>
 
-                    {authState.authenticated && authState.user?._id === authState.user?._id && (
+                    {authState.authenticated && authState.user?._id === user?._id && (
                         <button 
                             onClick={() => setIsEditing(true)} 
                             className={styles.editButton}

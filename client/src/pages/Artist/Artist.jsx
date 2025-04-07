@@ -7,9 +7,7 @@ import Loading from "../../components/Loading/Loading.jsx";
 import Header from "../../components/Header/Header.jsx";
 import Main from "../../components/Main";
 
-import ArtistDetails from "../../components/Details/ArtistDetails.jsx";
 import ArtistDetailsEditable from "../../components/Details/ArtistDetailsEditable.jsx"; 
-import ArtistAlbums from "../../components/ArtistAlbums/ArtistAlbums.jsx";
 import ArtistAlbumsEditable from "../../components/ArtistAlbums/ArtistAlbumsEditable.jsx";
 
 function Artist() {

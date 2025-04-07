@@ -134,6 +134,31 @@
     box-shadow: 0 0 8px var(--accent-color);
 }
 
+.smallButton {
+    height: 30px;
+    width: 30px;
+    background-color: var(--accent-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.smallButton:hover {
+    background-color: var(--primary-color);
+    transition: 0.3s;
+}
+
+.rowSort {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    gap: 10px; 
+    width: 100%;
+    padding: 20px;
+    background-color: var(--primary-color);
+    border: solid 2px var(--accent-color);
+    border-radius: 20px;
+}
+
 .fadeIn {
 	opacity: 1;
 	animation-name: fadeInOpacity;
