@@ -105,6 +105,7 @@ function ArtistDetailsEditable({ artistData }) {
 
                     <div className={styles.profileNameContainerEditing}>
                         <span className={styles.profileName}>{user.username}</span>
+                        <div className={styles.artistText}>Artist</div>
                     </div>
                     <textarea
                         name="bio"
