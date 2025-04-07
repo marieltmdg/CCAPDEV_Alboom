@@ -136,7 +136,7 @@ module.exports = {
                 const rememberMe = req.body.rememberMe;
 
                 if (rememberMe) {
-                    req.session.cookie.maxAge = 14 * 24 * 60 * 60 * 1000;
+                    req.session.cookie.maxAge = 21 * 24 * 60 * 60 * 1000;
                 } else {
                     req.session.cookie.expires = false;
                 }
