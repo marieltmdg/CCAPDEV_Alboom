@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './ReviewCard.module.css';
 import BoomMeter from '../BoomMeter/BoomMeter';
-import defaultUserPhoto from '../../assets/users/UserPhoto2.jpg';
+import defaultUserPhoto from '../../assets/avatar.png';
 import upvote from '../../assets/helpful.svg';
 import downvote from '../../assets/unhelpful.svg';
 import { Link } from 'react-router-dom';
