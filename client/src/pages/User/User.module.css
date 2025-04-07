@@ -14,7 +14,6 @@
     align-items: center;
     flex: 1;
     max-width: calc(100% - 355px);
-    margin-top: 3rem;
     margin-left: 375px;
     padding: 0 1rem;
 }
