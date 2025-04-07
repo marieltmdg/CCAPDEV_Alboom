@@ -55,7 +55,7 @@ function ArtistDetailsEditable({ artistData }) {
                 formDataToSend.append("picture", photo);
             }
 
-            const response = await fetch(`${apiBaseUrl}/artist/${username}`, {
+            const response = await fetch(`${apiBaseUrl}/artist/${authState.user.username}`, {
                 method: "PUT",
                 body: formDataToSend, 
             });

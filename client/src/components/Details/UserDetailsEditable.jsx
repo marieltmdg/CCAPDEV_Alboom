@@ -10,7 +10,10 @@ import upload from "../../assets/upload.svg";
 
 function UserDetailsEditable({ userData }) {
     const { username } = useParams();
-    // Initialize local user state with the provided userData
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+    const staticBaseUrl = apiBaseUrl.replace('/api', '');
+    
+    // Local state for user details and form data.
     const [user, setUser] = useState(userData);
     const [isEditing, setIsEditing] = useState(false);
     const [photo, setPhoto] = useState(null);
@@ -19,11 +22,19 @@ function UserDetailsEditable({ userData }) {
         bio: userData?.bio || "",
         country: userData?.country || "",
         link: userData?.link || "",
-        picturePreview: userData?.picture ? "" : "" // Optional: you may set an initial picture preview if desired
+        picturePreview: userData?.picture ? `${staticBaseUrl}/${userData.picture}` : ""
     });
 
-    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-    const staticBaseUrl = apiBaseUrl.replace('/api', ''); // Remove '/api' for static files
+    // Update local state when userData prop changes.
+    useEffect(() => {
+        setUser(userData);
+        setFormData({
+            bio: userData?.bio || "",
+            country: userData?.country || "",
+            link: userData?.link || "",
+            picturePreview: userData?.picture ? `${staticBaseUrl}/${userData.picture}` : ""
+        });
+    }, [userData, staticBaseUrl]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -55,7 +66,7 @@ function UserDetailsEditable({ userData }) {
                 formDataToSend.append("picture", photo);
             }
     
-            const response = await fetch(`${apiBaseUrl}/user/${username}`, {
+            const response = await fetch(`${apiBaseUrl}/user/${authState.user.username}`, {
                 method: "PUT",
                 body: formDataToSend, 
             });
@@ -66,7 +77,6 @@ function UserDetailsEditable({ userData }) {
     
             const updatedUser = await response.json();
             setUser(updatedUser);
-            // Update formData with the new data (optional)
             setFormData({
                 bio: updatedUser.bio,
                 country: updatedUser.country,
